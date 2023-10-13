@@ -7,16 +7,18 @@ const Time =
     ? window.performance
     : Date
 
-export function genStateKey (): string {
+export function genStateKey(): string {
   return Time.now().toFixed(3)
 }
 
+export const stateKeyKey = '_vue_router_key'
+
 let _key: string = genStateKey()
 
-export function getStateKey () {
+export function getStateKey() {
   return _key
 }
 
-export function setStateKey (key: string) {
+export function setStateKey(key: string) {
   return (_key = key)
 }

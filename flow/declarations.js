@@ -1,4 +1,6 @@
-declare var document: Document;
+/* @flow */
+
+declare var document: Document
 
 declare class RouteRegExp extends RegExp {
   keys: Array<{ name: string, optional: boolean }>;
@@ -12,8 +14,12 @@ declare type PathToRegexpOptions = {
 
 declare module 'path-to-regexp' {
   declare module.exports: {
-    (path: string, keys?: Array<?{ name: string }>, options?: PathToRegexpOptions): RouteRegExp;
-    compile: (path: string) => (params: Object) => string;
+    (
+      path: string,
+      keys?: Array<?{ name: string }>,
+      options?: PathToRegexpOptions
+    ): RouteRegExp,
+    compile: (path: string) => (params: Object) => string
   }
 }
 
@@ -27,79 +33,81 @@ declare type NavigationGuard = (
 
 declare type AfterNavigationHook = (to: Route, from: Route) => any
 
-type Position = { x: number, y: number };
-type PositionResult = Position | { selector: string, offset?: Position } | void;
+type Position = { x: number, y: number }
+type PositionResult = Position | { selector: string, offset?: Position } | void
 
 declare type RouterOptions = {
-  routes?: Array<RouteConfig>;
-  mode?: string;
-  fallback?: boolean;
-  base?: string;
-  linkActiveClass?: string;
-  linkExactActiveClass?: string;
-  parseQuery?: (query: string) => Object;
-  stringifyQuery?: (query: Object) => string;
+  routes?: Array<RouteConfig>,
+  mode?: string,
+  fallback?: boolean,
+  base?: string,
+  linkActiveClass?: string,
+  linkExactActiveClass?: string,
+  parseQuery?: (query: string) => Object,
+  stringifyQuery?: (query: Object) => string,
   scrollBehavior?: (
     to: Route,
     from: Route,
     savedPosition: ?Position
-  ) => PositionResult | Promise<PositionResult>;
+  ) => PositionResult | Promise<PositionResult>
 }
 
 declare type RedirectOption = RawLocation | ((to: Route) => RawLocation)
 
 declare type RouteConfig = {
-  path: string;
-  name?: string;
-  component?: any;
-  components?: Dictionary<any>;
-  redirect?: RedirectOption;
-  alias?: string | Array<string>;
-  children?: Array<RouteConfig>;
-  beforeEnter?: NavigationGuard;
-  meta?: any;
-  props?: boolean | Object | Function;
-  caseSensitive?: boolean;
-  pathToRegexpOptions?: PathToRegexpOptions;
+  path: string,
+  name?: string,
+  component?: any,
+  components?: Dictionary<any>,
+  redirect?: RedirectOption,
+  alias?: string | Array<string>,
+  children?: Array<RouteConfig>,
+  beforeEnter?: NavigationGuard,
+  meta?: any,
+  props?: boolean | Object | Function,
+  caseSensitive?: boolean,
+  pathToRegexpOptions?: PathToRegexpOptions
 }
 
 declare type RouteRecord = {
-  path: string;
-  alias: Array<string>;
-  regex: RouteRegExp;
-  components: Dictionary<any>;
-  instances: Dictionary<any>;
-  enteredCbs: Dictionary<Array<Function>>;
-  name: ?string;
-  parent: ?RouteRecord;
-  redirect: ?RedirectOption;
-  matchAs: ?string;
-  beforeEnter: ?NavigationGuard;
-  meta: any;
-  props: boolean | Object | Function | Dictionary<boolean | Object | Function>;
+  path: string,
+  alias: Array<string>,
+  regex: RouteRegExp,
+  components: Dictionary<any>,
+  instances: Dictionary<any>,
+  enteredCbs: Dictionary<Array<Function>>,
+  name: ?string,
+  parent: ?RouteRecord,
+  redirect: ?RedirectOption,
+  matchAs: ?string,
+  beforeEnter: ?NavigationGuard,
+  meta: any,
+  props: boolean | Object | Function | Dictionary<boolean | Object | Function>
 }
 
 declare type Location = {
-  _normalized?: boolean;
-  name?: string;
-  path?: string;
-  hash?: string;
-  query?: Dictionary<string>;
-  params?: Dictionary<string>;
-  append?: boolean;
-  replace?: boolean;
+  _normalized?: boolean,
+  name?: string,
+  path?: string,
+  hash?: string,
+  query?: Dictionary<string>,
+  params?: Dictionary<string>,
+  append?: boolean,
+  replace?: boolean,
+  state?: Dictionary<any>
 }
 
 declare type RawLocation = string | Location
 
 declare type Route = {
-  path: string;
-  name: ?string;
-  hash: string;
-  query: Dictionary<string>;
-  params: Dictionary<string>;
-  fullPath: string;
-  matched: Array<RouteRecord>;
-  redirectedFrom?: string;
-  meta?: any;
+  path: string,
+  name: ?string,
+  hash: string,
+  query: Dictionary<string>,
+  params: Dictionary<string>,
+  fullPath: string,
+  matched: Array<RouteRecord>,
+  redirectedFrom?: string,
+  meta?: any,
+  state?: Dictionary<any>
 }

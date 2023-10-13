@@ -91,6 +91,12 @@ If you add a `target="_blank"` to your `a` element, you must omit the `@click="n
   <router-link :to="{ path: 'register', query: { plan: 'private' }}"
     >Register</router-link
   >
+
+  <!-- with history state -->
+  <router-link
+    :to="{ path: 'Home', state: { prevPath: $route.fullPath, prevState: $route.state } }"
+    >Home</router-link
+  >
   ```
 
 ### replace
@@ -99,6 +105,8 @@ If you add a `target="_blank"` to your `a` element, you must omit the `@click="n
 - default: `false`
 
   Setting `replace` prop will call `router.replace()` instead of `router.push()` when clicked, so the navigation will not leave a history record.
+
+  Note: Replace _will_ reset the history state unlike in the original vue-router
 
   ```html
   <router-link :to="{ path: '/abc'}" replace></router-link>
@@ -293,14 +301,14 @@ Since it's just a component, it works with `<transition>` and `<keep-alive>`. Wh
 
   ```ts
   type PositionDescriptor =
-    { x: number, y: number } |
-    { selector: string } |
-    void
+    | { x: number; y: number }
+    | { selector: string }
+    | void
 
   type scrollBehaviorHandler = (
     to: Route,
     from: Route,
-    savedPosition?: { x: number, y: number }
+    savedPosition?: { x: number; y: number }
   ) => PositionDescriptor | Promise<PositionDescriptor>
   ```
 
@@ -570,6 +578,12 @@ The route object can be found in multiple places:
   - type: `Object`
 
     An object that contains key/value pairs of the query string. For example, for a path `/foo?user=1`, we get `$route.query.user == 1`. If there is no query the value will be an empty object.
+
+- **\$route.state**
+
+  - type: `Object`
+
+    An object that mirrors the history state (without the state keys added by vue-router-2-state).
 
 - **\$route.meta**
 

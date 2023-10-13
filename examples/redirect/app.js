@@ -16,7 +16,9 @@ const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/', component: Home,
+    {
+      path: '/',
+      component: Home,
       children: [
         { path: '', component: Default },
         { path: 'foo', component: Foo },
@@ -28,13 +30,26 @@ const router = new VueRouter({
       ]
     },
     // absolute redirect
-    { path: '/absolute-redirect', redirect: '/bar' },
+    {
+      path: '/absolute-redirect',
+      redirect: { path: '/bar', state: { prop: '/bar' } }
+    },
     // dynamic redirect, note that the target route `to` is available for the redirect function
-    { path: '/dynamic-redirect/:id?',
-      redirect: to => {
+    {
+      path: '/dynamic-redirect/:id?',
+      redirect: (to, from) => {
         const { hash, params, query } = to
         if (query.to === 'foo') {
-          return { path: '/foo', query: null }
+          return {
+            path: '/foo',
+            query: null,
+            state: {
+              prop:
+                window.history.state && window.history.state.prop
+                  ? 'woof'
+                  : query.to || 'meow'
+            }
+          }
         }
         if (hash === '#baz') {
           return { name: 'baz', hash: '' }
@@ -47,7 +62,7 @@ const router = new VueRouter({
       }
     },
     // named redirect
-    { path: '/named-redirect', redirect: { name: 'baz' }},
+    { path: '/named-redirect', redirect: { name: 'baz' } },
 
     // redirect with params
     { path: '/redirect-with-params/:id', redirect: '/with-params/:id' },
@@ -56,7 +71,11 @@ const router = new VueRouter({
     { path: '/foobar', component: Foobar, caseSensitive: true },
 
     // redirect with pathToRegexpOptions
-    { path: '/FooBar', component: FooBar, pathToRegexpOptions: { sensitive: true }},
+    {
+      path: '/FooBar',
+      component: FooBar,
+      pathToRegexpOptions: { sensitive: true }
+    },
 
     // catch all redirect
     { path: '*', redirect: '/' }
@@ -90,7 +109,7 @@ new Vue({
         </router-link></li>
 
         <li><router-link to="/dynamic-redirect?to=foo">
-          /dynamic-redirect?to=foo (redirects to /foo)
+          /dynamic-redirect?to=foo (redirects to /foo with history state changes)
         </router-link></li>
 
         <li><router-link to="/dynamic-redirect#baz">
@@ -117,6 +136,7 @@ new Vue({
           /not-found (redirects to /)
         </router-link></li>
       </ul>
+      <pre id="state">{{$route.state}}</pre>
       <router-view class="view"></router-view>
     </div>
   `

@@ -22,7 +22,7 @@ const Baz = { template: '<div>baz</div>' }
 const Qux = {
   template: `
     <div class="nested-parent">
-      <h3>qux</h3>
+      <h3>qux {{$route.params.quxId}}</h3>
       <router-link :to="{ name: 'quux' }">/quux</router-link>
       <router-view class="nested-child"></router-view>
     </div>

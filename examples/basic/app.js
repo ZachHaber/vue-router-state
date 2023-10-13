@@ -10,14 +10,14 @@ document.body.appendChild(listenerCountDiv)
 
 const originalAddEventListener = window.addEventListener
 const originalRemoveEventListener = window.removeEventListener
-window.addEventListener = function (name, handler) {
+window.addEventListener = function(name, handler) {
   if (name === 'popstate') {
     listenerCountDiv.textContent =
       ++numPopstateListeners + ' popstate listeners'
   }
   return originalAddEventListener.apply(this, arguments)
 }
-window.removeEventListener = function (name, handler) {
+window.removeEventListener = function(name, handler) {
   if (name === 'popstate') {
     listenerCountDiv.textContent =
       --numPopstateListeners + ' popstate listeners'
@@ -70,7 +70,7 @@ const vueInstance = new Vue({
     <div id="app">
       <h1>Basic</h1>
       <ul>
-        <li><router-link to="/">/</router-link></li>
+        <li><router-link :to="{path:'/',state:{meow:3}}">/</router-link></li>
         <li><router-link to="/foo">/foo</router-link></li>
         <li><router-link to="/bar">/bar</router-link></li>
         <router-link tag="li" to="/bar" :event="['mousedown', 'touchstart']">
@@ -93,12 +93,13 @@ const vueInstance = new Vue({
       <pre id="counter">{{ n }}</pre>
       <pre id="query-t">{{ $route.query.t }}</pre>
       <pre id="hash">{{ $route.hash }}</pre>
+      <pre id="state">{{ $route.state }}</pre>
       <router-view class="view"></router-view>
     </div>
   `,
 
   methods: {
-    navigateAndIncrement () {
+    navigateAndIncrement() {
       const increment = () => this.n++
       if (this.$route.path === '/') {
         this.$router.push('/foo', increment)

@@ -1,11 +1,7 @@
-import {
-  getCurrentInstance,
-  shallowReactive,
-  effectScope
-} from 'vue'
+import { getCurrentInstance, shallowReactive, effectScope, computed } from 'vue'
 import { throwNoCurrentInstance } from './utils'
 
-export function useRouter () {
+export function useRouter() {
   if (process.env.NODE_ENV !== 'production') {
     throwNoCurrentInstance('useRouter')
   }
@@ -13,7 +9,7 @@ export function useRouter () {
   return getCurrentInstance().proxy.$root.$router
 }
 
-export function useRoute () {
+export function useRoute() {
   if (process.env.NODE_ENV !== 'production') {
     throwNoCurrentInstance('useRoute')
   }
@@ -31,4 +27,9 @@ export function useRoute () {
   }
 
   return root._$route
+}
+
+export function useRouteState() {
+  const route = useRoute()
+  return computed(() => route.state)
 }

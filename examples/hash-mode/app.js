@@ -10,14 +10,14 @@ document.body.appendChild(listenerCountDiv)
 
 const originalAddEventListener = window.addEventListener
 const originalRemoveEventListener = window.removeEventListener
-window.addEventListener = function (name, handler) {
+window.addEventListener = function(name, handler) {
   if (name === 'popstate') {
     listenerCountDiv.textContent =
       ++numPopstateListeners + ' popstate listeners'
   }
   return originalAddEventListener.apply(this, arguments)
 }
-window.removeEventListener = function (name, handler) {
+window.removeEventListener = function(name, handler) {
   if (name === 'popstate') {
     listenerCountDiv.textContent =
       --numPopstateListeners + ' popstate listeners'
@@ -60,7 +60,7 @@ const vueInstance = new Vue({
     <div id="app">
       <h1>Mode: 'hash'</h1>
       <ul>
-        <li><router-link to="/">/</router-link></li>
+        <li><router-link :to="{path:'/',state:{meow:'meow-2'}}">/</router-link></li>
         <li><router-link to="/foo">/foo</router-link></li>
         <li><router-link to="/bar">/bar</router-link></li>
         <router-link tag="li" to="/bar">/bar</router-link>
@@ -75,6 +75,7 @@ const vueInstance = new Vue({
       </ul>
       <pre id="query-t">{{ $route.query.t }}</pre>
       <pre id="hash">{{ $route.hash }}</pre>
+      <pre id="state">{{ $route.state }}</pre>
       <router-view class="view"></router-view>
     </div>
   `,

@@ -6,8 +6,9 @@ const node = require('@rollup/plugin-node-resolve').nodeResolve
 const replace = require('rollup-plugin-replace')
 const version = process.env.VERSION || require('../package.json').version
 const banner = `/*!
-  * vue-router v${version}
+  * vue-router-2-state v${version}
   * (c) ${new Date().getFullYear()} Evan You
+  * Zachary Soare
   * @license MIT
   */`
 
@@ -65,7 +66,7 @@ module.exports = [
   }
 ].map(genConfig)
 
-function genConfig (opts) {
+function genConfig(opts) {
   const config = {
     input: {
       input: opts.input || resolve('src/index.js'),

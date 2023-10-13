@@ -32,6 +32,15 @@ router.push({ name: 'user', params: { userId: '123' } })
 
 // with query, resulting in /register?plan=private
 router.push({ path: 'register', query: { plan: 'private' } })
+
+// with history state
+router.push({
+  path: 'error',
+  state: {
+    prevPath: router.currentRoute.fullPath,
+    prevState: router.currentRoute.state
+  }
+})
 ```
 
 **Note**: `params` are ignored if a `path` is provided, which is not the case for `query`, as shown in the example above. Instead, you need to provide the `name` of the route or manually specify the whole `path` with any parameter:

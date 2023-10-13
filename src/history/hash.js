@@ -5,10 +5,15 @@ import { History } from './base'
 import { cleanPath } from '../util/path'
 import { getLocation } from './html5'
 import { setupScroll, handleScroll } from '../util/scroll'
-import { pushState, replaceState, supportsPushState } from '../util/push-state'
+import {
+  pushState,
+  replaceState,
+  supportsPushState,
+  stripStateKey
+} from '../util/push-state'
 
 export class HashHistory extends History {
-  constructor (router: Router, base: ?string, fallback: boolean) {
+  constructor(router: Router, base: ?string, fallback: boolean) {
     super(router, base)
     // check history fallback deeplinking
     if (fallback && checkFallback(this.base)) {
@@ -19,7 +24,7 @@ export class HashHistory extends History {
 
   // this is delayed until the app mounts
   // to avoid the hashchange listener being fired too early
-  setupListeners () {
+  setupListeners() {
     if (this.listeners.length > 0) {
       return
     }
@@ -37,31 +42,31 @@ export class HashHistory extends History {
       if (!ensureSlash()) {
         return
       }
-      this.transitionTo(getHash(), route => {
-        if (supportsScroll) {
-          handleScroll(this.router, route, current, true)
+      this.transitionTo(
+        { path: getHash(), state: stripStateKey(window.history.state) },
+        route => {
+          if (supportsScroll) {
+            handleScroll(this.router, route, current, true)
+          }
+          if (!supportsPushState) {
+            replaceHash(route.fullPath)
+          }
         }
-        if (!supportsPushState) {
-          replaceHash(route.fullPath)
-        }
-      })
+      )
     }
     const eventType = supportsPushState ? 'popstate' : 'hashchange'
-    window.addEventListener(
-      eventType,
-      handleRoutingEvent
-    )
+    window.addEventListener(eventType, handleRoutingEvent)
     this.listeners.push(() => {
       window.removeEventListener(eventType, handleRoutingEvent)
     })
   }
 
-  push (location: RawLocation, onComplete?: Function, onAbort?: Function) {
+  push(location: RawLocation, onComplete?: Function, onAbort?: Function) {
     const { current: fromRoute } = this
     this.transitionTo(
       location,
       route => {
-        pushHash(route.fullPath)
+        pushHash(route.fullPath, route.state)
         handleScroll(this.router, route, fromRoute, false)
         onComplete && onComplete(route)
       },
@@ -69,12 +74,12 @@ export class HashHistory extends History {
     )
   }
 
-  replace (location: RawLocation, onComplete?: Function, onAbort?: Function) {
+  replace(location: RawLocation, onComplete?: Function, onAbort?: Function) {
     const { current: fromRoute } = this
     this.transitionTo(
       location,
       route => {
-        replaceHash(route.fullPath)
+        replaceHash(route.fullPath, route.state)
         handleScroll(this.router, route, fromRoute, false)
         onComplete && onComplete(route)
       },
@@ -82,23 +87,23 @@ export class HashHistory extends History {
     )
   }
 
-  go (n: number) {
+  go(n: number) {
     window.history.go(n)
   }
 
-  ensureURL (push?: boolean) {
+  ensureURL(push?: boolean) {
     const current = this.current.fullPath
     if (getHash() !== current) {
       push ? pushHash(current) : replaceHash(current)
     }
   }
 
-  getCurrentLocation () {
+  getCurrentLocation() {
     return getHash()
   }
 }
 
-function checkFallback (base) {
+function checkFallback(base) {
   const location = getLocation(base)
   if (!/^\/#/.test(location)) {
     window.location.replace(cleanPath(base + '/#' + location))
@@ -106,7 +111,7 @@ function checkFallback (base) {
   }
 }
 
-function ensureSlash (): boolean {
+function ensureSlash(): boolean {
   const path = getHash()
   if (path.charAt(0) === '/') {
     return true
@@ -115,7 +120,7 @@ function ensureSlash (): boolean {
   return false
 }
 
-export function getHash (): string {
+export function getHash(): string {
   // We can't use window.location.hash here because it's not
   // consistent across browsers - Firefox will pre-decode it!
   let href = window.location.href
@@ -128,24 +133,24 @@ export function getHash (): string {
   return href
 }
 
-function getUrl (path) {
+function getUrl(path) {
   const href = window.location.href
   const i = href.indexOf('#')
   const base = i >= 0 ? href.slice(0, i) : href
   return `${base}#${path}`
 }
 
-function pushHash (path) {
+function pushHash(path, state) {
   if (supportsPushState) {
-    pushState(getUrl(path))
+    pushState(getUrl(path), false, state)
   } else {
     window.location.hash = path
   }
 }
 
-function replaceHash (path) {
+function replaceHash(path, state) {
   if (supportsPushState) {
-    replaceState(getUrl(path))
+    replaceState(getUrl(path), state)
   } else {
     window.location.replace(getUrl(path))
   }

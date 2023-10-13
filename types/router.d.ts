@@ -139,7 +139,7 @@ export declare class VueRouter {
    * Go forward in history if possible by calling `history.forward()`. Equivalent to `router.go(1)`.
    */
   forward(): void
-  match (raw: RawLocation, current?: Route, redirectedFrom?: Location): Route
+  match(raw: RawLocation, current?: Route, redirectedFrom?: Location): Route
   getMatchedComponents(to?: RawLocation | Route): Component[]
   /**
    * This method queues a callback to be called when the router has completed the initial navigation, which means it has
@@ -261,17 +261,25 @@ export interface NavigationFailure extends Error {
   /**
    * Type of the navigation. One of {@link NavigationFailureType}
    */
-  type: NavigationFailureType.aborted | NavigationFailureType.cancelled | NavigationFailureType.duplicated
+  type:
+    | NavigationFailureType.aborted
+    | NavigationFailureType.cancelled
+    | NavigationFailureType.duplicated
 }
 
 /**
  * Check if an object is a {@link NavigationFailure}.
  */
-export declare function isNavigationFailure(error: any, type?: NavigationFailureType): error is NavigationFailure
+export declare function isNavigationFailure(
+  error: any,
+  type?: NavigationFailureType
+): error is NavigationFailure
 
 type Position = { x: number; y: number }
-type PositionResult = Position | { selector: string; offset?: Position, behavior?: ScrollBehavior } | void
-
+type PositionResult =
+  | Position
+  | { selector: string; offset?: Position; behavior?: ScrollBehavior }
+  | void
 
 /**
  * Options to initialize a {@link VueRouter} instance.
@@ -396,23 +404,24 @@ export interface RouteRecordPublic {
     | Dictionary<boolean | Object | RoutePropsFunction>
 }
 
-
-export interface Location {
+export interface Location<State = Dictionary<any>> {
   name?: string
   path?: string
   hash?: string
   query?: Dictionary<string | (string | null)[] | null | undefined>
   params?: Dictionary<string>
+  state?: State
   append?: boolean
   replace?: boolean
 }
 
-export interface Route {
+export interface Route<State = Dictionary<any>> {
   path: string
   name?: string | null
   hash: string
   query: Dictionary<string | (string | null)[]>
   params: Dictionary<string>
+  state?: State
   fullPath: string
   matched: RouteRecord[]
   redirectedFrom?: string

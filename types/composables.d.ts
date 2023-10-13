@@ -4,7 +4,9 @@ import type { Route, NavigationGuard, default as VueRouter } from './index'
 /**
  * Returns the current route location. Equivalent to using `$route` inside templates.
  */
-export function useRoute(): Route
+export function useRoute<State = Dictionary<any>>(): Route<State>
+
+export function useRouteState<State = Dictionary<any>>(): State;
 
 /**
  * Returns the router instance. Equivalent to using `$router` inside templates.

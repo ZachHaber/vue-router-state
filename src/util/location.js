@@ -7,7 +7,7 @@ import { fillParams } from './params'
 import { warn } from './warn'
 import { extend } from './misc'
 
-export function normalizeLocation (
+export function normalizeLocation(
   raw: RawLocation,
   current: ?Route,
   append: ?boolean,
@@ -64,6 +64,7 @@ export function normalizeLocation (
     _normalized: true,
     path,
     query,
-    hash
+    hash,
+    state: next.state
   }
 }

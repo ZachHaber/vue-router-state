@@ -1,9 +1,10 @@
 /*!
   * vue-router v3.6.5
-  * (c) 2022 Evan You
+  * (c) 2023 Evan You
+  * Zachary Soare
   * @license MIT
   */
-import { getCurrentInstance, effectScope, shallowReactive, onUnmounted, computed, unref } from 'vue';
+import { getCurrentInstance, effectScope, shallowReactive, computed, onUnmounted, unref } from 'vue';
 
 // dev only warn if no current instance
 
@@ -15,7 +16,7 @@ function throwNoCurrentInstance (method) {
   }
 }
 
-function useRouter () {
+function useRouter() {
   if (process.env.NODE_ENV !== 'production') {
     throwNoCurrentInstance('useRouter');
   }
@@ -23,7 +24,7 @@ function useRouter () {
   return getCurrentInstance().proxy.$root.$router
 }
 
-function useRoute () {
+function useRoute() {
   if (process.env.NODE_ENV !== 'production') {
     throwNoCurrentInstance('useRoute');
   }
@@ -40,6 +41,11 @@ function useRoute () {
   }
 
   return root._$route
+}
+
+function useRouteState() {
+  var route = useRoute();
+  return computed(function () { return route.state; })
 }
 
 function onBeforeRouteUpdate (guard) {
@@ -241,4 +247,4 @@ function useLink (props) {
   }
 }
 
-export { isSameRouteLocationParams, onBeforeRouteLeave, onBeforeRouteUpdate, useLink, useRoute, useRouter };
+export { isSameRouteLocationParams, onBeforeRouteLeave, onBeforeRouteUpdate, useLink, useRoute, useRouteState, useRouter };
