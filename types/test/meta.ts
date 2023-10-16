@@ -1,8 +1,8 @@
-import VueRouter from '../index'
+import VueRouter from '../src/index'
 
 const component = { template: '<div>home</div>' }
 
-declare module '../index' {
+declare module '../src/types/declarations' {
   export interface RouteMeta {
     requiresAuth?: boolean
     nested: { foo: string }
