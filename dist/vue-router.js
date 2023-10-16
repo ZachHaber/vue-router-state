@@ -1,5 +1,5 @@
 /*!
-  * vue-router-2-state v3.6.5
+  * vue-router-2-state v3.7.0
   * Zachary Soare
   * @license MIT
   */
@@ -2898,7 +2898,7 @@
 	 * @internal
 	 */
 	VueRouter.install = install;
-	VueRouter.version = '3.6.5';
+	VueRouter.version = '3.7.0';
 	VueRouter.isNavigationFailure = isNavigationFailure;
 	VueRouter.NavigationFailureType = NavigationFailureType;
 	/**
