@@ -1,5 +1,5 @@
 /*!
-  * vue-router-2-state v3.7.0
+  * vue-router-2-state v3.6.5
   * Zachary Soare
   * @license MIT
   */
