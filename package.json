@@ -18,7 +18,7 @@
     "src",
     "dist/*.js",
     "dist/*.mjs",
-    "types/src/*.d.ts",
+    "types/src",
     "composables.mjs",
     "composables.js",
     "vetur/tags.json",
