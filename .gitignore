@@ -15,3 +15,4 @@ yarn-error.log
 selenium-server.log
 local.log
 browserstack.err
+_selenium-server.log

@@ -6,7 +6,7 @@ module.exports = {
   // Expose __dirname to allow automatically setting basename.
   context: __dirname,
   node: {
-    __dirname: true
+    __dirname: true,
   },
 
   mode: process.env.NODE_ENV || 'development',
@@ -25,33 +25,41 @@ module.exports = {
     path: path.join(__dirname, '__build__'),
     filename: '[name].js',
     chunkFilename: '[id].chunk.js',
-    publicPath: '/__build__/'
+    publicPath: '/__build__/',
   },
 
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.[jt]s$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
         test: /\.vue$/,
-        use: 'vue-loader'
+        use: 'vue-loader',
       },
       {
         test: /\.css$/,
-        use: ['vue-style-loader', 'css-loader']
-      }
-    ]
+        use: ['vue-style-loader', 'css-loader'],
+      },
+    ],
   },
 
   resolve: {
+    extensions: ['.ts', '.js', '.json'],
     alias: {
       vue: 'vue/dist/vue.esm.js',
-      'vue-router': path.join(__dirname, '..', 'src'),
-      'vue-router/composables': path.join(__dirname, '..', 'src/composables')
-    }
+      'vue-router': path.join(__dirname, '..', 'src', 'index.ts'),
+      'vue-router/composables': path.join(
+        __dirname,
+        '..',
+        '..',
+        'src',
+        'composables',
+        'index.ts',
+      ),
+    },
   },
 
   optimization: {
@@ -60,11 +68,11 @@ module.exports = {
         shared: {
           name: 'shared',
           chunks: 'initial',
-          minChunks: 2
-        }
-      }
-    }
+          minChunks: 2,
+        },
+      },
+    },
   },
 
-  plugins: [new VuePlugin()]
+  plugins: [new VuePlugin()],
 }

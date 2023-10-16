@@ -1,2 +1,5 @@
 dist
-*.ts
+*.xml
+*.html
+*.png
+*.css

@@ -6,7 +6,11 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
-    "lib": ["es5", "dom", "es2015.promise", "es2015.iterable", "es2015.core"]
+    "lib": ["es5", "dom", "es2015.promise", "es2015.iterable", "es2015.core"],
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "#src/*": ["../../src/*"]
+    }
   },
   "include": ["*.ts", "../*.d.ts"]
 }

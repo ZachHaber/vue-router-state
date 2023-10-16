@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <div class="loading" v-if="loading">Loading...</div>
+    <div v-if="loading" class="loading" >Loading...</div>
     <div v-if="error" class="error">
       {{ error }}
     </div>
@@ -9,7 +9,7 @@
         giving the post container a unique key triggers transitions
         when the post id changes.
       -->
-      <div v-if="post" class="content" :key="post.id">
+      <div v-if="post" :key="post.id" class="content">
         <h2>{{ post.title }}</h2>
         <p>{{ post.body }}</p>
       </div>
@@ -28,11 +28,11 @@ export default {
       error: null
     }
   },
-  created () {
-    this.fetchData()
-  },
   watch: {
     '$route': 'fetchData'
+  },
+  created () {
+    this.fetchData()
   },
   methods: {
     fetchData () {

@@ -1,3 +1,4 @@
+/* eslint-disable vue/one-component-per-file */
 import Vue, { defineComponent, watch, ref } from 'vue'
 import VueRouter from 'vue-router'
 import {
@@ -5,13 +6,13 @@ import {
   useRouter,
   onBeforeRouteLeave,
   onBeforeRouteUpdate,
-  useLink
-} from 'vue-router/composables'
+  useLink,
+} from '../../src/composables/index'
 
 Vue.use(VueRouter)
 
 const Foo = defineComponent({
-  setup () {
+  setup() {
     const route = useRoute()
     onBeforeRouteUpdate((to, from, next) => {
       console.log('Foo updating')
@@ -29,11 +30,12 @@ const Foo = defineComponent({
   <h3>Foo</h3>
   {{ route.fullPath }}
 </div>
-  `
+  `,
 })
 
 const Home = defineComponent({
-  setup () {
+  components: { Foo },
+  setup() {
     const route = useRoute()
     const router = useRouter()
 
@@ -56,11 +58,11 @@ const Home = defineComponent({
       () => route.query.n,
       () => {
         watchCount.value++
-      }
+      },
     )
 
-    function navigate () {
-      router.push({ query: { n: 1 + (Number(route.query.n) || 0) }})
+    function navigate() {
+      router.push({ query: { n: 1 + (Number(route.query.n) || 0) } })
     }
     return { route, navigate, watchCount, startRoute }
   },
@@ -75,11 +77,10 @@ const Home = defineComponent({
   <Foo />
 </div>
   `,
-  components: { Foo }
 })
 
 const About = defineComponent({
-  setup () {
+  setup() {
     const route = useRoute()
     return { route }
   },
@@ -88,19 +89,19 @@ const About = defineComponent({
   <h2>About</h2>
   <p id="fullpath">{{ route.fullPath }}</p>
 </div>
-  `
+  `,
 })
 
 const Nested = defineComponent({
-  template: `<RouterView />`
+  template: `<RouterView />`,
 })
 
 const NestedEmpty = defineComponent({
-  template: `<div>NestedEmpty</div>`
+  template: `<div>NestedEmpty</div>`,
 })
 
 const NestedA = defineComponent({
-  template: `<div>NestedA</div>`
+  template: `<div>NestedA</div>`,
 })
 
 const router = new VueRouter({
@@ -113,15 +114,22 @@ const router = new VueRouter({
       component: Nested,
       children: [
         { path: '', component: NestedEmpty },
-        { path: 'a', component: NestedA }
-      ]
+        { path: 'a', component: NestedA },
+      ],
     },
-    { path: '/about', component: About }
-  ]
+    { path: '/about', component: About },
+  ],
 })
 
 new Vue({
   router,
+  setup() {
+    const { href, isActive, isExactActive, navigate, route } = useLink({
+      to: '/nested',
+    })
+
+    return { href, isActive, navigate, route, isExactActive }
+  },
   template: `
     <div id="app">
       <h1>Basic</h1>
@@ -136,11 +144,4 @@ new Vue({
       <pre id="nested-active" @click="navigate">{{ href }}: {{ isActive }}, {{ isExactActive }}</pre>
     </div>
   `,
-  setup () {
-    const { href, isActive, isExactActive, navigate, route } = useLink({
-      to: '/nested'
-    })
-
-    return { href, isActive, navigate, route, isExactActive }
-  }
 }).$mount('#app')

@@ -1,13 +1,8 @@
 import Vue, { ComponentOptions, AsyncComponent, Component } from 'vue'
 
-import VueRouter from '../index'
-import {
-  Route,
-  RouteRecord,
-  RedirectOption,
-  NavigationFailure,
-  NavigationFailureType
-} from '../index'
+import VueRouter from '#src/index'
+import { NavigationFailure } from '#src/util/errors'
+import { RedirectOption, Route, RouteRecord } from '#src/util/route'
 
 Vue.use(VueRouter)
 
@@ -34,7 +29,7 @@ const Hook: ComponentOptions<Vue> = {
     route.params
     next('/')
     next({ path: '/' })
-    next(vm => {
+    next((vm) => {
       vm.$router
     })
   },
@@ -51,7 +46,7 @@ const Hook: ComponentOptions<Vue> = {
     next('/')
     next({ path: '/' })
     next()
-  }
+  },
 }
 
 const JSXComponent = () => {
@@ -84,19 +79,19 @@ const router = new VueRouter({
 
     return Promise.resolve({
       x: 0,
-      y: 0
+      y: 0,
     })
   },
   routes: [
     {
       path: '/foo',
       component: Home,
-      children: [{ path: '', component: Home }]
+      children: [{ path: '', component: Home }],
     },
     {
       path: '/foo',
       components: { default: Home },
-      children: [{ path: '', component: Home }]
+      children: [{ path: '', component: Home }],
     },
     {
       path: '/',
@@ -110,7 +105,7 @@ const router = new VueRouter({
             bar: Bar,
             abc: Abc,
             asyncComponent: Async,
-            JSXComponent
+            JSXComponent,
           },
           meta: { auth: true, nested: { foo: '' } },
           beforeEnter(to, from, next) {
@@ -122,28 +117,28 @@ const router = new VueRouter({
           props: {
             default: true,
             bar: { id: 123 },
-            abc: route => route.params,
-            asyncComponent: (route: Route) => route.params
-          }
+            abc: (route) => route.params,
+            asyncComponent: (route: Route) => route.params,
+          },
         },
         {
           path: 'children',
-          redirect: to => {
+          redirect: (to) => {
             to.params
             return '/child'
-          }
-        }
-      ]
+          },
+        },
+      ],
     },
     { path: '/home', alias: '/' },
     { path: '/foo', props: true },
     { path: '/bar', props: { id: 123 } },
     { path: '/baz', props: (route: Route) => route.params },
-    { path: '*', redirect: '/' }
-  ]
+    { path: '*', redirect: '/' },
+  ],
 })
 
-const App: Vue = router.app
+const App: Vue | null = router.app
 const mode: string = router.mode
 
 const route: Route = router.currentRoute
@@ -157,7 +152,7 @@ const redirectedFrom: string | undefined = route.redirectedFrom
 const meta: any = route.meta
 const matched: RouteRecord[] = route.matched
 
-matched.forEach(m => {
+matched.forEach((m) => {
   const path: string = m.path
   const components: {
     [key: string]: Component | AsyncComponent | {}
@@ -190,35 +185,35 @@ router.afterEach((to, from) => {
 router.push({
   path: '/',
   params: {
-    foo: 'foo'
+    foo: 'foo',
   },
   query: {
     bar: 'bar',
     empty: null,
-    removed: undefined,
+    // removed: undefined,
     withEmpty: ['1', null],
-    foo: ['foo1', 'foo2']
+    foo: ['foo1', 'foo2'],
   },
-  hash: 'hash'
+  hash: 'hash',
 })
 router.replace({ name: 'home' })
 
 router.push(
   '/',
   () => {},
-  () => {}
+  () => {},
 )
 router.replace(
   '/foo',
   () => {},
-  () => {}
+  () => {},
 )
 
 // promises
 
 router
   .push('/')
-  .then(route => {
+  .then((route) => {
     route.fullPath
   })
   .catch(() => {})
@@ -231,11 +226,8 @@ router.go(-1)
 router.back()
 router.forward()
 
-const Components: (
-  | Component
-  | AsyncComponent
-  | {}
-)[] = router.getMatchedComponents()
+const Components: (Component | AsyncComponent | {})[] =
+  router.getMatchedComponents()
 
 const match: Route = router.match('/more')
 
@@ -251,7 +243,7 @@ const vm = new Vue({
       </ul>
       <router-view class="view"></router-view>
     </div>
-  `
+  `,
 }).$mount('#app')
 
 vm.$router.push('/')

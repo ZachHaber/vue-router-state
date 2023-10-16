@@ -10,14 +10,14 @@ document.body.appendChild(listenerCountDiv)
 
 const originalAddEventListener = window.addEventListener
 const originalRemoveEventListener = window.removeEventListener
-window.addEventListener = function(name, handler) {
+window.addEventListener = function (name, handler) {
   if (name === 'popstate') {
     listenerCountDiv.textContent =
       ++numPopstateListeners + ' popstate listeners'
   }
   return originalAddEventListener.apply(this, arguments)
 }
-window.removeEventListener = function(name, handler) {
+window.removeEventListener = function (name, handler) {
   if (name === 'popstate') {
     listenerCountDiv.textContent =
       --numPopstateListeners + ' popstate listeners'
@@ -47,8 +47,8 @@ const router = new VueRouter({
     { path: '/bar', component: Bar },
     { path: encodeURI('/é'), component: Unicode },
     { path: encodeURI('/é/:unicode'), component: Unicode },
-    { path: '/query/:q', component: Query, name: 'param' }
-  ]
+    { path: '/query/:q', component: Query, name: 'param' },
+  ],
 })
 
 // 4. Create and mount root instance.
@@ -56,6 +56,7 @@ const router = new VueRouter({
 // Route components will be rendered inside <router-view>.
 const vueInstance = new Vue({
   router,
+  methods: {},
   template: `
     <div id="app">
       <h1>Mode: 'hash'</h1>
@@ -79,7 +80,6 @@ const vueInstance = new Vue({
       <router-view class="view"></router-view>
     </div>
   `,
-  methods: {}
 }).$mount('#app')
 
 document.getElementById('unmount').addEventListener('click', () => {

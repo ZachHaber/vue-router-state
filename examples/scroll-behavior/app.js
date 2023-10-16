@@ -14,7 +14,7 @@ const Bar = {
       <p id="anchor2" style="height:500px">Anchor2</p>
       <p id="1number">with number</p>
     </div>
-  `
+  `,
 }
 
 // scrollBehavior:
@@ -47,9 +47,9 @@ const scrollBehavior = function (to, from, savedPosition) {
       return false
     }
 
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       // check if any matched route config has meta that requires scrolling to top
-      if (to.matched.some(m => m.meta.scrollToTop)) {
+      if (to.matched.some((m) => m.meta.scrollToTop)) {
         // coords will be used if no selector is provided,
         // or if the selector didn't match any element.
         position.x = 0
@@ -71,14 +71,19 @@ const router = new VueRouter({
   base: __dirname,
   scrollBehavior,
   routes: [
-    { path: '/', component: Home, meta: { scrollToTop: true }},
+    { path: '/', component: Home, meta: { scrollToTop: true } },
     { path: '/foo', component: Foo },
-    { path: '/bar', component: Bar, meta: { scrollToTop: true }}
-  ]
+    { path: '/bar', component: Bar, meta: { scrollToTop: true } },
+  ],
 })
 
 new Vue({
   router,
+  methods: {
+    afterLeave() {
+      this.$root.$emit('triggerScroll')
+    },
+  },
   template: `
     <div id="app">
       <h1>Scroll Behavior</h1>
@@ -95,9 +100,4 @@ new Vue({
       </transition>
     </div>
   `,
-  methods: {
-    afterLeave () {
-      this.$root.$emit('triggerScroll')
-    }
-  }
 }).$mount('#app')

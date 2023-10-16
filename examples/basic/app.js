@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter from '../../src/index'
 
 // track number of popstate listeners
 let numPopstateListeners = 0
@@ -10,14 +10,14 @@ document.body.appendChild(listenerCountDiv)
 
 const originalAddEventListener = window.addEventListener
 const originalRemoveEventListener = window.removeEventListener
-window.addEventListener = function(name, handler) {
+window.addEventListener = function (name, handler) {
   if (name === 'popstate') {
     listenerCountDiv.textContent =
       ++numPopstateListeners + ' popstate listeners'
   }
   return originalAddEventListener.apply(this, arguments)
 }
-window.removeEventListener = function(name, handler) {
+window.removeEventListener = function (name, handler) {
   if (name === 'popstate') {
     listenerCountDiv.textContent =
       --numPopstateListeners + ' popstate listeners'
@@ -46,8 +46,8 @@ const router = new VueRouter({
     { path: '/foo', component: Foo },
     { path: '/bar', component: Bar },
     { path: encodeURI('/é'), component: Unicode },
-    { path: '/query/:q', component: Query }
-  ]
+    { path: '/query/:q', component: Query },
+  ],
 })
 
 router.beforeEach((to, from, next) => {
@@ -66,6 +66,17 @@ router.beforeEach((to, from, next) => {
 const vueInstance = new Vue({
   router,
   data: () => ({ n: 0 }),
+
+  methods: {
+    navigateAndIncrement() {
+      const increment = () => this.n++
+      if (this.$route.path === '/') {
+        this.$router.push('/foo', increment)
+      } else {
+        this.$router.push('/', increment)
+      }
+    },
+  },
   template: `
     <div id="app">
       <h1>Basic</h1>
@@ -97,17 +108,6 @@ const vueInstance = new Vue({
       <router-view class="view"></router-view>
     </div>
   `,
-
-  methods: {
-    navigateAndIncrement() {
-      const increment = () => this.n++
-      if (this.$route.path === '/') {
-        this.$router.push('/foo', increment)
-      } else {
-        this.$router.push('/', increment)
-      }
-    }
-  }
 }).$mount('#app')
 
 document.getElementById('unmount').addEventListener('click', () => {

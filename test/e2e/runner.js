@@ -22,6 +22,7 @@
 
 require('dotenv').config()
 const { resolve } = require('path')
+/** @type {import('nightwatch').Nightwatch} */
 const Nightwatch = require('nightwatch')
 const args = process.argv.slice(2)
 
@@ -45,8 +46,8 @@ if (args.indexOf('-c') < 0) {
   if (envs && envs.indexOf(',') > -1) {
     console.warn(
       `Specify the conf when providing multiple browsers:\n$ yarn run test:e2e ${args.join(
-        ' '
-      )} -c ${NW_CONFIG}`
+        ' ',
+      )} -c ${NW_CONFIG}`,
     )
     process.exit(1)
   }
@@ -58,7 +59,7 @@ if (args.indexOf('-c') < 0) {
   }
 }
 
-function adaptArgv (argv) {
+function adaptArgv(argv) {
   // take every remaining argument and treat it as a test file
   // this allows to run `node test/e2e/runner.js test/e2e/basic.js`
   argv.retries = process.env.CI ? 1 : 0
@@ -77,7 +78,7 @@ function adaptArgv (argv) {
 
 process.mainModule.filename = resolve(
   __dirname,
-  '../../node_modules/.bin/nightwatch'
+  '../../node_modules/.bin/nightwatch',
 )
 
 if (isLocal) {
@@ -86,7 +87,7 @@ if (isLocal) {
       'Hey!\n',
       'You are missing credentials for Browserstack.\n',
       'If you are a contributor, this is normal, credentials are private. These tests must be run by a maintainer of vue-router',
-      'If you are a maintainer, make sure to create your `.env` file with both `BS_USER` and `BS_KEY` variables!'
+      'If you are a maintainer, make sure to create your `.env` file with both `BS_USER` and `BS_KEY` variables!',
     )
     // fail if testing locally
     process.exit(process.env.CI ? 0 : 1)
@@ -95,12 +96,12 @@ if (isLocal) {
   let bsLocal
   const browserstack = require('browserstack-local')
   Nightwatch.bs_local = bsLocal = new browserstack.Local()
-  bsLocal.start({ key: process.env.BS_KEY }, error => {
+  bsLocal.start({ key: process.env.BS_KEY }, (error) => {
     if (error) throw error
 
     console.log('Connected. Now testing...')
     try {
-      Nightwatch.cli(argv => {
+      Nightwatch.cli((argv) => {
         adaptArgv(argv)
         Nightwatch.CliRunner(argv)
           .setup(null, () => {
@@ -134,21 +135,21 @@ if (isLocal) {
   })
 } else {
   // create the Nightwatch CLI runner
-  Nightwatch.cli(argv => {
+  Nightwatch.cli((argv) => {
     adaptArgv(argv)
     const runner = Nightwatch.CliRunner(argv)
 
     // setup and run tests
     runner
-      .setup()
-      .startWebDriver()
+      .setupAsync()
+      // .startWebDriver()
       .then(() => runner.runTests())
       .then(() => {
-        runner.stopWebDriver()
+        // runner.stopWebDriver()
         server && server.close()
         process.exit(0)
       })
-      .catch(err => {
+      .catch((err) => {
         server && server.close()
         console.error(err)
         process.exit(1)

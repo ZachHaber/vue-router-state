@@ -19,20 +19,20 @@ const router = new VueRouter({
         // still allowed
         other: true,
         nested: {
-          foo: 'bar'
-        }
-      }
+          foo: 'bar',
+        },
+      },
     },
     {
       path: '/foo',
       component,
       // @ts-expect-error
-      meta: {}
-    }
-  ]
+      meta: {},
+    },
+  ],
 })
 
-router.beforeEach(to => {
+router.beforeEach((to) => {
   // should pass
   if (to.meta!.requiresAuth === true) {
   }

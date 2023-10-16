@@ -45,24 +45,29 @@ const router = new VueRouter({
     { path: '/foo', component: Foo },
     // multiple parameters, `/` should not be encoded. The name is also important
     // https://github.com/vuejs/vue-router/issues/2719
-    { path: '/a/:tags*', name: 'tagged', component: () => new Promise(resolve => {
-      setTimeout(() => {
-        resolve({
-          template: `<div>
+    {
+      path: '/a/:tags*',
+      name: 'tagged',
+      component: () =>
+        new Promise((resolve) => {
+          setTimeout(() => {
+            resolve({
+              template: `<div>
             <h2>Lazy with params</h2>
             <pre id="tagged-path">{{ $route.path }}</pre>
-          </div>`
-        })
-      }, 200)
-    }) },
+          </div>`,
+            })
+          }, 200)
+        }),
+    },
     // Bar and Baz belong to the same root route
     // and grouped in the same async chunk.
-    { path: '/bar', component: Bar,
-      children: [
-        { path: 'baz', component: Baz }
-      ]
-    }
-  ]
+    {
+      path: '/bar',
+      component: Bar,
+      children: [{ path: 'baz', component: Baz }],
+    },
+  ],
 })
 
 new Vue({
@@ -79,5 +84,5 @@ new Vue({
       </ul>
       <router-view class="view"></router-view>
     </div>
-  `
+  `,
 }).$mount('#app')

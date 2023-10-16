@@ -1,9 +1,13 @@
 {
   "root": true,
-  "plugins": ["flowtype"],
-  "extends": [
-    "plugin:vue-libs/recommended",
-    "plugin:flowtype/recommended",
-    "prettier"
-  ]
+  "plugins": ["@typescript-eslint"],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module"
+  },
+  "extends": ["plugin:vue/recommended", "prettier"],
+  "rules": {
+    "vue/multi-word-component-names": 0
+  }
 }

@@ -1,5 +1,6 @@
 // yarn nightwatch -e chrome,safari,firefox
 
+/** @type {import('nightwatch').NightwatchOptions} */
 module.exports = {
   src_folders: ['test/e2e/specs'],
   output_folder: 'test/e2e/reports',
@@ -15,8 +16,11 @@ module.exports = {
     port: 4444,
     cli_args: {
       'webdriver.chrome.driver': require('chromedriver').path,
-      'webdriver.gecko.driver': require('geckodriver').path
-    }
+      'webdriver.gecko.driver': require('geckodriver').path,
+    },
+  },
+  webdriver: {
+    start_process: true,
   },
 
   test_settings: {
@@ -28,7 +32,7 @@ module.exports = {
         enabled: true,
         on_failure: true,
         on_error: false,
-        path: 'test/e2e/screenshots'
+        path: 'test/e2e/screenshots',
       },
       desiredCapabilities: {
         browserName: 'chrome',
@@ -36,9 +40,9 @@ module.exports = {
         chromeOptions: {
           // https://github.com/nightwatchjs/nightwatch/releases/tag/v1.1.12
           w3c: false,
-          args: ['window-size=1280,800', 'headless']
-        }
-      }
+          args: ['window-size=1280,800', 'headless'],
+        },
+      },
     },
 
     chrome: {
@@ -48,29 +52,29 @@ module.exports = {
         chromeOptions: {
           // https://github.com/nightwatchjs/nightwatch/releases/tag/v1.1.12
           w3c: false,
-          args: ['window-size=1280,800']
-        }
-      }
+          args: ['window-size=1280,800'],
+        },
+      },
     },
 
     safari: {
       desiredCapabilities: {
         browserName: 'safari',
-        acceptSslCerts: true
-      }
+        acceptSslCerts: true,
+      },
     },
 
     firefox: {
       desiredCapabilities: {
         browserName: 'firefox',
-        acceptSslCerts: true
-      }
+        acceptSslCerts: true,
+      },
     },
 
     ie: {
       desiredCapabilities: {
-        browser: 'internet explorer'
-      }
-    }
-  }
+        browser: 'internet explorer',
+      },
+    },
+  },
 }

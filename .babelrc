@@ -1,4 +1,19 @@
 {
-  "presets": ["env", "flow-vue"],
-  "plugins": ["syntax-dynamic-import"]
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "targets": {
+          // "node": "18",
+          "esmodules": true
+        }
+      }
+    ],
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    // "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-class-properties"
+  ]
 }
