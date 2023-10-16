@@ -1,3 +1,12 @@
+# [3.7.0](https://github.com/vuejs/vue-router/compare/v3.6.5...v3.7.0) (2023-10-16)
+
+
+### Features
+
+* add history state features ([1d1d63a](https://github.com/vuejs/vue-router/commit/1d1d63ab115c743c3505aa9d5bf84759a151d1f1))
+
+
+
 ## [3.6.5](https://github.com/vuejs/vue-router/compare/v3.6.4...v3.6.5) (2022-09-06)
 
 ### Bug Fixes
