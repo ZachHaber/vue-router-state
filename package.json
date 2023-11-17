@@ -11,7 +11,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/vuejs/vue-router.git"
+    "url": "https://github.com/ZachHaber/vue-router-state.git"
   },
   "typings": "types/src/index.d.ts",
   "files": [
@@ -143,7 +143,7 @@
     "yorkie": "^2.0.0"
   },
   "bugs": {
-    "url": "https://github.com/vuejs/vue-router/issues"
+    "url": "https://github.com/ZachHaber/vue-router-state/issues"
   },
-  "homepage": "https://github.com/vuejs/vue-router#readme"
+  "homepage": "https://github.com/ZachHaber/vue-router-state#readme"
 }
