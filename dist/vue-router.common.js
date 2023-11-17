@@ -1,5 +1,5 @@
 /*!
-  * vue-router-2-state v3.7.0
+  * vue-router-2-state v3.7.1
   * Zachary Soare
   * @license MIT
   */
@@ -2895,7 +2895,7 @@ Object.defineProperties( VueRouter.prototype, prototypeAccessors );
  * @internal
  */
 VueRouter.install = install;
-VueRouter.version = '3.7.0';
+VueRouter.version = '3.7.1';
 VueRouter.isNavigationFailure = isNavigationFailure;
 VueRouter.NavigationFailureType = NavigationFailureType;
 /**
