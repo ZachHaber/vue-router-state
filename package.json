@@ -1,6 +1,6 @@
 {
   "name": "vue-router-2-state",
-  "version": "3.7.0",
+  "version": "3.7.1",
   "description": "(un)Official router for Vue.js 2 with history state",
   "author": "Zachary Soare",
   "license": "MIT",
