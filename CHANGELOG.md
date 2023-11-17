@@ -1,3 +1,12 @@
+## [3.7.1](https://github.com/ZachHaber/vue-router-state/compare/v3.7.0...v3.7.1) (2023-11-17)
+
+
+### Bug Fixes
+
+* improve type definitions ([262bf04](https://github.com/ZachHaber/vue-router-state/commit/262bf044f4b0889f3f8f44b6733a2ea70194bcad))
+
+
+
 # [3.7.0](https://github.com/vuejs/vue-router/compare/v3.6.5...v3.7.0) (2023-10-16)
 
 
