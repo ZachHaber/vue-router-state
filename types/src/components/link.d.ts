@@ -112,13 +112,8 @@ export interface RouterLinkSlotArgument {
      */
     isExactActive: boolean;
 }
-declare const _default: import("vue/types/v3-component-public-instance").ComponentPublicInstanceConstructor<import("vue/types/v3-component-public-instance").Vue3Instance<{}, Readonly<import("vue").ExtractPropTypes<string[]>> | Readonly<import("vue").ExtractPropTypes<import("vue/types/v3-component-props").ComponentObjectPropsOptions<import("vue").Data>>>, Readonly<import("vue").ExtractPropTypes<string[]> | import("vue").ExtractPropTypes<import("vue/types/v3-component-props").ComponentObjectPropsOptions<import("vue").Data>>>, {}, {
-    [x: number]: string;
-} | {}, true, import("vue/types/v3-component-options").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, any>> & Readonly<Readonly<import("vue").ExtractPropTypes<string[]>> | Readonly<import("vue").ExtractPropTypes<import("vue/types/v3-component-props").ComponentObjectPropsOptions<import("vue").Data>>>> & import("vue").ShallowUnwrapRef<{}> & import("vue/types/v3-component-options").ExtractComputedReturns<{}> & import("vue").ComponentCustomProperties & Readonly<import("vue").ExtractPropTypes<string[]> | import("vue").ExtractPropTypes<import("vue/types/v3-component-props").ComponentObjectPropsOptions<import("vue").Data>>>, any, any, any, import("vue").ComponentComputedOptions, import("vue").ComponentMethodOptions> & import("vue/types/v3-component-options").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<string[]> | import("vue").ExtractPropTypes<import("vue/types/v3-component-props").ComponentObjectPropsOptions<import("vue").Data>>>, {}, {}, {}, {}, import("vue/types/v3-component-options").ComponentOptionsMixin, import("vue/types/v3-component-options").ComponentOptionsMixin, {}, string, {
-    [x: number]: string;
-} | {}> & {
-    props: import("vue").ComponentPropsOptions<import("vue").Data>;
-} & {
+declare const _default: new () => {
+    $props: RouterLinkProps;
     $scopedSlots: {
         default?: (({ href, route, navigate, isActive, isExactActive, }: RouterLinkSlotArgument) => VNode[] | undefined) | undefined;
     };

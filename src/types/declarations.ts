@@ -7,21 +7,34 @@ import type {
 } from 'vue'
 import VueRouter from '../router'
 import type { NavigationGuard, Route, RouteRecord } from '../util/route'
-
+import type RouterLink from '../components/link'
+import type RouterView from '../components/view'
 export type Dictionary<T> = { [key: string]: T }
 export type ErrorHandler = (err: Error) => void
 export type Nullable<T> = T | null
 export type Maybe<T> = T | null | undefined
 
 export type RouterMode = 'hash' | 'history' | 'abstract'
-declare module 'vue/types/vue' {
+
+declare module 'vue' {
+  export interface GlobalComponents {
+    RouterLink: typeof RouterLink
+    RouterView: typeof RouterView
+  }
+}
+
+// Use a file extension here so that without https://github.com/vuejs/vue/pull/13107
+// this will work correctly without patching vue's package.json file
+declare module 'vue/types/vue.js' {
   export interface Vue {
     $router: VueRouter
     $route: Route
   }
 }
 
-declare module 'vue/types/options' {
+// Use a file extension here so that without https://github.com/vuejs/vue/pull/13107
+// this will work correctly without patching vue's package.json file
+declare module 'vue/types/options.js' {
   export interface ComponentOptions<V extends Vue> {
     router?: VueRouter
     beforeRouteEnter?: NavigationGuard<[V] extends [never] ? Vue : V>

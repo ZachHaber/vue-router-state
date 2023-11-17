@@ -8,10 +8,7 @@ export interface RouterViewProps {
      */
     name?: string;
 }
-/**
- * Component to display the current route the user is at.
- */
-declare const RouterView: import("vue").DefineComponent<import("vue").ComponentPropsOptions<import("vue").Data>, {}, {}, {}, {}, import("vue/types/v3-component-options").ComponentOptionsMixin, import("vue/types/v3-component-options").ComponentOptionsMixin, {}, string, Readonly<import("vue").ExtractPropTypes<string[]> | import("vue").ExtractPropTypes<import("vue/types/v3-component-props").ComponentObjectPropsOptions<import("vue").Data>>>, {
-    [x: number]: string;
-} | {}>;
-export default RouterView;
+declare const _default: new () => {
+    $props: RouterViewProps;
+};
+export default _default;

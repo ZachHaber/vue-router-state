@@ -1,2 +1,10 @@
+export type { RouterLinkProps, RouterLinkSlotArgument, } from '../components/link';
+export type { RouterViewProps } from '../components/view';
+export type { RouterOptions } from '../router';
+export type { RouteMeta, RouterMode } from '../types/declarations';
+export type { NavigationFailureType } from '../util/errors';
+export type { NavigationFailure } from '../util/errors';
+export type { Location, RawLocation } from '../util/location';
+export type { NavigationGuard, NavigationGuardNext, PathToRegexpOptions, RedirectOption, Route, RouteConfig, RouteRecord, RouteRecordPublic, } from '../util/route';
 import VueRouter from '../router';
 export default VueRouter;

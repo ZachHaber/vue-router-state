@@ -30,7 +30,7 @@ module.exports = [
     env: 'production',
   },
   {
-    input: resolve('src/index.ts'),
+    input: resolve('src/entries/cjs.ts'),
     file: resolve('dist/vue-router.common.js'),
     format: 'cjs',
   },

@@ -147,7 +147,9 @@ const RouterView = defineComponent<RouterViewProps>({
     return h(component, data, children)
   },
 })
-export default RouterView
+export default RouterView as new () => {
+  $props: RouterViewProps
+}
 
 function fillPropsinData(
   component: Component,

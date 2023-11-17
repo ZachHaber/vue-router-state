@@ -339,7 +339,8 @@ const RouterLink = defineComponent<RouterLinkProps>({
   },
 })
 
-export default RouterLink as typeof RouterLink & {
+export default RouterLink as unknown as new () => {
+  $props: RouterLinkProps
   $scopedSlots: {
     default?: ({
       href,
