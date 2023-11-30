@@ -1,8 +1,17 @@
-> This is vue-router 3.0 which works only with Vue 2.0.
+> This is vue-router-2-state which works only with Vue 2.0.
 >
 > - For Vue Router 4 (for Vue 3) see [vuejs/router](https://github.com/vuejs/router).
 
 ---
+
+## Getting Started
+
+Install using
+```bash
+npm install vue-router-2-state
+# OR
+yarn add vue-router-2-state
+```
 
 Get started with the [documentation](http://v3.router.vuejs.org), or play with the [examples](https://github.com/ZachHaber/vue-router-state/tree/dev/examples) (see how to run them below).
 
@@ -40,7 +49,7 @@ yarn docs
 
 ## Releasing
 
-- `yarn run release`
+- `yarn run release` which does the following:
   - Ensure tests are passing `yarn run test`
   - Build dist files `VERSION=<the_version> yarn run build`
   - Build changelog `yarn run changelog`
