@@ -13,7 +13,48 @@ npm install vue-router-2-state
 yarn add vue-router-2-state
 ```
 
-Get started with the [documentation](http://v3.router.vuejs.org), or play with the [examples](https://github.com/ZachHaber/vue-router-state/tree/dev/examples) (see how to run them below).
+Get started with the [original documentation](http://v3.router.vuejs.org) (The docs site for the repo isn't set up yet, but almost everything is on the original docs site), or play with the [examples](https://github.com/ZachHaber/vue-router-state/tree/dev/examples) (see how to run them below).
+
+### Quick Start
+
+```js
+// src/App.vue
+<template>
+  <RouterView />
+</template>
+
+// src/main.js
+import Vue from 'vue';
+import Router from 'vue-router-2-state';
+import HomePage from './pages/HomePage.vue';
+import App from './App.vue';
+Vue.use(Router);
+
+const router = new Router({
+  mode: 'history',
+  // base: import.meta.env.BASE_URL // if using vite
+  routes: [
+    // Route definitions go here
+    {
+      path: '/',
+      name: 'Home',
+      component: HomePage
+    }
+  ]
+});
+
+new Vue({
+  router,
+  render: (h) => {
+    return h(App);
+  },
+}).$mount('#app');
+
+```
+
+### Composables
+
+You can use the router with the composition API by importing from `vue-router-2-state/composables`
 
 ## Type Issues
 
