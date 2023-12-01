@@ -13,7 +13,7 @@ npm install vue-router-2-state
 yarn add vue-router-2-state
 ```
 
-Get started with the [original documentation](http://v3.router.vuejs.org) (The docs site for the repo isn't set up yet, but almost everything is on the original docs site), or play with the [examples](https://github.com/ZachHaber/vue-router-state/tree/dev/examples) (see how to run them below).
+Get started with the [documentation](https://zachhaber.github.io/vue-router-state/guide/), or play with the [examples](https://github.com/ZachHaber/vue-router-state/tree/dev/examples) (see how to run them below).
 
 ### Quick Start
 
