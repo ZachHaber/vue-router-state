@@ -1,4 +1,6 @@
+/** @type {import('@vuepress/types').UserConfig} */
 module.exports = (ctx) => ({
+  base: '/vue-router-state',
   locales: {
     '/': {
       lang: 'en-US',
