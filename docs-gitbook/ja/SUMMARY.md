@@ -1,8 +1,8 @@
-# vue-router
+# vue-router-2-state
 
-> 注意: TypeScript ユーザ向けは、vue-router@3.0+ と vue@2.5+ が必須、逆もまた同様です。
+> 注意: TypeScript ユーザ向けは、vue-router-2-state@3.0+ と vue@2.5+ が必須、逆もまた同様です。
 
-**[リリースノート](https://github.com/vuejs/vue-router/releases)**
+**[リリースノート](https://github.com/zachhaber/vue-router-state/releases)**
 
 - [インストール](installation.md)
 - 基本的な使い方

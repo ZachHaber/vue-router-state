@@ -6,28 +6,24 @@
 
 ** $route에 의존성 추가**
 
-``` js
+```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 const router = new VueRouter({
-  routes: [
-    { path: '/user/:id', component: User }
-  ]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
 ** 속성에 의존성 해제**
 
-``` js
+```js
 const User = {
   props: ['id'],
-  template: '<div>User {{ id }}</div>'
+  template: '<div>User {{ id }}</div>',
 }
 const router = new VueRouter({
-  routes: [
-    { path: '/user/:id', component: User, props: true },
-  ]
+  routes: [{ path: '/user/:id', component: User, props: true }],
 })
 ```
 
@@ -42,11 +38,15 @@ const router = new VueRouter({
 `props`가 객체일때 컴포넌트 `props`가 있는 그대로 설정됩니다.
 `props`가 정적일 때 유용합니다.
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/promotion/from-newsletter', component: Promotion, props: { newsletterPopup: false } }
-  ]
+    {
+      path: '/promotion/from-newsletter',
+      component: Promotion,
+      props: { newsletterPopup: false },
+    },
+  ],
 })
 ```
 
@@ -54,11 +54,15 @@ const router = new VueRouter({
 
 `props`를 반환하는 함수를 만들 수 있습니다. 이를 통해 전달인자를 다른 타입으로 캐스팅하고 적정인 값을 라우트 기반 값과 결합됩니다.
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/search', component: SearchUser, props: (route) => ({ query: route.query.q }) }
-  ]
+    {
+      path: '/search',
+      component: SearchUser,
+      props: (route) => ({ query: route.query.q }),
+    },
+  ],
 })
 ```
 
@@ -67,4 +71,4 @@ const router = new VueRouter({
 라우트 변경시에만 평가되므로 `props` 함수는 상태를 저장하지 않도록 합니다.
 `props`를 정의할 상태가 필요한 경우 래퍼 컴포넌트를 사용하면 상태가 변경될 때마다 응답할 수 있습니다.
 
-고급 사용예를 보려면 [예제](https://github.com/vuejs/vue-router/blob/dev/examples/route-props/app.js)를 확인하세요.
+고급 사용예를 보려면 [예제](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-props/app.js)를 확인하세요.

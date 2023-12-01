@@ -6,23 +6,21 @@
 
 ** Вместо жёсткой связи с `$route`**
 
-``` js
+```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 const router = new VueRouter({
-  routes: [
-    { path: '/user/:id', component: User }
-  ]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
 ** Разделяем с помощью входных параметров**
 
-``` js
+```js
 const User = {
   props: ['id'],
-  template: '<div>User {{ id }}</div>'
+  template: '<div>User {{ id }}</div>',
 }
 const router = new VueRouter({
   routes: [
@@ -32,9 +30,9 @@ const router = new VueRouter({
     {
       path: '/user/:id',
       components: { default: User, sidebar: Sidebar },
-      props: { default: true, sidebar: false }
-    }
-  ]
+      props: { default: true, sidebar: false },
+    },
+  ],
 })
 ```
 
@@ -48,11 +46,15 @@ const router = new VueRouter({
 
 Когда `props` объект, они будут установлены входными параметрами компонента как есть. Полезно когда входные параметры являются статическими данными.
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/promotion/from-newsletter', component: Promotion, props: { newsletterPopup: false } }
-  ]
+    {
+      path: '/promotion/from-newsletter',
+      component: Promotion,
+      props: { newsletterPopup: false },
+    },
+  ],
 })
 ```
 
@@ -60,11 +62,15 @@ const router = new VueRouter({
 
 Вы можете создать функцию, которая вернёт объект с входными параметрами. Это позволяет вам приводить параметры к другим типам, комбинировать статические значения с значениями из маршрута, и т.д.
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/search', component: SearchUser, props: (route) => ({ query: route.query.q }) }
-  ]
+    {
+      path: '/search',
+      component: SearchUser,
+      props: (route) => ({ query: route.query.q }),
+    },
+  ],
 })
 ```
 
@@ -72,4 +78,4 @@ const router = new VueRouter({
 
 Старайтесь держать функции генерации входных параметров независимыми от состояния, потому что они вызываются только при изменениях маршрута. Используйте компонент обёртку, если вам нужно состояние для определения входных параметров, в таком случае Vue сможет реагировать на изменения состояния.
 
-Для более продвинутого использования, смотрите [пример](https://github.com/vuejs/vue-router/blob/dev/examples/route-props/app.js).
+Для более продвинутого использования, смотрите [пример](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-props/app.js).

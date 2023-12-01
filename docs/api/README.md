@@ -308,7 +308,7 @@ Since it's just a component, it works with `<transition>` and `<keep-alive>`. Wh
   type scrollBehaviorHandler = (
     to: Route,
     from: Route,
-    savedPosition?: { x: number; y: number }
+    savedPosition?: { x: number; y: number },
   ) => PositionDescriptor | Promise<PositionDescriptor>
   ```
 
@@ -357,7 +357,7 @@ Since it's just a component, it works with `<transition>` and `<keep-alive>`. Wh
   Initial route location represented as a [Route Object](#the-route-object) where the router starts at. Can be used in navigation guards to differentiate the initial navigation.
 
   ```js
-  import VueRouter from 'vue-router'
+  import VueRouter from 'vue-router-2-state'
 
   const router = new VueRouter({
     // ...
@@ -555,7 +555,7 @@ The route object can be found in multiple places:
   const router = new VueRouter({
     scrollBehavior(to, from, savedPosition) {
       // `to` and `from` are both route objects
-    }
+    },
   })
   ```
 
@@ -618,10 +618,10 @@ The route object can be found in multiple places:
         component: Foo,
         children: [
           // this is also a route record
-          { path: 'bar', component: Bar }
-        ]
-      }
-    ]
+          { path: 'bar', component: Bar },
+        ],
+      },
+    ],
   })
   ```
 

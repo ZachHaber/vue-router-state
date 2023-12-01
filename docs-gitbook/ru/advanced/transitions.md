@@ -2,7 +2,7 @@
 
 Поскольку `<router-view>` — это просто динамический компонент, к нему можно применить анимированные переходы, используя `<transition>`:
 
-``` html
+```html
 <transition>
   <router-view></router-view>
 </transition>
@@ -14,13 +14,13 @@
 
 Синтаксис выше применит одну и ту же анимацию перехода для всех путей. Если для различных путей хочется указать разные анимационные эффекты, можно использовать разноимённые `<transition>` непосредственно в шаблонах компонентов:
 
-``` js
+```js
 const Foo = {
   template: `
     <transition name="slide">
       <div class="foo">...</div>
     </transition>
-  `
+  `,
 }
 
 const Bar = {
@@ -28,7 +28,7 @@ const Bar = {
     <transition name="fade">
       <div class="bar">...</div>
     </transition>
-  `
+  `,
 }
 ```
 
@@ -36,14 +36,14 @@ const Bar = {
 
 Можно также определить переходы для путей динамически, в зависимости от соотношения между старым и новым путём:
 
-``` html
+```html
 <!-- используем динамическое имя анимационного перехода -->
 <transition :name="transitionName">
   <router-view></router-view>
 </transition>
 ```
 
-``` js
+```js
 // затем, в родительском компоненте, будем следить за переменной `$route`,
 // чтобы определить, какой анимационный переход применить
 
@@ -56,4 +56,4 @@ watch: {
 }
 ```
 
-Полный пример можно посмотреть [здесь](https://github.com/vuejs/vue-router/blob/dev/examples/transitions/app.js).
+Полный пример можно посмотреть [здесь](https://github.com/zachhaber/vue-router-state/blob/dev/examples/transitions/app.js).

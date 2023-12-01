@@ -1,61 +1,61 @@
-module.exports = ctx => ({
+module.exports = (ctx) => ({
   locales: {
     '/': {
       lang: 'en-US',
       title: 'Vue Router',
-      description: 'The official router for Vue.js.'
+      description: 'The official router for Vue.js.',
     },
     '/zh/': {
       lang: 'zh-CN',
       title: 'Vue Router',
-      description: 'Vue.js 官方的路由管理器。'
+      description: 'Vue.js 官方的路由管理器。',
     },
     '/ja/': {
       lang: 'ja',
       title: 'Vue Router',
-      description: 'Vue.js の公式ルータ'
+      description: 'Vue.js の公式ルータ',
     },
     '/ru/': {
       lang: 'ru',
       title: 'Vue Router',
-      description: 'Официальный маршрутизатор для Vue.js.'
+      description: 'Официальный маршрутизатор для Vue.js.',
     },
     '/kr/': {
       lang: 'kr',
       title: 'Vue Router',
-      description: 'Vue.js 공식 라우터'
+      description: 'Vue.js 공식 라우터',
     },
     '/fr/': {
       lang: 'fr',
       title: 'Vue Router',
-      description: 'Routeur officiel pour Vue.Js'
-    }
+      description: 'Routeur officiel pour Vue.Js',
+    },
   },
   head: [
     ['link', { rel: 'icon', href: `/logo.png` }],
     [
       'meta',
-      { name: 'wwads-cn-verify', content: '7e7757b1e12abcb736ab9a754ffb617a' }
+      { name: 'wwads-cn-verify', content: '7e7757b1e12abcb736ab9a754ffb617a' },
     ],
     [
       'link',
-      { rel: 'apple-touch-icon', href: `/icons/apple-touch-icon-152x152.png` }
+      { rel: 'apple-touch-icon', href: `/icons/apple-touch-icon-152x152.png` },
     ],
     [
       'link',
       {
         rel: 'mask-icon',
         href: '/icons/safari-pinned-tab.svg',
-        color: '#3eaf7c'
-      }
+        color: '#3eaf7c',
+      },
     ],
     [
       'meta',
       {
         name: 'msapplication-TileImage',
-        content: '/icons/msapplication-icon-144x144.png'
-      }
-    ]
+        content: '/icons/msapplication-icon-144x144.png',
+      },
+    ],
   ],
   // theme: '@vuepress/vue',
   plugins: [
@@ -63,24 +63,13 @@ module.exports = ctx => ({
       '@vuepress/pwa',
       {
         serviceWorker: true,
-        updatePopup: true
-      }
-    ]
+        updatePopup: true,
+      },
+    ],
   ],
   themeConfig: {
-    algolia: ctx.isProd
-      ? {
-          appId: 'LI3RW4C4QI',
-          apiKey: '08e7ef7cd3969442874f0dee9dec34be',
-          indexName: 'vue-router'
-        }
-      : null,
-    carbonAds: {
-      carbon: 'CEBICK3I',
-      custom: 'CEBICK3M',
-      placement: 'routervuejsorg'
-    },
-    repo: 'vuejs/vue-router',
+    algolia: null,
+    repo: 'zachhaber/vue-router-state',
     docsDir: 'docs',
     smoothScroll: true,
     locales: {
@@ -91,20 +80,20 @@ module.exports = ctx => ({
         nav: [
           {
             text: 'Guide',
-            link: '/guide/'
+            link: '/guide/',
           },
           {
             text: 'API Reference',
-            link: '/api/'
+            link: '/api/',
           },
           {
             text: 'v3.x',
-            items: [{ text: 'v4.x', link: 'https://next.router.vuejs.org' }]
+            items: [{ text: 'v4.x', link: 'https://next.router.vuejs.org' }],
           },
           {
             text: 'Release Notes',
-            link: 'https://github.com/vuejs/vue-router/releases'
-          }
+            link: 'https://github.com/zachhaber/vue-router-state/releases',
+          },
         ],
         sidebar: [
           '/installation.md',
@@ -120,8 +109,8 @@ module.exports = ctx => ({
               '/guide/essentials/named-views.md',
               '/guide/essentials/redirect-and-alias.md',
               '/guide/essentials/passing-props.md',
-              '/guide/essentials/history-mode.md'
-            ]
+              '/guide/essentials/history-mode.md',
+            ],
           },
           {
             title: 'Advanced',
@@ -129,14 +118,16 @@ module.exports = ctx => ({
             children: [
               '/guide/advanced/navigation-guards.md',
               '/guide/advanced/meta.md',
+              '/guide/advanced/state.md',
               '/guide/advanced/transitions.md',
               '/guide/advanced/data-fetching.md',
+              '/guide/advanced/composables.md',
               '/guide/advanced/scroll-behavior.md',
               '/guide/advanced/lazy-loading.md',
-              '/guide/advanced/navigation-failures.md'
-            ]
-          }
-        ]
+              '/guide/advanced/navigation-failures.md',
+            ],
+          },
+        ],
       },
       '/zh/': {
         label: '简体中文',
@@ -145,20 +136,22 @@ module.exports = ctx => ({
         nav: [
           {
             text: '指南',
-            link: '/zh/guide/'
+            link: '/zh/guide/',
           },
           {
             text: 'API 参考',
-            link: '/zh/api/'
+            link: '/zh/api/',
           },
           {
             text: 'v3.x',
-            items: [{ text: 'v4.x', link: 'https://next.router.vuejs.org/zh/' }]
+            items: [
+              { text: 'v4.x', link: 'https://next.router.vuejs.org/zh/' },
+            ],
           },
           {
             text: '更新记录',
-            link: 'https://github.com/vuejs/vue-router/releases'
-          }
+            link: 'https://github.com/zachhaber/vue-router-state/releases',
+          },
         ],
         sidebar: [
           '/zh/installation.md',
@@ -174,8 +167,8 @@ module.exports = ctx => ({
               '/zh/guide/essentials/named-views.md',
               '/zh/guide/essentials/redirect-and-alias.md',
               '/zh/guide/essentials/passing-props.md',
-              '/zh/guide/essentials/history-mode.md'
-            ]
+              '/zh/guide/essentials/history-mode.md',
+            ],
           },
           {
             title: '进阶',
@@ -187,10 +180,10 @@ module.exports = ctx => ({
               '/zh/guide/advanced/data-fetching.md',
               '/zh/guide/advanced/scroll-behavior.md',
               '/zh/guide/advanced/lazy-loading.md',
-              '/zh/guide/advanced/navigation-failures.md'
-            ]
-          }
-        ]
+              '/zh/guide/advanced/navigation-failures.md',
+            ],
+          },
+        ],
       },
       '/ja/': {
         label: '日本語',
@@ -199,20 +192,20 @@ module.exports = ctx => ({
         nav: [
           {
             text: 'ガイド',
-            link: '/ja/guide/'
+            link: '/ja/guide/',
           },
           {
             text: 'API リファレンス',
-            link: '/ja/api/'
+            link: '/ja/api/',
           },
           {
             text: 'v3.x',
-            items: [{ text: 'v4.x', link: 'https://next.router.vuejs.org' }]
+            items: [{ text: 'v4.x', link: 'https://next.router.vuejs.org' }],
           },
           {
             text: 'リリースノート',
-            link: 'https://github.com/vuejs/vue-router/releases'
-          }
+            link: 'https://github.com/zachhaber/vue-router-state/releases',
+          },
         ],
         sidebar: [
           '/ja/installation.md',
@@ -228,8 +221,8 @@ module.exports = ctx => ({
               '/ja/guide/essentials/named-views.md',
               '/ja/guide/essentials/redirect-and-alias.md',
               '/ja/guide/essentials/passing-props.md',
-              '/ja/guide/essentials/history-mode.md'
-            ]
+              '/ja/guide/essentials/history-mode.md',
+            ],
           },
           {
             title: '高度な使い方',
@@ -241,10 +234,10 @@ module.exports = ctx => ({
               '/ja/guide/advanced/data-fetching.md',
               '/ja/guide/advanced/scroll-behavior.md',
               '/ja/guide/advanced/lazy-loading.md',
-              '/ja/guide/advanced/navigation-failures.md'
-            ]
-          }
-        ]
+              '/ja/guide/advanced/navigation-failures.md',
+            ],
+          },
+        ],
       },
       '/ru/': {
         label: 'Русский',
@@ -253,20 +246,20 @@ module.exports = ctx => ({
         nav: [
           {
             text: 'Руководство',
-            link: '/ru/guide/'
+            link: '/ru/guide/',
           },
           {
             text: 'Справочник API',
-            link: '/ru/api/'
+            link: '/ru/api/',
           },
           {
             text: 'v3.x',
-            items: [{ text: 'v4.x', link: 'https://next.router.vuejs.org' }]
+            items: [{ text: 'v4.x', link: 'https://next.router.vuejs.org' }],
           },
           {
             text: 'История изменений',
-            link: 'https://github.com/vuejs/vue-router/releases'
-          }
+            link: 'https://github.com/zachhaber/vue-router-state/releases',
+          },
         ],
         sidebar: [
           '/ru/installation.md',
@@ -282,8 +275,8 @@ module.exports = ctx => ({
               '/ru/guide/essentials/named-views.md',
               '/ru/guide/essentials/redirect-and-alias.md',
               '/ru/guide/essentials/passing-props.md',
-              '/ru/guide/essentials/history-mode.md'
-            ]
+              '/ru/guide/essentials/history-mode.md',
+            ],
           },
           {
             title: 'Продвинутые темы',
@@ -295,10 +288,10 @@ module.exports = ctx => ({
               '/ru/guide/advanced/data-fetching.md',
               '/ru/guide/advanced/scroll-behavior.md',
               '/ru/guide/advanced/lazy-loading.md',
-              '/ru/guide/advanced/navigation-failures.md'
-            ]
-          }
-        ]
+              '/ru/guide/advanced/navigation-failures.md',
+            ],
+          },
+        ],
       },
       '/kr/': {
         label: '한국어',
@@ -307,20 +300,20 @@ module.exports = ctx => ({
         nav: [
           {
             text: '가이드',
-            link: '/kr/guide/'
+            link: '/kr/guide/',
           },
           {
             text: 'API 레퍼런스',
-            link: '/kr/api/'
+            link: '/kr/api/',
           },
           {
             text: 'v3.x',
-            items: [{ text: 'v4.x', link: 'https://next.router.vuejs.org' }]
+            items: [{ text: 'v4.x', link: 'https://next.router.vuejs.org' }],
           },
           {
             text: '릴리즈 노트',
-            link: 'https://github.com/vuejs/vue-router/releases'
-          }
+            link: 'https://github.com/zachhaber/vue-router-state/releases',
+          },
         ],
         sidebar: [
           '/kr/installation.md',
@@ -336,8 +329,8 @@ module.exports = ctx => ({
               '/kr/guide/essentials/named-views.md',
               '/kr/guide/essentials/redirect-and-alias.md',
               '/kr/guide/essentials/passing-props.md',
-              '/kr/guide/essentials/history-mode.md'
-            ]
+              '/kr/guide/essentials/history-mode.md',
+            ],
           },
           {
             title: '고급 사용법',
@@ -348,10 +341,10 @@ module.exports = ctx => ({
               '/kr/guide/advanced/transitions.md',
               '/kr/guide/advanced/data-fetching.md',
               '/kr/guide/advanced/scroll-behavior.md',
-              '/kr/guide/advanced/lazy-loading.md'
-            ]
-          }
-        ]
+              '/kr/guide/advanced/lazy-loading.md',
+            ],
+          },
+        ],
       },
       '/fr/': {
         label: 'Français',
@@ -360,20 +353,20 @@ module.exports = ctx => ({
         nav: [
           {
             text: 'Guide',
-            link: '/fr/guide/'
+            link: '/fr/guide/',
           },
           {
             text: 'API',
-            link: '/fr/api/'
+            link: '/fr/api/',
           },
           {
             text: 'v3.x',
-            items: [{ text: 'v4.x', link: 'https://next.router.vuejs.org' }]
+            items: [{ text: 'v4.x', link: 'https://next.router.vuejs.org' }],
           },
           {
             text: 'Notes de version',
-            link: 'https://github.com/vuejs/vue-router/releases'
-          }
+            link: 'https://github.com/zachhaber/vue-router-state/releases',
+          },
         ],
         sidebar: [
           '/fr/installation.md',
@@ -389,8 +382,8 @@ module.exports = ctx => ({
               '/fr/guide/essentials/named-views.md',
               '/fr/guide/essentials/redirect-and-alias.md',
               '/fr/guide/essentials/passing-props.md',
-              '/fr/guide/essentials/history-mode.md'
-            ]
+              '/fr/guide/essentials/history-mode.md',
+            ],
           },
           {
             title: 'Avancés',
@@ -401,11 +394,11 @@ module.exports = ctx => ({
               '/fr/guide/advanced/transitions.md',
               '/fr/guide/advanced/data-fetching.md',
               '/fr/guide/advanced/scroll-behavior.md',
-              '/fr/guide/advanced/lazy-loading.md'
-            ]
-          }
-        ]
-      }
-    }
-  }
+              '/fr/guide/advanced/lazy-loading.md',
+            ],
+          },
+        ],
+      },
+    },
+  },
 })

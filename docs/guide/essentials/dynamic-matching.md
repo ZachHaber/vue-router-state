@@ -1,19 +1,15 @@
-# Dynamic Route Matching
-
-<div class="vueschool"><a href="https://vueschool.io/lessons/vue-router-dynamic-routes?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to match dynamic routes with Vue School">Learn how to match dynamic routes with a free lesson on Vue School</a></div>
-
-Very often we will need to map routes with the given pattern to the same component. For example we may have a `User` component which should be rendered for all users but with different user IDs. In `vue-router` we can use a dynamic segment in the path to achieve that:
+Very often we will need to map routes with the given pattern to the same component. For example we may have a `User` component which should be rendered for all users but with different user IDs. In `vue-router-2-state` we can use a dynamic segment in the path to achieve that:
 
 ```js
 const User = {
-  template: '<div>User</div>'
+  template: '<div>User</div>',
 }
 
 const router = new VueRouter({
   routes: [
     // dynamic segments start with a colon
-    { path: '/user/:id', component: User }
-  ]
+    { path: '/user/:id', component: User },
+  ],
 })
 ```
 
@@ -23,7 +19,7 @@ A dynamic segment is denoted by a colon `:`. When a route is matched, the value 
 
 ```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 ```
 
@@ -50,8 +46,8 @@ const User = {
   watch: {
     $route(to, from) {
       // react to route changes...
-    }
-  }
+    },
+  },
 }
 ```
 
@@ -63,7 +59,7 @@ const User = {
   beforeRouteUpdate(to, from, next) {
     // react to route changes...
     // don't forget to call next()
-  }
+  },
 }
 ```
 
@@ -99,7 +95,7 @@ this.$route.params.pathMatch // '/non-existing'
 
 ## Advanced Matching Patterns
 
-`vue-router` uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0) as its path matching engine, so it supports many advanced matching patterns such as optional dynamic segments, zero or more / one or more requirements, and even custom regex patterns. Check out its [documentation](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0#parameters) for these advanced patterns, and [this example](https://github.com/vuejs/vue-router/blob/dev/examples/route-matching/app.js) of using them in `vue-router`.
+`vue-router-2-state` uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0) as its path matching engine, so it supports many advanced matching patterns such as optional dynamic segments, zero or more / one or more requirements, and even custom regex patterns. Check out its [documentation](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0#parameters) for these advanced patterns, and [this example](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-matching/app.js) of using them in `vue-router-2-state`.
 
 ## Matching Priority
 

@@ -1,6 +1,6 @@
 # Navigation Guards ("Navigations-Wächter")
 
-Wie der Name schon andeutet, werden "navigation guards" `vue-router` primär genutzt, um Navigationen zu "bewachen", indem diese bei Bedarf redirected oder abgebrochen werden. Es gibt dabei verschiedene Möglichkeiten, sich in den Navigationsprozess einzuklinken: global, in der Route Definition oder direkt in der Komponente.
+Wie der Name schon andeutet, werden "navigation guards" `vue-router-2-state` primär genutzt, um Navigationen zu "bewachen", indem diese bei Bedarf redirected oder abgebrochen werden. Es gibt dabei verschiedene Möglichkeiten, sich in den Navigationsprozess einzuklinken: global, in der Route Definition oder direkt in der Komponente.
 
 Hinweis: Guards werden nicht ausgelöst, wenn Params oder Querys geändert werden. Beobachte in diesen Fällen einfach [das `$route`-Objekt](../essentials/dynamic-matching.md#reacting-to-params-changes), um auf Änderungen zu reagieren.
 
@@ -8,7 +8,7 @@ Hinweis: Guards werden nicht ausgelöst, wenn Params oder Querys geändert werde
 
 Man kann globale Before-Guards ("davor-guards") mit `router.beforeEach` registrieren:
 
-``` js
+```js
 const router = new VueRouter({ ... })
 
 router.beforeEach((to, from, next) => {
@@ -36,7 +36,7 @@ Jede Guard Funktion erhält drei Argumente:
 
 Man kann auch globale After-Guards ("Danach-Guards") registrieren, allerdings erhalten diese keine `next`-Funktion wie der Navigationsschutz und beeinflussen nicht die Navigation selbst:
 
-``` js
+```js
 router.afterEach((to, from) => {
   // ...
 })
@@ -46,7 +46,7 @@ router.afterEach((to, from) => {
 
 Man kann den `beforeEnter`-Guard direkt in der Router-Konfiguration definieren:
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
     {
@@ -54,9 +54,9 @@ const router = new VueRouter({
       component: Foo,
       beforeEnter: (to, from, next) => {
         // ...
-      }
-    }
-  ]
+      },
+    },
+  ],
 })
 ```
 
@@ -66,18 +66,18 @@ Diese Guards haben die exakt gleiche Signatur wie globale Before-Guards.
 
 Zu guter Letzt kann man Guards auch direkt in den Route-Komponenten (die, die der Router-Konfiguration hinzugefügt werden) mit `beforeRouteEnter` und `beforeRouteLeave` definieren:
 
-``` js
+```js
 const Foo = {
   template: `...`,
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     // Wird aufgerufen bevor die Route bestätigt wird, die diese Komponenten rendert.
     // Hat keinen Zugriff auf den `this`-Kontext der Komponenteninstanz,
     // da diese noch nicht erstellt wurde, wenn die Guard-Funktion aufgerufen wird.
   },
-  beforeRouteLeave (to, from, next) {
+  beforeRouteLeave(to, from, next) {
     // Wird aufgerufen, wenn von der Route, die diese Komponente rendert, wegnavigiert wird.
     // Hat Zugriff zum `this`-Kontext.
-  }
+  },
 }
 ```
 
@@ -85,7 +85,7 @@ Der `beforeRouteEnter`-Guard hat keinen Zugriff auf den `this`-Kontext, weil der
 
 Allerdings bekommt man Zugriff auf die Instanz, indem man einen Callback an `next` übergibt. Der Callback wird ausgeführt wenn die Navigation bestätigt wurde. Die Komponente wird im Callback als Argument übergeben:
 
-``` js
+```js
 beforeRouteEnter (to, from, next) {
   next(vm => {
     // Zugriff auf Komponenteninstanz via 'vm'

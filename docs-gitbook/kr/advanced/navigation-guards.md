@@ -1,6 +1,6 @@
 # 네비게이션 가드
 
-이름에서 알 수 있듯이 `vue-router`가 제공하는 네비게이션 가드는 주로 리디렉션하거나 취소하여 네비게이션을 보호하는 데 사용됩니다. 라우트 탐색 프로세스에 연결하는 방법에는 전역, 라우트별 또는 컴포넌트가 있습니다.
+이름에서 알 수 있듯이 `vue-router-2-state`가 제공하는 네비게이션 가드는 주로 리디렉션하거나 취소하여 네비게이션을 보호하는 데 사용됩니다. 라우트 탐색 프로세스에 연결하는 방법에는 전역, 라우트별 또는 컴포넌트가 있습니다.
 
 **Params 또는 쿼리를 변경하면 네비게이션 가드가 실행되지 않습니다**. 단순히 [`$route` 객체를 감시](../essentials/dynamic-matching.md#reacting-to-params-changes)하고 그 변화에 반응하십시오. 또는 컴포넌트 가드의 `beforeRouteUpdate`를 사용하십시오
 
@@ -8,7 +8,7 @@
 
 `router.beforeEach`를 사용하여 보호하기 이전에 전역 등록을 할 수 있습니다.
 
-``` js
+```js
 const router = new VueRouter({ ... })
 
 router.beforeEach((to, from, next) => {
@@ -34,7 +34,6 @@ router.beforeEach((to, from, next) => {
 
   - **`next(error)`**: (2.4.0 이후 추가) `next`에 전달된 인자가 `Error` 의 인스턴스이면 탐색이 중단되고 `router.onError()`를 이용해 등록 된 콜백에 에러가 전달됩니다.
 
-
 **항상 `next` 함수를 호출하십시오. 그렇지 않으면 훅이 절대 불러지지 않습니다.**
 
 ### Global Resolve Guards
@@ -47,7 +46,7 @@ router.beforeEach((to, from, next) => {
 
 전역 훅을 등록 할 수도 있지만, 가드와 달리 이 훅은 `next` 함수를 얻지 못하며 네비게이션에 영향을 줄 수 없습니다.
 
-``` js
+```js
 router.afterEach((to, from) => {
   // ...
 })
@@ -57,7 +56,7 @@ router.afterEach((to, from) => {
 
 `beforeEnter` 가드를 라우트의 설정 객체에 직접 정의 할 수 있습니다.
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
     {
@@ -65,9 +64,9 @@ const router = new VueRouter({
       component: Foo,
       beforeEnter: (to, from, next) => {
         // ...
-      }
-    }
-  ]
+      },
+    },
+  ],
 })
 ```
 
@@ -81,18 +80,18 @@ const router = new VueRouter({
 - `beforeRouteUpdate` (2.2 버전에 추가)
 - `beforeRouteLeave`
 
-``` js
+```js
 const Foo = {
   template: `...`,
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     // 이 컴포넌트를 렌더링하는 라우트 앞에 호출됩니다.
     // 이 가드가 호출 될 때 아직 생성되지 않았기 때문에
     // `this` 컴포넌트 인스턴스에 접근 할 수 없습니다!
   },
-  beforeRouteLeave (to, from, next) {
+  beforeRouteLeave(to, from, next) {
     // 이 컴포넌트를 렌더링하는 라우트가 이전으로 네비게이션 될 때 호출됩니다.
     // `this` 컴포넌트 인스턴스에 접근 할 수 있습니다.
-  }
+  },
 }
 ```
 
@@ -100,7 +99,7 @@ const Foo = {
 
 그러나 콜백을 `next`에 전달하여 인스턴스에 액세스 할 수 있습니다. 네비게이션이 확인되고 컴포넌트 인스턴스가 콜백에 전달인자로 전달 될 때 콜백이 호출됩니다.
 
-``` js
+```js
 beforeRouteEnter (to, from, next) {
   next(vm => {
     // `vm`을 통한 컴포넌트 인스턴스 접근

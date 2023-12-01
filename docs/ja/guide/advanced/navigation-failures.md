@@ -19,11 +19,11 @@ v3.2.0では、router.pushの2つのオプションのコールバック（ `onC
 _Navigation Failures_ はいくつかの追加プロパティをもつ `Error` インスタンスです。ルーターからエラーが発生したかを確認するには、 `isNavigationFailure` 関数を使用します。
 
 ```js
-import VueRouter from 'vue-router'
+import VueRouter from 'vue-router-2-state'
 const { isNavigationFailure, NavigationFailureType } = VueRouter
 
 // 管理画面にアクセス
-router.push('/admin').catch(failure => {
+router.push('/admin').catch((failure) => {
   if (isNavigationFailure(failure, NavigationFailureType.redirected)) {
     // ユーザーに小さな通知を表示
     showToast('Login in order to access the admin panel')
@@ -50,7 +50,7 @@ router.push('/admin').catch(failure => {
 
 ```js
 // 管理画面にアクセス
-router.push('/admin').catch(failure => {
+router.push('/admin').catch((failure) => {
   if (isNavigationFailure(failure, NavigationFailureType.redirected)) {
     failure.to.path // '/admin'
     failure.from.path // '/'

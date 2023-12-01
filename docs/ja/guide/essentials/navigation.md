@@ -1,7 +1,5 @@
 # プログラムによるナビゲーション
 
-<div class="vueschool"><a href="https://vueschool.io/courses/vue-router-for-everyone?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to build powerful Single Page Applications with the Vue Router on Vue School">Watch a free video course about Vue Router on Vue School</a></div>
-
 宣言的なナビゲーションとしてアンカータグを作成する `<router-link>` がありますが、ルーターのインスタンスメソッドを使ったプログラムによる方法でもそれは可能です。
 
 #### `router.push(location, onComplete?, onAbort?)`
@@ -81,6 +79,6 @@ router.go(100)
 
 もしかすると `router.push`、`router.replace`、`router.go` は [`window.history.pushState`、`window.history.replaceState`、`window.history.go`](https://developer.mozilla.org/en-US/docs/Web/API/History) と対応することにお気づきかもしれません。これらは `window.history` API を模倣しています。
 
-したがって、もしあなたが既に [Browser History APIs](https://developer.mozilla.org/en-US/docs/Web/API/History_API) について詳しい場合は、vue-router による History 操作はとても簡単です。
+したがって、もしあなたが既に [Browser History APIs](https://developer.mozilla.org/en-US/docs/Web/API/History_API) について詳しい場合は、vue-router-2-state による History 操作はとても簡単です。
 
-vue-router のナビゲーションメソッド (`push`、`replace`、`go`) は全てのモード (`history`、`hash`、`abstract`) で一貫して動作することは特筆すべき点です。
+vue-router-2-state のナビゲーションメソッド (`push`、`replace`、`go`) は全てのモード (`history`、`hash`、`abstract`) で一貫して動作することは特筆すべき点です。

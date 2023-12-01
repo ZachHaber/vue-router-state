@@ -4,11 +4,9 @@
 “导航”表示路由正在发生改变。
 :::
 
-正如其名，`vue-router` 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。有多种机会植入路由导航过程中：全局的, 单个路由独享的, 或者组件级的。
+正如其名，`vue-router-2-state` 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。有多种机会植入路由导航过程中：全局的, 单个路由独享的, 或者组件级的。
 
 记住**参数或查询的改变并不会触发进入/离开的导航守卫**。你可以通过[观察 `$route` 对象](../essentials/dynamic-matching.md#响应路由参数的变化)来应对这些变化，或使用 `beforeRouteUpdate` 的组件内守卫。
-
-<div class="vueschool"><a href="https://vueschool.io/lessons/how-to-configure-an-authentication-middleware-route-guard-with-vue-router?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to create an authentication middleware with a global route guard on Vue School">观看 Vue School 的导航守卫如何工作的免费视频课程 (英文)</a></div>
 
 ## 全局前置守卫
 
@@ -87,9 +85,9 @@ const router = new VueRouter({
       component: Foo,
       beforeEnter: (to, from, next) => {
         // ...
-      }
-    }
-  ]
+      },
+    },
+  ],
 })
 ```
 
@@ -120,7 +118,7 @@ const Foo = {
   beforeRouteLeave(to, from, next) {
     // 导航离开该组件的对应路由时调用
     // 可以访问组件实例 `this`
-  }
+  },
 }
 ```
 

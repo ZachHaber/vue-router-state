@@ -2,30 +2,32 @@
 
 ## Direct Download / CDN
 
-[https://unpkg.com/vue-router@3/dist/vue-router.js](https://unpkg.com/vue-router@3/dist/vue-router.js)
+[https://unpkg.com/vue-router-2-state@3/dist/vue-router.js](https://unpkg.com/vue-router-2-state@3/dist/vue-router.js)
 
 <!--email_off-->
-[Unpkg.com](https://unpkg.com) provides npm-based CDN links. The above link will always point to the latest release on npm. You can also use a specific version/tag via URLs like `https://unpkg.com/vue-router@3.0.0/dist/vue-router.js`.
+
+[Unpkg.com](https://unpkg.com) provides npm-based CDN links. The above link will always point to the latest release on npm. You can also use a specific version/tag via URLs like `https://unpkg.com/vue-router-2-state@3.0.0/dist/vue-router.js`.
+
 <!--/email_off-->
 
-Include `vue-router` after Vue and it will install itself automatically:
+Include `vue-router-2-state` after Vue and it will install itself automatically:
 
-``` html
+```html
 <script src="/path/to/vue.js"></script>
-<script src="/path/to/vue-router.js"></script>
+<script src="/path/to/vue-router-2-state.js"></script>
 ```
 
 ## npm
 
-``` bash
-npm install vue-router
+```bash
+npm install vue-router-2-state
 ```
 
 When used with a module system, you must explicitly install the router via `Vue.use()`:
 
-``` js
+```js
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter from 'vue-router-2-state'
 
 Vue.use(VueRouter)
 ```
@@ -42,13 +44,12 @@ vue add router
 
 ## Dev Build
 
-You will have to clone directly from GitHub and build `vue-router` yourself if
+You will have to clone directly from GitHub and build `vue-router-2-state` yourself if
 you want to use the latest dev build.
 
-``` bash
-git clone https://github.com/vuejs/vue-router.git node_modules/vue-router
-cd node_modules/vue-router
+```bash
+git clone https://github.com/zachhaber/vue-router-2-state.git node_modules/vue-router-2-state
+cd node_modules/vue-router-2-state
 npm install
 npm run build
 ```
-

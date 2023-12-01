@@ -6,23 +6,21 @@ Pour découpler un composant de son routeur, utilisez les props :
 
 **Plutôt que de coupler avec `$route`**
 
-``` js
+```js
 const User = {
-  template: '<div>Utilisateur {{ $route.params.id }}</div>'
+  template: '<div>Utilisateur {{ $route.params.id }}</div>',
 }
 const router = new VueRouter({
-  routes: [
-    { path: '/utilisateur/:id', component: User }
-  ]
+  routes: [{ path: '/utilisateur/:id', component: User }],
 })
 ```
 
 **Découplez avec les `props`**
 
-``` js
+```js
 const User = {
   props: ['id'],
-  template: '<div>Utilisateur {{ id }}</div>'
+  template: '<div>Utilisateur {{ id }}</div>',
 }
 const router = new VueRouter({
   routes: [
@@ -32,9 +30,9 @@ const router = new VueRouter({
     {
       path: '/utilisateur/:id',
       components: { default: User, sidebar: Sidebar },
-      props: { default: true, sidebar: false }
-    }
-  ]
+      props: { default: true, sidebar: false },
+    },
+  ],
 })
 ```
 
@@ -48,11 +46,15 @@ Quand `props` est mis à `true`, le `route.params` est remplis en tant que props
 
 Quand `props` est un objet, cela alimente les props de celui-ci. Utile quand les props sont statiques.
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/promotion/from-newsletter', component: Promotion, props: { newsletterPopup: false } }
-  ]
+    {
+      path: '/promotion/from-newsletter',
+      component: Promotion,
+      props: { newsletterPopup: false },
+    },
+  ],
 })
 ```
 
@@ -60,11 +62,15 @@ const router = new VueRouter({
 
 Vous pouvez créer une fonction qui va retourner les props. Cela vous permet de caster des paramètres dans un autre type, de combiner les valeurs statiques avec les valeurs des routes, etc.
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/search', component: SearchUser, props: (route) => ({ query: route.query.q }) }
-  ]
+    {
+      path: '/search',
+      component: SearchUser,
+      props: (route) => ({ query: route.query.q }),
+    },
+  ],
 })
 ```
 
@@ -72,4 +78,4 @@ L'URL `/search?q=vue` passerait `{query: 'vue'}` comme `props` au composant `Sea
 
 Essayez de garder la fonction de `props` sans état, car il n'est évalué que sur les changements de route. Utilisez un composant englobant si vous avez besoin d'état pour définir les props, ainsi la vue pourra réagir au changement d'état.
 
-Pour une utilisation avancée, jetez un œil à cet [exemple](https://github.com/vuejs/vue-router/blob/dev/examples/route-props/app.js).
+Pour une utilisation avancée, jetez un œil à cet [exemple](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-props/app.js).

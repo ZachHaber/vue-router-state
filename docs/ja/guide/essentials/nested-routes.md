@@ -1,7 +1,5 @@
 # ネストされたルート
 
-<div class="vueschool"><a href="https://vueschool.io/courses/vue-router-for-everyone?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to build powerful Single Page Applications with the Vue Router on Vue School">Watch a free video course about Vue Router on Vue School</a></div>
-
 実際のアプリケーションの UI では通常複数のレベルの階層的にネストしたコンポーネントで構成されます。ネストされたコンポーネントの特定の構造に対して URL のセグメントを対応させることはよくあります。例:
 
 ```
@@ -15,7 +13,7 @@
 +------------------+                  +-----------------+
 ```
 
-`vue-router` を使えば、これらのネストされたルートの設定を使って関連付けをシンプルに表現することができます。
+`vue-router-2-state` を使えば、これらのネストされたルートの設定を使って関連付けをシンプルに表現することができます。
 
 前の章で作ったアプリケーションを考えてみましょう。
 
@@ -27,11 +25,11 @@
 
 ```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 
 const router = new VueRouter({
-  routes: [{ path: '/user/:id', component: User }]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
@@ -44,7 +42,7 @@ const User = {
       <h2>User {{ $route.params.id }}</h2>
       <router-view></router-view>
     </div>
-  `
+  `,
 }
 ```
 
@@ -61,17 +59,17 @@ const router = new VueRouter({
           // /user/:id/profile がマッチした時に
           // UserProfile は User の <router-view> 内部で描画されます
           path: 'profile',
-          component: UserProfile
+          component: UserProfile,
         },
         {
           // /user/:id/posts がマッチした時に
           // UserPosts は User の <router-view> 内部で描画されます
           path: 'posts',
-          component: UserPosts
-        }
-      ]
-    }
-  ]
+          component: UserPosts,
+        },
+      ],
+    },
+  ],
 })
 ```
 
@@ -90,12 +88,12 @@ const router = new VueRouter({
       children: [
         // /user/:id がマッチした時に
         // UserHome は User の <router-view> 内部で描画されます
-        { path: '', component: UserHome }
+        { path: '', component: UserHome },
 
         // 他のサブルートも同様に...
-      ]
-    }
-  ]
+      ],
+    },
+  ],
 })
 ```
 

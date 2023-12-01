@@ -2,15 +2,15 @@
 
 > В примерах используется синтаксис [ES2015](https://github.com/lukehoban/es6features).
 
-Создать одностраничное приложение используя Vue.js и Vue-router очень просто. Используя Vue.js, мы уже компонуем своё приложение из компонентов. Добавляя Vue-router, мы просто сопоставляем компонентам пути, и указываем, где именно их отображать. Вот простой пример:
+Создать одностраничное приложение используя Vue.js и vue-router-2-state очень просто. Используя Vue.js, мы уже компонуем своё приложение из компонентов. Добавляя vue-router-2-state, мы просто сопоставляем компонентам пути, и указываем, где именно их отображать. Вот простой пример:
 
 > Все примеры используют полную сборку Vue, которая позволяет использовать парсинг шаблонов. Подробнее о разнице сборок можно почитать [в документации к Vue.js](https://ru.vuejs.org/v2/guide/installation.html#Объяснение-различных-сборок).
 
 ### HTML
 
-``` html
+```html
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="https://unpkg.com/vue-router-2-state/dist/vue-router.js"></script>
 
 <div id="app">
   <h1>Hello App!</h1>
@@ -28,7 +28,7 @@
 
 ### JavaScript
 
-``` js
+```js
 // 0. При использовании модульной системы (напр. vue-cli),
 // импортируйте Vue и VueRouter и затем вызовите `Vue.use(VueRouter)`
 
@@ -44,20 +44,20 @@ const Bar = { template: '<div>bar</div>' }
 // Вложенные пути будут рассмотрены далее.
 const routes = [
   { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
+  { path: '/bar', component: Bar },
 ]
 
 // 3. Создаём экземпляр роутера с опцией `routes`
 // Можно передать и другие опции, но пока не будем усложнять
 const router = new VueRouter({
-  routes // сокращение от `routes: routes`
+  routes, // сокращение от `routes: routes`
 })
 
 // 4. Создаём и монтируем корневой экземпляр Vue нашего приложения.
 // Удостоверьтесь, что передали экземпляр роутера в опции `router`,
 // что позволит приложению знать о его наличии
 const app = new Vue({
-  router
+  router,
 }).$mount('#app')
 
 // Всё, приложение работает! ;)
@@ -69,18 +69,16 @@ const app = new Vue({
 // Home.vue
 export default {
   computed: {
-    username () {
+    username() {
       // Мы скоро разберём что такое `params`
       return this.$route.params.username
-    }
+    },
   },
   methods: {
-    goBack () {
-      window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    }
-  }
+    goBack() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+    },
+  },
 }
 ```
 

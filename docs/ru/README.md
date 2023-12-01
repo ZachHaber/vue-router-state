@@ -3,7 +3,7 @@ home: true
 heroImage: /logo.png
 actionText: Начать знакомство →
 actionLink: /ru/installation.html
-footer: MIT Licensed | Copyright © 2014-present Evan You, Eduardo San Martin Morote
+footer: MIT Licensed
 ---
 
 Vue Router — официальная библиотека маршрутизации для [Vue.js](https://ru.vuejs.org/). Она глубоко интегрируется с Vue.js и позволяет легко создавать SPA-приложения. Включает следующие возможности:
@@ -17,6 +17,6 @@ Vue Router — официальная библиотека маршрутиза�
 - Режимы работы HTML5 history или хэш, с авто-переключением в IE9
 - Настраиваемое поведение прокрутки страницы
 
-[Начать знакомство](./guide/) или поиграться с [примерами](https://github.com/vuejs/vue-router/tree/dev/examples) (см. [`README.md`](https://github.com/vuejs/vue-router/) для их запуска).
+[Начать знакомство](./guide/) или поиграться с [примерами](https://github.com/zachhaber/vue-router-state/tree/dev/examples) (см. [`README.md`](https://github.com/zachhaber/vue-router-state/) для их запуска).
 
 <HomeSponsors />

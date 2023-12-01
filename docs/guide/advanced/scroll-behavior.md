@@ -1,8 +1,4 @@
-# Scroll Behavior
-
-<div class="vueschool"><a href="https://vueschool.io/lessons/how-to-control-the-scroll-behavior-of-vue-router?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to control the scroll behavior on Vue School">Learn to control the scroll behavior with a free lesson on Vue School</a></div>
-
-When using client-side routing, we may want to scroll to top when navigating to a new route, or preserve the scrolling position of history entries just like real page reload does. `vue-router` allows you to achieve these and even better, allows you to completely customize the scroll behavior on route navigation.
+When using client-side routing, we may want to scroll to top when navigating to a new route, or preserve the scrolling position of history entries just like real page reload does. `vue-router-2-state` allows you to achieve these and even better, allows you to completely customize the scroll behavior on route navigation.
 
 **Note: this feature only works if the browser supports `history.pushState`.**
 
@@ -61,7 +57,7 @@ scrollBehavior (to, from, savedPosition) {
 }
 ```
 
-We can also use [route meta fields](meta.md) to implement fine-grained scroll behavior control. Check out a full example [here](https://github.com/vuejs/vue-router/blob/dev/examples/scroll-behavior/app.js).
+We can also use [route meta fields](meta.md) to implement fine-grained scroll behavior control. Check out a full example [here](https://github.com/zachhaber/vue-router-state/blob/dev/examples/scroll-behavior/app.js).
 
 ## Async Scrolling
 

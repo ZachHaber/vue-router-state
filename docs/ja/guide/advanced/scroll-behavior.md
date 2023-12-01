@@ -1,8 +1,6 @@
 # スクロールの振る舞い
 
-<div class="vueschool"><a href="https://vueschool.io/courses/vue-router-for-everyone?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to build powerful Single Page Applications with the Vue Router on Vue School">Watch a free video course about Vue Router on Vue School</a></div>
-
-クライアントサイドのルーティングを使っている時に、新しいルートに対してスクロールをトップへ移動させたいかもしれません、もしくは実際のページリロードがしているように history 要素のスクロールポジションを保持したいこともあるかもしれません。 `vue-router` ではこれらをさらによく実現できます。ルートナビゲーションにおけるスクロールの挙動を完全にカスタマイズすることができます。
+クライアントサイドのルーティングを使っている時に、新しいルートに対してスクロールをトップへ移動させたいかもしれません、もしくは実際のページリロードがしているように history 要素のスクロールポジションを保持したいこともあるかもしれません。 `vue-router-2-state` ではこれらをさらによく実現できます。ルートナビゲーションにおけるスクロールの挙動を完全にカスタマイズすることができます。
 
 **注意: この機能は ブラウザが `history.pushState` をサポートしている場合のみ動作します。**
 
@@ -62,7 +60,7 @@ scrollBehavior (to, from, savedPosition) {
 }
 ```
 
-きめの細かいスクロールの挙動コントロールを実装するために [ルートメタフィールド](meta.md) も利用可能です。詳細な例は [こちら](https://github.com/vuejs/vue-router/blob/dev/examples/scroll-behavior/app.js) をご参照ください。
+きめの細かいスクロールの挙動コントロールを実装するために [ルートメタフィールド](meta.md) も利用可能です。詳細な例は [こちら](https://github.com/zachhaber/vue-router-state/blob/dev/examples/scroll-behavior/app.js) をご参照ください。
 
 ## 非同期なスクローリング
 

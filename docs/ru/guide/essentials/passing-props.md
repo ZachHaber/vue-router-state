@@ -8,12 +8,10 @@
 
 ```js
 const User = {
-  template: '<div>Пользователь {{ $route.params.id }}</div>'
+  template: '<div>Пользователь {{ $route.params.id }}</div>',
 }
 const router = new VueRouter({
-  routes: [
-    { path: '/user/:id', component: User }
-  ]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
@@ -22,7 +20,7 @@ const router = new VueRouter({
 ```js
 const User = {
   props: ['id'],
-  template: '<div>Пользователь {{ id }}</div>'
+  template: '<div>Пользователь {{ id }}</div>',
 }
 const router = new VueRouter({
   routes: [
@@ -33,9 +31,9 @@ const router = new VueRouter({
     {
       path: '/user/:id',
       components: { default: User, sidebar: Sidebar },
-      props: { default: true, sidebar: false }
-    }
-  ]
+      props: { default: true, sidebar: false },
+    },
+  ],
 })
 ```
 
@@ -52,8 +50,12 @@ const router = new VueRouter({
 ```js
 const router = new VueRouter({
   routes: [
-    { path: '/promotion/from-newsletter', component: Promotion, props: { newsletterPopup: false } }
-  ]
+    {
+      path: '/promotion/from-newsletter',
+      component: Promotion,
+      props: { newsletterPopup: false },
+    },
+  ],
 })
 ```
 
@@ -64,8 +66,12 @@ const router = new VueRouter({
 ```js
 const router = new VueRouter({
   routes: [
-    { path: '/search', component: SearchUser, props: (route) => ({ query: route.query.q }) }
-  ]
+    {
+      path: '/search',
+      component: SearchUser,
+      props: (route) => ({ query: route.query.q }),
+    },
+  ],
 })
 ```
 
@@ -73,4 +79,4 @@ URL `/search?q=vue` также передаст `{query: 'vue'}` в качест
 
 Старайтесь держать функции генерации входных параметров независимыми от состояния, потому что они вызываются только при изменениях маршрута. Используйте компонент обёртку, если вам нужно состояние для определения входных параметров, в таком случае Vue сможет реагировать на изменения состояния.
 
-Для более продвинутого использования, смотрите [пример](https://github.com/vuejs/vue-router/blob/dev/examples/route-props/app.js).
+Для более продвинутого использования, смотрите [пример](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-props/app.js).

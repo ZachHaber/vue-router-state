@@ -1,12 +1,12 @@
 # Comportement du défilement
 
-En utilisant le routage côté client, nous pourrions vouloir faire défiler la page jusqu'en haut lorsqu'on navigue vers une nouvelle route, ou alors préserver la position du défilement des entrées de l'historique comme le ferait une page réelle. `vue-router` vous permet de faire cela et, encore mieux, vous permet de changer le comportement du défilement pendant la navigation.
+En utilisant le routage côté client, nous pourrions vouloir faire défiler la page jusqu'en haut lorsqu'on navigue vers une nouvelle route, ou alors préserver la position du défilement des entrées de l'historique comme le ferait une page réelle. `vue-router-2-state` vous permet de faire cela et, encore mieux, vous permet de changer le comportement du défilement pendant la navigation.
 
 **Note : cette fonctionnalité ne fonctionne que si le navigateur supporte `history.pushState`.**
 
 Pendant la création de l'instance du routeur, vous pouvez renseigner la fonction `scrollBehavior` :
 
-``` js
+```js
 const router = new VueRouter({
   routes: [...],
   scrollBehavior (to, from, savedPosition) {
@@ -19,14 +19,14 @@ La fonction `scrollBehavior` reçoit les objets de route `to` et `from`. Le troi
 
 La fonction peut retourner un objet décrivant la position du défilement. L'objet peut être de la forme :
 
--  `{ x: number, y: number }`
+- `{ x: number, y: number }`
 - `{ selector: string, offset? : { x: number, y: number }}` (offset seulement supporté pour les versions 2.6.0+)
 
 Si une valeur équivalente à `false` ou un objet vide est retourné, aucun défilement ne sera produit.
 
 Par exemple :
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   return { x: 0, y: 0 }
 }
@@ -36,7 +36,7 @@ Cela permettra de défiler au haut de page à chaque navigation à travers les r
 
 Retourner l'objet `savedPosition` résultera en un comportement quasi natif en naviguant avec les boutons précédents/suivants :
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   if (savedPosition) {
     return savedPosition
@@ -48,7 +48,7 @@ scrollBehavior (to, from, savedPosition) {
 
 Si vous voulez simuler le comportement « aller à l'ancre » :
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   if (to.hash) {
     return {
@@ -59,7 +59,7 @@ scrollBehavior (to, from, savedPosition) {
 }
 ```
 
-On peut aussi utiliser les [champs meta de route](meta.md) pour implémenter un contrôle bien précis pour le comportement du défilement. Allez voir un exemple complet [ici](https://github.com/vuejs/vue-router/blob/dev/examples/scroll-behavior/app.js).
+On peut aussi utiliser les [champs meta de route](meta.md) pour implémenter un contrôle bien précis pour le comportement du défilement. Allez voir un exemple complet [ici](https://github.com/zachhaber/vue-router-state/blob/dev/examples/scroll-behavior/app.js).
 
 ### Défilement asynchrone
 
@@ -67,7 +67,7 @@ On peut aussi utiliser les [champs meta de route](meta.md) pour implémenter un 
 
 Vous pouvez également retourner une promesse pour résoudre la description de position souhaitée :
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

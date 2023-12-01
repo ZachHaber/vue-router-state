@@ -4,40 +4,39 @@
 
 `routes` 設定でリダイレクトが可能です。`/a` から `/b` へリダイレクトする例:
 
-``` js
+```js
 const router = new VueRouter({
-  routes: [
-    { path: '/a', redirect: '/b' }
-  ]
+  routes: [{ path: '/a', redirect: '/b' }],
 })
 ```
 
 名前付きルートに対してリダイレクトすることもできます。
 
-``` js
+```js
 const router = new VueRouter({
-  routes: [
-    { path: '/a', redirect: { name: 'foo' }}
-  ]
+  routes: [{ path: '/a', redirect: { name: 'foo' } }],
 })
 ```
 
 また、function を使った動的なリダイレクトもできます。
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/a', redirect: to => {
-      // この function は対象のルートを引数として受け取ります
-      // ここではリダイレクト先の path もしくは location を返します
-    }}
-  ]
+    {
+      path: '/a',
+      redirect: (to) => {
+        // この function は対象のルートを引数として受け取ります
+        // ここではリダイレクト先の path もしくは location を返します
+      },
+    },
+  ],
 })
 ```
 
 [ナビゲーションガード](../advanced/navigation-guards.md)はリダイレクトするルートに提供されず、ターゲット上のみに適用されるということに注意してください。例では、`beforeEnter` または `beforeLeave` ガードを `/a` ルートに追加しても効果がありません。
 
-その他の高度な使い方として、[例](https://github.com/vuejs/vue-router/blob/dev/examples/redirect/app.js) をご参照ください。
+その他の高度な使い方として、[例](https://github.com/zachhaber/vue-router-state/blob/dev/examples/redirect/app.js) をご参照ください。
 
 ### エイリアス
 
@@ -47,14 +46,12 @@ const router = new VueRouter({
 
 上記はルートの設定で以下のように表現されます。
 
-``` js
+```js
 const router = new VueRouter({
-  routes: [
-    { path: '/a', component: A, alias: '/b' }
-  ]
+  routes: [{ path: '/a', component: A, alias: '/b' }],
 })
 ```
 
 設定のネスト構造による制約とは異なり、エイリアスは UI 構造に任意の URL をマップするための自由さがあります。
 
-高度な使い方に関しては、 [例](https://github.com/vuejs/vue-router/blob/dev/examples/route-alias/app.js) をご参照ください。
+高度な使い方に関しては、 [例](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-alias/app.js) をご参照ください。

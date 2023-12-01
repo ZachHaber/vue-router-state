@@ -1,8 +1,8 @@
-# vue-router
+# vue-router-2-state
 
-> Note aux utilisateurs de TypeScript : vue-router@3.0+ nécessite vue@2.5+, et inverssement.
+> Note aux utilisateurs de TypeScript : vue-router-2-state@3.0+ nécessite vue@2.5+, et inverssement.
 
-**[Notes de version](https://github.com/vuejs/vue-router/releases)**
+**[Notes de version](https://github.com/zachhaber/vue-router-state/releases)**
 
 - [Installation](installation.md)
 - Essentiel

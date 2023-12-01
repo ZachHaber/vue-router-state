@@ -2,7 +2,7 @@
 
 Vu que `<router-view>` est essentiellement un composant dynamique, on peut lui appliquer certains effets de transitions en utilisant le composant `<transition>` :
 
-``` html
+```html
 <transition>
   <router-view></router-view>
 </transition>
@@ -14,13 +14,13 @@ Vu que `<router-view>` est essentiellement un composant dynamique, on peut lui a
 
 L'utilisation du dessus applique la même transition pour chaque route. Si vous voulez que les composants de route aient des transitions différentes, vous pouvez utiliser à la place `<transition>` avec des noms différents à l'intérieur de chaque composant de route :
 
-``` js
+```js
 const Foo = {
   template: `
     <transition name="slide">
       <div class="foo">...</div>
     </transition>
-  `
+  `,
 }
 
 const Bar = {
@@ -28,7 +28,7 @@ const Bar = {
     <transition name="fade">
       <div class="bar">...</div>
     </transition>
-  `
+  `,
 }
 ```
 
@@ -36,14 +36,14 @@ const Bar = {
 
 Il est aussi possible de déterminer la transition à utiliser en se basant sur la relation entre la route cible et la route actuelle :
 
-``` html
+```html
 <!-- utiliser un nom de transition dynamique -->
 <transition :name="transitionName">
   <router-view></router-view>
 </transition>
 ```
 
-``` js
+```js
 // et dans le composant parent,
 // observer la `$route` pour déterminer la transition à utiliser
 watch: {
@@ -55,4 +55,4 @@ watch: {
 }
 ```
 
-Voir un exemple complet [ici](https://github.com/vuejs/vue-router/blob/dev/examples/transitions/app.js).
+Voir un exemple complet [ici](https://github.com/zachhaber/vue-router-state/blob/dev/examples/transitions/app.js).

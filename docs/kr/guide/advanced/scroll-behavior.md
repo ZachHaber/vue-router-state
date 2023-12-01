@@ -1,12 +1,12 @@
 # 스크롤 동작
 
-클라이언트 측 라우팅을 사용할 때 새로운 경로로 이동할 때 맨 위로 스크롤하거나 실제 페이지를 다시 로드하는 것처럼 컨텐츠 항목의 스크롤 위치를 유지할 수 있습니다. `vue-router`는 이러한 것들을 할 수 있으며, 라우트 탐색에서 스크롤 동작을 완전히 사용자 정의할 수 있게합니다.
+클라이언트 측 라우팅을 사용할 때 새로운 경로로 이동할 때 맨 위로 스크롤하거나 실제 페이지를 다시 로드하는 것처럼 컨텐츠 항목의 스크롤 위치를 유지할 수 있습니다. `vue-router-2-state`는 이러한 것들을 할 수 있으며, 라우트 탐색에서 스크롤 동작을 완전히 사용자 정의할 수 있게합니다.
 
 **참고: 이 기능은 HTML5 히스토리 모드에서만 작동합니다.**
 
 라우터 인스턴스를 생성 할 때 `scrollBehavior` 함수를 제공 할 수 있습니다.
 
-``` js
+```js
 const router = new VueRouter({
   routes: [...],
   scrollBehavior (to, from, savedPosition) {
@@ -26,7 +26,7 @@ const router = new VueRouter({
 
 예제:
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   return { x: 0, y: 0 }
 }
@@ -36,7 +36,7 @@ scrollBehavior (to, from, savedPosition) {
 
 `savedPosition`을 반환하면 뒤로/앞으로 버튼으로 탐색할 때 네이티브와 같은 동작이 발생합니다.
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   if (savedPosition) {
     return savedPosition
@@ -48,7 +48,7 @@ scrollBehavior (to, from, savedPosition) {
 
 "anchor로 스크롤" 동작을 시뮬레이트하려면 다음을 수행하십시오.
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   if (to.hash) {
     return {
@@ -59,4 +59,4 @@ scrollBehavior (to, from, savedPosition) {
 }
 ```
 
-또한 [라우트 메타 필드](meta.md)를 사용하여 세밀한 스크롤 동작 제어를 구현할 수 있습니다. 전체 [예제](https://github.com/vuejs/vue-router/blob/dev/examples/scroll-behavior/app.js)를 확인하십시오.
+또한 [라우트 메타 필드](meta.md)를 사용하여 세밀한 스크롤 동작 제어를 구현할 수 있습니다. 전체 [예제](https://github.com/zachhaber/vue-router-state/blob/dev/examples/scroll-behavior/app.js)를 확인하십시오.

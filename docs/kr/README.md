@@ -3,7 +3,7 @@ home: true
 heroImage: /logo.png
 actionText: Get Started →
 actionLink: /kr/installation.html
-footer: MIT Licensed | Copyright © 2014-present Evan You, Eduardo San Martin Morote
+footer: MIT Licensed
 ---
 
 Vue 라우터는 [Vue.js](http://vuejs.org)의 공식 라우터입니다.
@@ -20,6 +20,6 @@ Vue.js를 사용한 싱글 페이지 앱을 쉽게 만들 수 있도록 Vue.js�
 - HTML5 히스토리 모드 또는 해시 모드(IE9에서 자동으로 폴백)
 - 사용자 정의 가능한 스크롤 동작
 
-[시작하기](./guide/) 또는 [예제](https://github.com/vuejs/vue-router/tree/dev/examples)를 참고하세요. ([`README.md`](https://github.com/vuejs/vue-router/)에서 사용법을 확인할 수 있습니다).
+[시작하기](./guide/) 또는 [예제](https://github.com/zachhaber/vue-router-state/tree/dev/examples)를 참고하세요. ([`README.md`](https://github.com/zachhaber/vue-router-state/)에서 사용법을 확인할 수 있습니다).
 
 <HomeSponsors />

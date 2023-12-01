@@ -6,23 +6,21 @@ Para desacoplar el componente del enrutador utiliza _props_:
 
 ** Acoplado a $route**
 
-``` js
+```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 const router = new VueRouter({
-  routes: [
-    { path: '/user/:id', component: User }
-  ]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
 ** Desacoplado con props**
 
-``` js
+```js
 const User = {
   props: ['id'],
-  template: '<div>User {{ id }}</div>'
+  template: '<div>User {{ id }}</div>',
 }
 const router = new VueRouter({
   routes: [
@@ -32,9 +30,9 @@ const router = new VueRouter({
     {
       path: '/user/:id',
       components: { default: User, sidebar: Sidebar },
-      props: { default: true, sidebar: false }
-    }
-  ]
+      props: { default: true, sidebar: false },
+    },
+  ],
 })
 ```
 
@@ -49,11 +47,15 @@ Cuando _props_ tiene asignado el valor true, `route.params` serán asignados com
 Cuando _props_ es un objeto, este será asignado tal cual como las _props_ del componente.
 Útil para cuando las _props_ son estáticas.
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/promotion/from-newsletter', component: Promotion, props: { newsletterPopup: false } }
-  ]
+    {
+      path: '/promotion/from-newsletter',
+      component: Promotion,
+      props: { newsletterPopup: false },
+    },
+  ],
 })
 ```
 
@@ -62,11 +64,15 @@ const router = new VueRouter({
 Puedes crear una función que retorne _props_.
 Esto te permite convertir los parámetros a otro tipo, combinar valores estáticos con valores basados en rutas, etc.
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/search', component: SearchUser, props: (route) => ({ query: route.query.q }) }
-  ]
+    {
+      path: '/search',
+      component: SearchUser,
+      props: (route) => ({ query: route.query.q }),
+    },
+  ],
 })
 ```
 
@@ -75,5 +81,4 @@ La URL: `/search?q=vue` pasaría `{query: "vue"}` como _props_ al componente Sea
 Intenta crear funciones _props_ sin estado, dado que solo se evalúan cuando ocurren cambios de ruta.
 Utiliza un componente envolvente si necesitas estado para definir las _props_, de esa manera Vue puede reaccionar a cambios de estado.
 
-
-Para un uso avanzado, aquí hay un [ejemplo](https://github.com/vuejs/vue-router/blob/dev/examples/route-props/app.js).
+Para un uso avanzado, aquí hay un [ejemplo](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-props/app.js).

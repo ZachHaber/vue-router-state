@@ -1,7 +1,5 @@
 # Transitions
 
-<div class="vueschool"><a href="https://vueschool.io/lessons/how-to-create-route-transitions-with-vue-router?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to create route transitions on Vue School">Learn how to create route transitions with a free lesson on Vue School</a></div>
-
 Since the `<router-view>` is essentially a dynamic component, we can apply transition effects to it the same way using the `<transition>` component:
 
 ```html
@@ -22,7 +20,7 @@ const Foo = {
     <transition name="slide">
       <div class="foo">...</div>
     </transition>
-  `
+  `,
 }
 
 const Bar = {
@@ -30,7 +28,7 @@ const Bar = {
     <transition name="fade">
       <div class="bar">...</div>
     </transition>
-  `
+  `,
 }
 ```
 
@@ -57,4 +55,4 @@ watch: {
 }
 ```
 
-See full example [here](https://github.com/vuejs/vue-router/blob/dev/examples/transitions/app.js).
+See full example [here](https://github.com/zachhaber/vue-router-state/blob/dev/examples/transitions/app.js).

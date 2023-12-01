@@ -8,16 +8,15 @@
 
 異なる URL へ遷移するときに `router.push` が使えます。このメソッドは history スタックに新しいエントリを追加します。それによってユーザーがブラウザの戻るボタンをクリックした時に前の URL に戻れるようになります。
 
-
 このメソッドは `<router-link>` をクリックした時に内部的に呼ばれています。つまり `<router-link :to="...">` をクリックすることは `router.push(...)` を呼ぶことと等価です。
 
-| 宣言的 | プログラム的 |
-|-------------|--------------|
+| 宣言的                    | プログラム的       |
+| ------------------------- | ------------------ |
 | `<router-link :to="...">` | `router.push(...)` |
 
 引数は文字列のパス、もしくは、location を記述するオブジェクトが使えます。例:
 
-``` js
+```js
 // 文字列パス
 router.push('home')
 
@@ -25,10 +24,10 @@ router.push('home')
 router.push({ path: 'home' })
 
 // 名前付きルート
-router.push({ name: 'user', params: { userId: 123 }})
+router.push({ name: 'user', params: { userId: 123 } })
 
 // 結果的に /register?plan=private になる query
-router.push({ path: 'register', query: { plan: 'private' }})
+router.push({ path: 'register', query: { plan: 'private' } })
 ```
 
 **注意**: `params` は、上記例に示すように、`path` が提供されている場合は無視されます。これは `query` に対するケースとは異なります。
@@ -36,10 +35,10 @@ router.push({ path: 'register', query: { plan: 'private' }})
 
 ```js
 const userId = 123
-router.push({ name: 'user', params: { userId }}) // -> /user/123
+router.push({ name: 'user', params: { userId } }) // -> /user/123
 router.push({ path: `/user/${userId}` }) // -> /user/123
 // これは動作"しません"
-router.push({ path: '/user', params: { userId }}) // -> /user
+router.push({ path: '/user', params: { userId } }) // -> /user
 ```
 
 同じルールが、`router-link` コンポーネントの `to` プロパティに対して適用されます。
@@ -52,10 +51,9 @@ router.push({ path: '/user', params: { userId }}) // -> /user
 
 これは `router.push` のように動作しますが、異なる点は新しい history エントリを追加しないで遷移することです。この名前から推定されるように、現在のエントリを置換します。
 
-| 宣言的 | プログラム的 |
-|-------------|--------------|
+| 宣言的                            | プログラム的          |
+| --------------------------------- | --------------------- |
 | `<router-link :to="..." replace>` | `router.replace(...)` |
-
 
 #### `router.go(n)`
 
@@ -63,7 +61,7 @@ router.push({ path: '/user', params: { userId }}) // -> /user
 
 例
 
-``` js
+```js
 // 1 つレコードを進める。history.forward() と同じ
 router.go(1)
 
@@ -82,6 +80,6 @@ router.go(100)
 
 もしかすると `router.push`、`router.replace`、`router.go` は [`window.history.pushState`、`window.history.replaceState`、`window.history.go`](https://developer.mozilla.org/en-US/docs/Web/API/History) と対応することにお気づきかもしれません。これらは `window.history` API を模倣しています。
 
-したがって、もしあなたが既に [Browser History APIs](https://developer.mozilla.org/en-US/docs/Web/API/History_API) について詳しい場合は、vue-router による History 操作はとても簡単です。
+したがって、もしあなたが既に [Browser History APIs](https://developer.mozilla.org/en-US/docs/Web/API/History_API) について詳しい場合は、vue-router-2-state による History 操作はとても簡単です。
 
-vue-router のナビゲーションメソッド (`push`、`replace`、`go`) は全てのモード (`history`、`hash`、`abstract`) で一貫して動作することは特筆すべき点です。
+vue-router-2-state のナビゲーションメソッド (`push`、`replace`、`go`) は全てのモード (`history`、`hash`、`abstract`) で一貫して動作することは特筆すべき点です。

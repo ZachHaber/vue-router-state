@@ -274,14 +274,14 @@ sidebar: auto
 
   ```ts
   type PositionDescriptor =
-    { x: number, y: number } |
-    { selector: string } |
-    void
+    | { x: number; y: number }
+    | { selector: string }
+    | void
 
   type scrollBehaviorHandler = (
     to: Route,
     from: Route,
-    savedPosition?: { x: number, y: number }
+    savedPosition?: { x: number; y: number },
   ) => PositionDescriptor | Promise<PositionDescriptor>
   ```
 
@@ -330,7 +330,7 @@ sidebar: auto
   以[路由对象](#路由对象)的格式展示初始路由地址，即路由开始的地方。可用在导航守卫中以区分初始导航。
 
   ```js
-  import VueRouter from 'vue-router'
+  import VueRouter from 'vue-router-2-state'
 
   const router = new VueRouter({
     // ...
@@ -424,7 +424,7 @@ const resolved: {
 
 ### router.addRoutes
 
-*已废弃*：使用 [`router.addRoute()`](#router-addroute) 代替。
+_已废弃_：使用 [`router.addRoute()`](#router-addroute) 代替。
 
 函数签名：
 
@@ -522,7 +522,7 @@ router.onError(callback)
   const router = new VueRouter({
     scrollBehavior(to, from, savedPosition) {
       // `to` 和 `from` 都是路由对象
-    }
+    },
   })
   ```
 
@@ -573,10 +573,10 @@ router.onError(callback)
         component: Foo,
         children: [
           // 这也是个路由记录
-          { path: 'bar', component: Bar }
-        ]
-      }
-    ]
+          { path: 'bar', component: Bar },
+        ],
+      },
+    ],
   })
   ```
 

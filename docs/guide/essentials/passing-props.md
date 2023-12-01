@@ -1,7 +1,3 @@
-# Passing Props to Route Components
-
-<div class="vueschool"><a href="https://vueschool.io/lessons/how-to-pass-vue-router-params-as-props-to-components?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to pass props to route components with Vue School">Learn how to pass props to route components with a free lesson on Vue School</a></div>
-
 Using `$route` in your component creates a tight coupling with the route which limits the flexibility of the component as it can only be used on certain URLs.
 
 To decouple this component from the router use option `props`:
@@ -10,10 +6,10 @@ To decouple this component from the router use option `props`:
 
 ```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 const router = new VueRouter({
-  routes: [{ path: '/user/:id', component: User }]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
@@ -22,7 +18,7 @@ const router = new VueRouter({
 ```js
 const User = {
   props: ['id'],
-  template: '<div>User {{ id }}</div>'
+  template: '<div>User {{ id }}</div>',
 }
 const router = new VueRouter({
   routes: [
@@ -33,15 +29,15 @@ const router = new VueRouter({
       path: '/user/:id',
       components: {
         default: User,
-        sidebar: Sidebar
+        sidebar: Sidebar,
       },
       props: {
         default: true,
         // function mode, more about it below
-        sidebar: route => ({ search: route.query.q })
-      }
-    }
-  ]
+        sidebar: (route) => ({ search: route.query.q }),
+      },
+    },
+  ],
 })
 ```
 
@@ -61,9 +57,9 @@ const router = new VueRouter({
     {
       path: '/promotion/from-newsletter',
       component: Promotion,
-      props: { newsletterPopup: false }
-    }
-  ]
+      props: { newsletterPopup: false },
+    },
+  ],
 })
 ```
 
@@ -77,9 +73,9 @@ const router = new VueRouter({
     {
       path: '/search',
       component: SearchUser,
-      props: route => ({ query: route.query.q })
-    }
-  ]
+      props: (route) => ({ query: route.query.q }),
+    },
+  ],
 })
 ```
 
@@ -87,4 +83,4 @@ The URL `/search?q=vue` would pass `{query: 'vue'}` as props to the `SearchUser`
 
 Try to keep the `props` function stateless, as it's only evaluated on route changes. Use a wrapper component if you need state to define the props, that way vue can react to state changes.
 
-For advanced usage, check out the [example](https://github.com/vuejs/vue-router/blob/dev/examples/route-props/app.js).
+For advanced usage, check out the [example](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-props/app.js).

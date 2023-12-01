@@ -1,14 +1,12 @@
 # Getting Started
 
 ::: tip Note
-You are reading the documentation of Vue Router 3 **for Vue 2**. If you are working with Vue 3, use the [Vue Router 4 documentation](https://next.router.vuejs.org) instead.
+You are reading the documentation of Vue Router 2 State **for Vue 2**. If you are working with Vue 3, use the [Vue Router 4 documentation](https://next.router.vuejs.org) instead.
 
 We will be using [ES2015](https://github.com/lukehoban/es6features) in the code samples in the guide.
 
 Also, all examples will be using the full version of Vue to make on-the-fly template compilation possible. See more details [here](https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only).
 :::
-
-<div class="vueschool"><a href="https://vueschool.io/courses/vue-router-for-everyone?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to build powerful Single Page Applications with the Vue Router on Vue School">Watch a free video course about Vue Router on Vue School</a></div>
 
 Creating a Single-page Application with Vue + Vue Router feels natural: with Vue.js, we are already composing our application with components. When adding Vue Router to the mix, all we need to do is map our components to the routes and let Vue Router know where to render them. Here's a basic example:
 
@@ -16,7 +14,7 @@ Creating a Single-page Application with Vue + Vue Router feels natural: with Vue
 
 ```html
 <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
-<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+<script src="https://unpkg.com/vue-router-2-state@3/dist/vue-router.js"></script>
 
 <div id="app">
   <h1>Hello App!</h1>
@@ -51,21 +49,21 @@ const Bar = { template: '<div>bar</div>' }
 // We'll talk about nested routes later.
 const routes = [
   { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
+  { path: '/bar', component: Bar },
 ]
 
 // 3. Create the router instance and pass the `routes` option
 // You can pass in additional options here, but let's
 // keep it simple for now.
 const router = new VueRouter({
-  routes // short for `routes: routes`
+  routes, // short for `routes: routes`
 })
 
 // 4. Create and mount the root instance.
 // Make sure to inject the router with the router option to make the
 // whole app router-aware.
 const app = new Vue({
-  router
+  router,
 }).$mount('#app')
 
 // Now the app has started!
@@ -80,13 +78,13 @@ export default {
     username() {
       // We will see what `params` is shortly
       return this.$route.params.username
-    }
+    },
   },
   methods: {
     goBack() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
-    }
-  }
+    },
+  },
 }
 ```
 

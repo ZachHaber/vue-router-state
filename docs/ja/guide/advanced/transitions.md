@@ -1,7 +1,5 @@
 # トランジション
 
-<div class="vueschool"><a href="https://vueschool.io/courses/vue-router-for-everyone?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to build powerful Single Page Applications with the Vue Router on Vue School">Watch a free video course about Vue Router on Vue School</a></div>
-
 基本的に `<router-view>` は動的コンポーネントなので、 `<transition>` コンポーネントを使うのと同じ方法でトランジションを適用することができます。
 
 ```html
@@ -22,7 +20,7 @@ const Foo = {
     <transition name="slide">
       <div class="foo">...</div>
     </transition>
-  `
+  `,
 }
 
 const Bar = {
@@ -30,7 +28,7 @@ const Bar = {
     <transition name="fade">
       <div class="bar">...</div>
     </transition>
-  `
+  `,
 }
 ```
 
@@ -57,4 +55,4 @@ watch: {
 }
 ```
 
-完全な例は [こちら](https://github.com/vuejs/vue-router/blob/dev/examples/transitions/app.js) をご参照ください。
+完全な例は [こちら](https://github.com/zachhaber/vue-router-state/blob/dev/examples/transitions/app.js) をご参照ください。

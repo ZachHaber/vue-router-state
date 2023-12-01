@@ -4,40 +4,39 @@
 
 Редиректы также определяются в конфигурации путей `routes`. Для редиректа с `/a` на `/b`, укажите:
 
-``` js
+```js
 const router = new VueRouter({
-  routes: [
-    { path: '/a', redirect: '/b' }
-  ]
+  routes: [{ path: '/a', redirect: '/b' }],
 })
 ```
 
 В качестве цели редиректа можно использовать и именованный путь:
 
-``` js
+```js
 const router = new VueRouter({
-  routes: [
-    { path: '/a', redirect: { name: 'foo' }}
-  ]
+  routes: [{ path: '/a', redirect: { name: 'foo' } }],
 })
 ```
 
 Можно даже указать функцию для организации динамического редиректа:
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/a', redirect: to => {
-      // в функцию в качестве аргумента передаётся путь
-      // возвращаемым значением должна быть строка или объект пути
-    }}
-  ]
+    {
+      path: '/a',
+      redirect: (to) => {
+        // в функцию в качестве аргумента передаётся путь
+        // возвращаемым значением должна быть строка или объект пути
+      },
+    },
+  ],
 })
 ```
 
 Обратите внимание, что [сторожевые хуки](../advanced/navigation-guards.md) не применяются на маршруте, который служит для перенаправления, только на его цель. В приведённом ниже примере добавление хуков `beforeEnter` или `beforeLeave` на маршрут `/a` не будет иметь никакого эффекта.
 
-Для демонстрации более сложных возможностей, обратите внимание на [этот пример](https://github.com/vuejs/vue-router/blob/dev/examples/redirect/app.js).
+Для демонстрации более сложных возможностей, обратите внимание на [этот пример](https://github.com/zachhaber/vue-router-state/blob/dev/examples/redirect/app.js).
 
 ### Псевдонимы
 
@@ -47,14 +46,12 @@ const router = new VueRouter({
 
 В виде конфигурации роутера вышесказанное может быть выражено так:
 
-``` js
+```js
 const router = new VueRouter({
-  routes: [
-    { path: '/a', component: A, alias: '/b' }
-  ]
+  routes: [{ path: '/a', component: A, alias: '/b' }],
 })
 ```
 
 Псевдонимы позволяют не ограничиваться вложенными структурами при организации связи URL и UI.
 
-Этот [пример](https://github.com/vuejs/vue-router/blob/dev/examples/route-alias/app.js) демонстрирует более продвинутое использование возможностей.
+Этот [пример](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-alias/app.js) демонстрирует более продвинутое использование возможностей.

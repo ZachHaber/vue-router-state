@@ -1,17 +1,17 @@
 # 동적 라우트 매칭
 
-주어진 패턴을 가진 라우트를 동일한 컴포넌트에 매핑해야하는 경우가 자주 있습니다. 예를 들어 모든 사용자에 대해 동일한 레이아웃을 가지지만 하지만 다른 사용자 ID로 렌더링되어야하는 `User` 컴포넌트가 있을 수 있습니다. `vue-router`에서 우리는 경로에서 동적 세그먼트를 사용하여 다음을 할 수 있습니다.
+주어진 패턴을 가진 라우트를 동일한 컴포넌트에 매핑해야하는 경우가 자주 있습니다. 예를 들어 모든 사용자에 대해 동일한 레이아웃을 가지지만 하지만 다른 사용자 ID로 렌더링되어야하는 `User` 컴포넌트가 있을 수 있습니다. `vue-router-2-state`에서 우리는 경로에서 동적 세그먼트를 사용하여 다음을 할 수 있습니다.
 
-``` js
+```js
 const User = {
-  template: '<div>User</div>'
+  template: '<div>User</div>',
 }
 
 const router = new VueRouter({
   routes: [
     // 동적 세그먼트는 콜론으로 시작합니다.
-    { path: '/user/:id', component: User }
-  ]
+    { path: '/user/:id', component: User },
+  ],
 })
 ```
 
@@ -19,9 +19,9 @@ const router = new VueRouter({
 
 동적 세그먼트는 콜론 `:`으로 표시됩니다. 라우트가 일치하면 동적 세그먼트의 값은 모든 컴포넌트에서 `this.$route.params`로 표시됩니다. 그러므로 `User`의 템플릿을 다음과 같이 갱신하여 현재 사용자 ID를 표현할 수 있습니다 :
 
-``` js
+```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 ```
 
@@ -31,9 +31,9 @@ const User = {
 
 예:
 
-| 패턴 | 일치하는 패스 | $route.params |
-|---------|------|--------|
-| /user/:username | /user/evan | `{ username: 'evan' }` |
+| 패턴                          | 일치하는 패스       | $route.params                          |
+| ----------------------------- | ------------------- | -------------------------------------- |
+| /user/:username               | /user/evan          | `{ username: 'evan' }`                 |
 | /user/:username/post/:post_id | /user/evan/post/123 | `{ username: 'evan', post_id: '123' }` |
 
 `$route.params` 외에도 `$route` 객체는 `$route.query` (URL에 쿼리가 있는 경우), `$route.hash` 등의 유용한 정보를 제공합니다. [API 레퍼런스](../../api/#the-route-object)에서 전체 세부 정보를 확인할 수 있습니다.
@@ -44,31 +44,32 @@ const User = {
 
 동일한 컴포넌트의 params 변경 사항에 반응하려면 `$route` 객체를 보면됩니다.
 
-``` js
+```js
 const User = {
   template: '...',
   watch: {
-    '$route' (to, from) {
+    $route(to, from) {
       // 경로 변경에 반응하여...
-    }
-  }
+    },
+  },
 }
 ```
 
 또는 2.2에서 소개된 `beforeRouteUpdate` 가드를 사용하십시오.
+
 ```js
 const User = {
   template: '...',
-  beforeRouteUpdate (to, from, next) {
+  beforeRouteUpdate(to, from, next) {
     // react to route changes...
     // don't forget to call next()
-  }
+  },
 }
 ```
 
 ### 고급 매칭 패턴
 
-`vue-router`는 라우트 매칭 엔진으로 [path-to-regexp](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0)를 사용하기 때문에 선택적 동적 세그먼트, 0개 이상/하나 이상의 요구 사항, 심지어 커스텀 정규식 패턴과 같은 많은 고급 매칭 패턴을 지원합니다. 이 고급 패턴들과 `vue-router`에서 사용하는 [예제](https://github.com/vuejs/vue-router/blob/dev/examples/route-matching/app.js)에 대한 [문서](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0#parameters)를 확인하십시오.
+`vue-router-2-state`는 라우트 매칭 엔진으로 [path-to-regexp](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0)를 사용하기 때문에 선택적 동적 세그먼트, 0개 이상/하나 이상의 요구 사항, 심지어 커스텀 정규식 패턴과 같은 많은 고급 매칭 패턴을 지원합니다. 이 고급 패턴들과 `vue-router-2-state`에서 사용하는 [예제](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-matching/app.js)에 대한 [문서](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0#parameters)를 확인하십시오.
 
 ### 매칭 우선순위
 

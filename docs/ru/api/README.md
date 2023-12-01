@@ -293,14 +293,14 @@ sidebar: auto
 
   ```ts
   type PositionDescriptor =
-    { x: number, y: number } |
-    { selector: string } |
-    void
+    | { x: number; y: number }
+    | { selector: string }
+    | void
 
   type scrollBehaviorHandler = (
     to: Route,
     from: Route,
-    savedPosition?: { x: number, y: number }
+    savedPosition?: { x: number; y: number },
   ) => PositionDescriptor | Promise<PositionDescriptor>
   ```
 
@@ -349,7 +349,7 @@ sidebar: auto
   Первоначальная навигация будет [объектом Route](#объект-route) с которого запускается маршрутизатор. Можно использовать в навигационных хуках для определения стартовой навигации.
 
   ```js
-  import VueRouter from 'vue-router'
+  import VueRouter from 'vue-router-2-state'
 
   const router = new VueRouter({
     // ...
@@ -545,7 +545,7 @@ router.onError(callback)
   const router = new VueRouter({
     scrollBehavior(to, from, savedPosition) {
       // как `to` так и `from` являются объектами маршрута
-    }
+    },
   })
   ```
 
@@ -602,10 +602,10 @@ router.onError(callback)
         component: Foo,
         children: [
           // это — тоже запись маршрута
-          { path: 'bar', component: Bar }
-        ]
-      }
-    ]
+          { path: 'bar', component: Bar },
+        ],
+      },
+    ],
   })
   ```
 

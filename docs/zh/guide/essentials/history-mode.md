@@ -1,10 +1,10 @@
 # HTML5 History 模式
 
-`vue-router` 默认 hash 模式 —— 使用 URL 的 hash 来模拟一个完整的 URL，于是当 URL 改变时，页面不会重新加载。
+`vue-router-2-state` 默认 hash 模式 —— 使用 URL 的 hash 来模拟一个完整的 URL，于是当 URL 改变时，页面不会重新加载。
 
 如果不想要很丑的 hash，我们可以用路由的 **history 模式**，这种模式充分利用 `history.pushState` API 来完成 URL 跳转而无须重新加载页面。
 
-``` js
+```js
 const router = new VueRouter({
   mode: 'history',
   routes: [...]
@@ -54,21 +54,23 @@ const http = require('http')
 const fs = require('fs')
 const httpPort = 80
 
-http.createServer((req, res) => {
-  fs.readFile('index.html', 'utf-8', (err, content) => {
-    if (err) {
-      console.log('We cannot open "index.html" file.')
-    }
+http
+  .createServer((req, res) => {
+    fs.readFile('index.html', 'utf-8', (err, content) => {
+      if (err) {
+        console.log('We cannot open "index.html" file.')
+      }
 
-    res.writeHead(200, {
-      'Content-Type': 'text/html; charset=utf-8'
+      res.writeHead(200, {
+        'Content-Type': 'text/html; charset=utf-8',
+      })
+
+      res.end(content)
     })
-
-    res.end(content)
   })
-}).listen(httpPort, () => {
-  console.log('Server listening on: http://localhost:%s', httpPort)
-})
+  .listen(httpPort, () => {
+    console.log('Server listening on: http://localhost:%s', httpPort)
+  })
 ```
 
 #### 基于 Node.js 的 Express
@@ -131,12 +133,10 @@ rewrite {
 
 给个警告，因为这么做以后，你的服务器就不再返回 404 错误页面，因为对于所有路径都会返回 `index.html` 文件。为了避免这种情况，你应该在 Vue 应用里面覆盖所有的路由情况，然后再给出一个 404 页面。
 
-``` js
+```js
 const router = new VueRouter({
   mode: 'history',
-  routes: [
-    { path: '*', component: NotFoundComponent }
-  ]
+  routes: [{ path: '*', component: NotFoundComponent }],
 })
 ```
 

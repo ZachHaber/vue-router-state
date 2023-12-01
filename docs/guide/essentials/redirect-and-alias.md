@@ -4,40 +4,39 @@
 
 Redirecting is also done in the `routes` configuration. To redirect from `/a` to `/b`:
 
-``` js
+```js
 const router = new VueRouter({
-  routes: [
-    { path: '/a', redirect: '/b' }
-  ]
+  routes: [{ path: '/a', redirect: '/b' }],
 })
 ```
 
 The redirect can also be targeting a named route:
 
-``` js
+```js
 const router = new VueRouter({
-  routes: [
-    { path: '/a', redirect: { name: 'foo' }}
-  ]
+  routes: [{ path: '/a', redirect: { name: 'foo' } }],
 })
 ```
 
 Or even use a function for dynamic redirecting:
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/a', redirect: to => {
-      // the function receives the target route as the argument
-      // return redirect path/location here.
-    }}
-  ]
+    {
+      path: '/a',
+      redirect: (to) => {
+        // the function receives the target route as the argument
+        // return redirect path/location here.
+      },
+    },
+  ],
 })
 ```
 
 Note that [Navigation Guards](../advanced/navigation-guards.md) are not applied on the route that redirects, only on its target. In the example below, adding a `beforeEnter` guard to the `/a` route would not have any effect.
 
-For other advanced usage, checkout the [example](https://github.com/vuejs/vue-router/blob/dev/examples/redirect/app.js).
+For other advanced usage, checkout the [example](https://github.com/zachhaber/vue-router-state/blob/dev/examples/redirect/app.js).
 
 ## Alias
 
@@ -47,14 +46,12 @@ A redirect means when the user visits `/a`, the URL will be replaced by `/b`, an
 
 The above can be expressed in the route configuration as:
 
-``` js
+```js
 const router = new VueRouter({
-  routes: [
-    { path: '/a', component: A, alias: '/b' }
-  ]
+  routes: [{ path: '/a', component: A, alias: '/b' }],
 })
 ```
 
 An alias gives you the freedom to map a UI structure to an arbitrary URL, instead of being constrained by the configuration's nesting structure.
 
-For advanced usage, check out the [example](https://github.com/vuejs/vue-router/blob/dev/examples/route-alias/app.js).
+For advanced usage, check out the [example](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-alias/app.js).

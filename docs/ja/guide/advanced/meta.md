@@ -1,7 +1,5 @@
 # ルートメタフィールド
 
-<div class="vueschool"><a href="https://vueschool.io/courses/vue-router-for-everyone?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to build powerful Single Page Applications with the Vue Router on Vue School">Watch a free video course about Vue Router on Vue School</a></div>
-
 ルートの定義をする際に `meta` フィールドを含めることができます。
 
 ```js
@@ -15,11 +13,11 @@ const router = new VueRouter({
           path: 'bar',
           component: Bar,
           // メタフィールド
-          meta: { requiresAuth: true }
-        }
-      ]
-    }
-  ]
+          meta: { requiresAuth: true },
+        },
+      ],
+    },
+  ],
 })
 ```
 
@@ -35,13 +33,13 @@ const router = new VueRouter({
 
 ```js
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
     // このルートはログインされているかどうか認証が必要です。
     // もしされていないならば、ログインページにリダイレクトします。
     if (!auth.loggedIn()) {
       next({
         path: '/login',
-        query: { redirect: to.fullPath }
+        query: { redirect: to.fullPath },
       })
     } else {
       next()

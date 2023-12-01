@@ -1,14 +1,14 @@
 {
-  "title": "vue-router",
+  "title": "vue-router-2-state",
   "gitbook": ">3.0.0",
   "plugins": ["edit-link", "theme-vuejs", "-fontsettings", "github"],
   "pluginsConfig": {
     "edit-link": {
-      "base": "https://github.com/vuejs/vue-router/edit/dev/docs",
+      "base": "https://github.com/zachhaber/vue-router-state/edit/dev/docs",
       "label": "Edit This Page"
     },
     "github": {
-      "url": "https://github.com/vuejs/vue-router/"
+      "url": "https://github.com/zachhaber/vue-router-state/"
     }
   },
   "links": {

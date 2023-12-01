@@ -1,10 +1,10 @@
 # Режим HTML5 History
 
-Режимом по умолчанию для `Vue-router` является _hash mode_, использующий хэш URL'а для симуляции полного URL-адреса, что позволяет избежать перезагрузки страницы при изменении URL.
+Режимом по умолчанию для `vue-router-2-state` является _hash mode_, использующий хэш URL'а для симуляции полного URL-адреса, что позволяет избежать перезагрузки страницы при изменении URL.
 
 Мы можем обойтись без хэша, используя **history mode**, который работает с API `history.pushState` для достижения той же цели:
 
-``` js
+```js
 const router = new VueRouter({
   mode: 'history',
   routes: [...]
@@ -47,21 +47,23 @@ const http = require('http')
 const fs = require('fs')
 const httpPort = 80
 
-http.createServer((req, res) => {
-  fs.readFile('index.htm', 'utf-8', (err, content) => {
-    if (err) {
-      console.log('Невозможно открыть файл "index.htm".')
-    }
+http
+  .createServer((req, res) => {
+    fs.readFile('index.htm', 'utf-8', (err, content) => {
+      if (err) {
+        console.log('Невозможно открыть файл "index.htm".')
+      }
 
-    res.writeHead(200, {
-      'Content-Type': 'text/html; charset=utf-8'
+      res.writeHead(200, {
+        'Content-Type': 'text/html; charset=utf-8',
+      })
+
+      res.end(content)
     })
-
-    res.end(content)
   })
-}).listen(httpPort, () => {
-  console.log('Сервер запущен на: http://localhost:%s', httpPort)
-})
+  .listen(httpPort, () => {
+    console.log('Сервер запущен на: http://localhost:%s', httpPort)
+  })
 ```
 
 #### Node.js c использованием Express
@@ -122,14 +124,12 @@ rewrite {
 
 ## Предостережение
 
-При таком подходе возникает одно неприятное последствие: сервер больше не будет выдавать ошибки 404, так как обслуживание всех путей отдаётся на откуп клиентскому роутингу. Частично эту проблему можно решить, указав путь по умолчанию во Vue-router:
+При таком подходе возникает одно неприятное последствие: сервер больше не будет выдавать ошибки 404, так как обслуживание всех путей отдаётся на откуп клиентскому роутингу. Частично эту проблему можно решить, указав путь по умолчанию во vue-router-2-state:
 
-``` js
+```js
 const router = new VueRouter({
   mode: 'history',
-  routes: [
-    { path: '*', component: NotFoundComponent }
-  ]
+  routes: [{ path: '*', component: NotFoundComponent }],
 })
 ```
 

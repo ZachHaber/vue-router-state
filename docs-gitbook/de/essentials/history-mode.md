@@ -1,10 +1,10 @@
 # HTML5-Verlaufsmodus ("History Mode")
 
-Der Standardmodus für `vue-router` ist der _Hash-Modus_. Er nutzt den URL-Hash, um eine komplette URL zu simulieren, damit die Seite nicht neu geladen wird, wenn sich die URL ändert.
+Der Standardmodus für `vue-router-2-state` ist der _Hash-Modus_. Er nutzt den URL-Hash, um eine komplette URL zu simulieren, damit die Seite nicht neu geladen wird, wenn sich die URL ändert.
 
 Um ohne Hash zu arbeiten, nutzt man den **Verlaufsmodus**, welcher die `history.pushState`-API von HTML5 nutzt, um URL-Navigation ohne Reload zu erreichen:
 
-``` js
+```js
 const router = new VueRouter({
   mode: 'history',
   routes: [...]
@@ -46,14 +46,12 @@ Für Node.js/Express benutz du am besten [connect-history-api-fallback middlewar
 
 ## Warnung
 
-Es gibt einen kleinen Nachteil: Der Server wird  keine 404-Fehler mehr melden, da alle nicht gefundenen Pfade zur `index.html` führen. Um das zu beheben, solltest du eine Sammel-Route in der Vue-App für die 404-Seite definieren.
+Es gibt einen kleinen Nachteil: Der Server wird keine 404-Fehler mehr melden, da alle nicht gefundenen Pfade zur `index.html` führen. Um das zu beheben, solltest du eine Sammel-Route in der Vue-App für die 404-Seite definieren.
 
-``` js
+```js
 const router = new VueRouter({
   mode: 'history',
-  routes: [
-    { path: '*', component: NotFoundComponent }
-  ]
+  routes: [{ path: '*', component: NotFoundComponent }],
 })
 ```
 

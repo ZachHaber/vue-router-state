@@ -5,13 +5,13 @@ Nous utiliserons [ES2015](https://github.com/lukehoban/es6features) dans les exe
 Tous les exemples utiliseront la version complète de Vue pour rendre l'analyse de template possible. Plus de détails [ici](https://fr.vuejs.org/guide/installation.html#Runtime-Compiler-vs-Runtime-seul).
 :::
 
-Créer une application monopage avec Vue + Vue Router est vraiment simple. Avec Vue.js, nous concevons déjà notre application avec des composants. En ajoutant vue-router dans notre application, tout ce qu'il nous reste à faire est de relier nos composants aux routes, et de laisser vue-router faire le rendu. Voici un exemple de base :
+Créer une application monopage avec Vue + Vue Router est vraiment simple. Avec Vue.js, nous concevons déjà notre application avec des composants. En ajoutant vue-router-2-state dans notre application, tout ce qu'il nous reste à faire est de relier nos composants aux routes, et de laisser vue-router-2-state faire le rendu. Voici un exemple de base :
 
 ## HTML
 
 ```html
 <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
-<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+<script src="https://unpkg.com/vue-router-2-state@3/dist/vue-router.js"></script>
 
 <div id="app">
   <h1>Bonjour l'application !</h1>
@@ -45,21 +45,21 @@ const Bar = { template: '<div>bar</div>' }
 // Nous parlerons plus tard des routes imbriquées.
 const routes = [
   { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
+  { path: '/bar', component: Bar },
 ]
 
 // 3. Créez l'instance du routeur et passez l'option `routes`.
 // Vous pouvez également passer des options supplémentaires,
 // mais nous allons faire simple pour l'instant.
 const router = new VueRouter({
-  routes // raccourci pour `routes: routes`
+  routes, // raccourci pour `routes: routes`
 })
 
 // 5. Créez et montez l'instance de Vue.
 // Soyez sûr d'injecter le routeur avec l'option `router` pour
 // permettre à l'application tout entière d'être à l'écoute du routeur.
 const app = new Vue({
-  router
+  router,
 }).$mount('#app')
 
 // L'application est maintenant en marche !
@@ -74,13 +74,13 @@ export default {
     username() {
       // Nous verrons ce que représente `params` dans un instant.
       return this.$route.params.username
-    }
+    },
   },
   methods: {
     goBack() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
-    }
-  }
+    },
+  },
 }
 ```
 

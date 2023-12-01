@@ -1,6 +1,6 @@
 # Intercepteurs de navigation
 
-Comme le nom le suggère, l'interception de navigation fournie par `vue-router` est principalement utilisée pour intercepter la navigation avec des redirections ou des annulations d'accès. Il y a plusieurs hooks disponibles lors du processus de navigation : globaux, par route ou par composant.
+Comme le nom le suggère, l'interception de navigation fournie par `vue-router-2-state` est principalement utilisée pour intercepter la navigation avec des redirections ou des annulations d'accès. Il y a plusieurs hooks disponibles lors du processus de navigation : globaux, par route ou par composant.
 
 Souvenez-vous de cela : **le changement de paramètre ou de query ne va pas lancer d'interception d'entrée ou de sortie de navigation**. Vous pouvez toujours [observer l'objet `$route`](../essentials/dynamic-matching.md#reacting-to-params-changes) pour réagir à ces changements, ou utiliser la fonction `beforeRouteUpdate` d'une interception par composant.
 
@@ -8,7 +8,7 @@ Souvenez-vous de cela : **le changement de paramètre ou de query ne va pas lanc
 
 Vous pouvez abonner une interception d'entrée en utilisant `router.beforeEach` :
 
-``` js
+```js
 const router = new VueRouter({ ... })
 
 router.beforeEach((to, from, next) => {
@@ -46,7 +46,7 @@ Dans la 2.5.0+ vous pouvez abonner une interception globale avec `router.beforeR
 
 Vous pouvez également abonner des hooks de sortie, cependant, à la différence des interceptions, ces hooks ne fournissent pas de fonction `next` et n'affecte pas la navigation :
 
-``` js
+```js
 router.afterEach((to, from) => {
   // ...
 })
@@ -56,7 +56,7 @@ router.afterEach((to, from) => {
 
 Vous pouvez définir l'interception `beforeEnter` directement sur l'objet de configuration d'une route :
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
     {
@@ -64,9 +64,9 @@ const router = new VueRouter({
       component: Foo,
       beforeEnter: (to, from, next) => {
         // ...
-      }
-    }
-  ]
+      },
+    },
+  ],
 })
 ```
 
@@ -80,15 +80,15 @@ Enfin, vous pouvez directement définir une interception de navigation a l'inté
 - `beforeRouteUpdate` (ajouté dans la 2.2+)
 - `beforeRouteLeave`
 
-``` js
+```js
 const Foo = {
   template: `...`,
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     // appelée avant que la route vers le composant soit confirmée.
     // cette fonction n'a pas accès à l'instance du composant avec `this`,
     // car le composant n'a pas encore été créé quand cette interception est appelée !
   },
-  beforeRouteUpdate (to, from, next) {
+  beforeRouteUpdate(to, from, next) {
     // appelée quand la route qui fait le rendu de ce composant change,
     // mais que ce composant est utilisé de nouveau dans la nouvelle route.
     // Par exemple, pour une route avec le paramètre dynamique `/foo/:id`, quand nous
@@ -96,11 +96,11 @@ const Foo = {
     // va être réutilisée, et ce hook va être appelé quand cela arrivera.
     // ce hook a accès à l'instance de ce composant via `this`.
   },
-  beforeRouteLeave (to, from, next) {
+  beforeRouteLeave(to, from, next) {
     // appelée quand la route qui fait le rendu de ce composant est sur le point
     // d'être laissée en faveur de la prochaine route.
     // elle a accès à l'instance de ce composant via `this`.
-  }
+  },
 }
 ```
 
@@ -108,7 +108,7 @@ L'interception `beforeRouteEnter` **n'**a **PAS** accès à `this`, car l'interc
 
 Cependant, vous pouvez accéder à l'instance en passant dans la fonction de rappel `next`. Cette fonction de rappel va être appelée quand la navigation sera confirmée, et l'instance du composant sera passée à la fonction de rappel en tant qu'argument :
 
-``` js
+```js
 beforeRouteEnter (to, from, next) {
   next(vm => {
     // accès à l'instance du composant via `vm`
@@ -116,7 +116,7 @@ beforeRouteEnter (to, from, next) {
 }
 ```
 
-Notez que `beforeRouteEnter` est la seule interception qui supporte une fonction de rappelle dans `next`. Pour `beforeRouteUpdate` et `beforeRouteLeave`, `this` est déjà disponible. Le passage d'une fonction de rappel n'étant pas nécessaire, il n'est donc pas *supporté* :
+Notez que `beforeRouteEnter` est la seule interception qui supporte une fonction de rappelle dans `next`. Pour `beforeRouteUpdate` et `beforeRouteLeave`, `this` est déjà disponible. Le passage d'une fonction de rappel n'étant pas nécessaire, il n'est donc pas _supporté_ :
 
 ```js
 beforeRouteUpdate (to, from, next) {

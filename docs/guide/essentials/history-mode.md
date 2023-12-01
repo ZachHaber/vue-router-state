@@ -1,10 +1,10 @@
 # HTML5 History Mode
 
-The default mode for `vue-router` is _hash mode_ - it uses the URL hash to simulate a full URL so that the page won't be reloaded when the URL changes.
+The default mode for `vue-router-2-state` is _hash mode_ - it uses the URL hash to simulate a full URL so that the page won't be reloaded when the URL changes.
 
 To get rid of the hash, we can use the router's **history mode**, which leverages the `history.pushState` API to achieve URL navigation without a page reload:
 
-``` js
+```js
 const router = new VueRouter({
   mode: 'history',
   routes: [...]
@@ -54,21 +54,23 @@ const http = require('http')
 const fs = require('fs')
 const httpPort = 80
 
-http.createServer((req, res) => {
-  fs.readFile('index.html', 'utf-8', (err, content) => {
-    if (err) {
-      console.log('We cannot open "index.html" file.')
-    }
+http
+  .createServer((req, res) => {
+    fs.readFile('index.html', 'utf-8', (err, content) => {
+      if (err) {
+        console.log('We cannot open "index.html" file.')
+      }
 
-    res.writeHead(200, {
-      'Content-Type': 'text/html; charset=utf-8'
+      res.writeHead(200, {
+        'Content-Type': 'text/html; charset=utf-8',
+      })
+
+      res.end(content)
     })
-
-    res.end(content)
   })
-}).listen(httpPort, () => {
-  console.log('Server listening on: http://localhost:%s', httpPort)
-})
+  .listen(httpPort, () => {
+    console.log('Server listening on: http://localhost:%s', httpPort)
+  })
 ```
 
 #### Express with Node.js
@@ -137,16 +139,16 @@ Add this to your `firebase.json`:
 
 There is a caveat to this: Your server will no longer report 404 errors as all not-found paths now serve up your `index.html` file. To get around the issue, you should implement a catch-all route within your Vue app to show a 404 page:
 
-``` js
+```js
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    { 
-      path: '/:catchAll(.*)', 
+    {
+      path: '/:catchAll(.*)',
       component: NotFoundComponent,
-      name: 'NotFound'
-    }
-  ]
+      name: 'NotFound',
+    },
+  ],
 })
 ```
 

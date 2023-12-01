@@ -1,6 +1,6 @@
 # Mode historique de HTML5
 
-Le mode par défaut de `vue-router` est le _mode hash_. Il utilise la partie hash de l'URL pour simuler un URL complet et ainsi ne pas recharger la page quand l'URL change.
+Le mode par défaut de `vue-router-2-state` est le _mode hash_. Il utilise la partie hash de l'URL pour simuler un URL complet et ainsi ne pas recharger la page quand l'URL change.
 
 Pour nous passer du hash, nous pouvons utiliser le **mode historique** qui utilisera l'API `history.pushState` afin de permettre une navigation sans rechargement de page :
 
@@ -60,7 +60,7 @@ http
       }
 
       res.writeHead(200, {
-        'Content-Type': 'text/html; charset=utf-8'
+        'Content-Type': 'text/html; charset=utf-8',
       })
 
       res.end(content)
@@ -134,7 +134,7 @@ Il y a une limitation a tout ceci. Votre serveur ne renverra plus les erreurs 40
 ```js
 const router = new VueRouter({
   mode: 'history',
-  routes: [{ path: '*', component: NotFoundComponent }]
+  routes: [{ path: '*', component: NotFoundComponent }],
 })
 ```
 

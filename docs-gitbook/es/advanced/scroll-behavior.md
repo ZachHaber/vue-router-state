@@ -1,12 +1,12 @@
 # Comportamiento del scroll
 
-Cuando se utiliza enrutamiento del lado cliente, podemos querer hacer `scroll` hacia el inicio de la página cuando naveguemos a una nueva ruta, o preservar la posición actual, tal cual lo hace una recarga de la página. `vue-router` te permite lograr esto e incluso más: permite personalizar completamente el comportamiento del `scroll` durante la navegación.
+Cuando se utiliza enrutamiento del lado cliente, podemos querer hacer `scroll` hacia el inicio de la página cuando naveguemos a una nueva ruta, o preservar la posición actual, tal cual lo hace una recarga de la página. `vue-router-2-state` te permite lograr esto e incluso más: permite personalizar completamente el comportamiento del `scroll` durante la navegación.
 
 **Nota: esta característica solo funciona en el modo historial de HTML5.**
 
 Cuando crees una instancia del `router`, puedes incluir la función `scrollBehavior`:
 
-``` js
+```js
 const router = new VueRouter({
   routes: [...],
   scrollBehavior (to, from, savedPosition) {
@@ -22,11 +22,11 @@ La función puede devolver un objeto de posición de `scroll`. El objeto puede s
 - `{ x: number, y: number }`
 - `{ selector: string, offset? : { x: number, y: number }}` (offset solo soportado a partir de la versión 2.6.0+)
 
-Si se devuelve un valor *falso* o un objeto vacio, no ocurrirá ningún desplazamiento.
+Si se devuelve un valor _falso_ o un objeto vacio, no ocurrirá ningún desplazamiento.
 
 Por ejemplo:
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   return { x: 0, y: 0 }
 }
@@ -36,7 +36,7 @@ Esto hará que la página se desplace hacia el inicio para todas las navegacione
 
 Devolver `savedPosition` hará que el comportamiento cuando se utilicen los botones _atrás_ o _adelante_ sea el nativo:
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   if (savedPosition) {
     return savedPosition
@@ -48,7 +48,7 @@ scrollBehavior (to, from, savedPosition) {
 
 Si deseas simular el `scroll` hacia anclas:
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   if (to.hash) {
     return {
@@ -59,4 +59,4 @@ scrollBehavior (to, from, savedPosition) {
 }
 ```
 
-También podemos utilizar [campos meta](meta.md) para implementar un control de `scroll` fino. Un ejemplo completo [aquí](https://github.com/vuejs/vue-router/blob/dev/examples/scroll-behavior/app.js).
+También podemos utilizar [campos meta](meta.md) para implementar un control de `scroll` fino. Un ejemplo completo [aquí](https://github.com/zachhaber/vue-router-state/blob/dev/examples/scroll-behavior/app.js).

@@ -13,64 +13,64 @@
 +------------------+                  +-----------------+
 ```
 
-`vue-router`를 사용하면 중첩 된 라우트 구성을 사용하여 관계를 표현하는 것이 매우 간단합니다.
+`vue-router-2-state`를 사용하면 중첩 된 라우트 구성을 사용하여 관계를 표현하는 것이 매우 간단합니다.
 
 이전 장에서 만든 앱을 생각해보십시오.
 
-``` html
+```html
 <div id="app">
   <router-view></router-view>
 </div>
 ```
 
-``` js
+```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 
 const router = new VueRouter({
-  routes: [
-    { path: '/user/:id', component: User }
-  ]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
 여기에있는 `<router-view>`는 최상위 outlet입니다. 최상위 경로와 일치하는 컴포넌트를 렌더링합니다. 비슷하게 렌더링 된 컴포넌트는 자신의 중첩 된 `<router-view>`를 포함 할 수도 있습니다. 다음은 `User` 컴포넌트의 템플릿 안에 하나를 추가하는 예 입니다.
 
-``` js
+```js
 const User = {
   template: `
     <div class="user">
       <h2>User {{ $route.params.id }}</h2>
       <router-view></router-view>
     </div>
-  `
+  `,
 }
 ```
 
 이 중첩 outlet에 컴포넌트를 렌더링하려면 `children`을 사용해야합니다.
 `VueRouter` 생성자의 옵션 config:
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/user/:id', component: User,
+    {
+      path: '/user/:id',
+      component: User,
       children: [
         {
           // /user/:id/profile 과 일치 할 때
           // UserProfile은 User의 <router-view> 내에 렌더링 됩니다.
           path: 'profile',
-          component: UserProfile
+          component: UserProfile,
         },
         {
           // /user/:id/posts 과 일치 할 때
           // UserPosts가 User의 <router-view> 내에 렌더링 됩니다.
           path: 'posts',
-          component: UserPosts
-        }
-      ]
-    }
-  ]
+          component: UserPosts,
+        },
+      ],
+    },
+  ],
 })
 ```
 
@@ -80,20 +80,21 @@ const router = new VueRouter({
 
 이 시점에서, 위의 설정으로, `/user/foo`를 방문했을 때 하위 라우트가 매치되지 않았기 때문에 `User`의 outlet에 아무것도 출력되지 않습니다. 어쩌면 거기에 무언가를 렌더링하고 싶을지도 모릅니다. 이 경우 빈 서브 루트 경로를 제공 할 수 있습니다.
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
     {
-      path: '/user/:id', component: User,
+      path: '/user/:id',
+      component: User,
       children: [
         // UserHome은 /user/:id 가 일치 할 때
         // User의 <router-view> 안에 렌더링됩니다.
         { path: '', component: UserHome },
 
         // ...또 다른 서브 라우트
-      ]
-    }
-  ]
+      ],
+    },
+  ],
 })
 ```
 

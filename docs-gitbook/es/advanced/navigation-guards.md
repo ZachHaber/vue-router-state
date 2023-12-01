@@ -1,6 +1,6 @@
 # Guardias de navegación
 
-Como el nombre sugiere, las guardias de navegación provistas por `vue-router` son básicamente utilizadas para proteger rutas de navegación ya sea redireccionando o cancelándolas. Hay varias maneras de engancharse en el proceso de navegación de rutas: globalmente, por ruta o dentro de los componentes.
+Como el nombre sugiere, las guardias de navegación provistas por `vue-router-2-state` son básicamente utilizadas para proteger rutas de navegación ya sea redireccionando o cancelándolas. Hay varias maneras de engancharse en el proceso de navegación de rutas: globalmente, por ruta o dentro de los componentes.
 
 Recuerda: **Los cambios en los parámetros o las _queries_ no harán que se ejecuten los guardias de navegación**. Simplemente [observa el objeto `$route`](../essentials/dynamic-matching.md#reacting-to-params-changes) para poder reaccionar frente a esos cambios o utiliza el guardia `beforeRouteUpdate` en el componente.
 
@@ -8,7 +8,7 @@ Recuerda: **Los cambios en los parámetros o las _queries_ no harán que se ejec
 
 Puedes registrar guardias _before_ globales utilizando `router.beforeEach`:
 
-``` js
+```js
 const router = new VueRouter({ ... })
 
 router.beforeEach((to, from, next) => {
@@ -16,7 +16,7 @@ router.beforeEach((to, from, next) => {
 })
 ```
 
-Las guardias _before_ globales son llamadas por orden de creación, cuando una navegación comienza. Las guardias pueden ejecutarse asincrónicamente, y la navegación se considera **pendiente** hasta que todos los _hooks_ sean resueltos. 
+Las guardias _before_ globales son llamadas por orden de creación, cuando una navegación comienza. Las guardias pueden ejecutarse asincrónicamente, y la navegación se considera **pendiente** hasta que todos los _hooks_ sean resueltos.
 
 Cada función guardia recibe tres argumentos:
 
@@ -46,7 +46,7 @@ A partir de la versión 2.5.0 puedes registrar un guardia global con `router.bef
 
 También puedes registrar _hooks_ globales que se ejecutarán después de que la navegación sea confirmada. Sin embargo, a diferencia de los guardias, estos _hooks_ no reciben una función `next` y no pueden afectar la navegación:
 
-``` js
+```js
 router.afterEach((to, from) => {
   // ...
 })
@@ -56,7 +56,7 @@ router.afterEach((to, from) => {
 
 Puedes definir guardias `beforeEnter` directamente en el objeto de configuración de una ruta:
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
     {
@@ -64,9 +64,9 @@ const router = new VueRouter({
       component: Foo,
       beforeEnter: (to, from, next) => {
         // ...
-      }
-    }
-  ]
+      },
+    },
+  ],
 })
 ```
 
@@ -80,15 +80,15 @@ Por último, puedes directamente definir guardias de navegación dentro de los c
 - `beforeRouteUpdate` (agregado en la versión 2.2)
 - `beforeRouteLeave`
 
-``` js
+```js
 const Foo = {
   template: `...`,
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     // se llama antes que la ruta que renderiza este componente sea confirmada.
     // NO tiene acceso a la instancia del componente `this`,
     // ¡porque no ha sido creada todavía cuando este guardia es ejecutado!
   },
-  beforeRouteUpdate (to, from, next) {
+  beforeRouteUpdate(to, from, next) {
     // se llama cuando la ruta que renderiza este componente ha cambiado,
     // pero este componente es reusado en la nueva ruta.
     // Por ejemplo, para una ruta con parámetros dinámicos /foo/:id, cuando
@@ -96,11 +96,11 @@ const Foo = {
     // será reusada, y este _hook_ será llamado cuando eso suceda.
     // Tiene acceso a la instancia del componente `this`
   },
-  beforeRouteLeave (to, from, next) {
+  beforeRouteLeave(to, from, next) {
     // se llama cuando la ruta que renderiza el componente está por ser
     // abandonada.
     // Tiene acceso a la instancia del componente `this`
-  }
+  },
 }
 ```
 
@@ -108,7 +108,7 @@ La guardia `beforeRouteEnter` **NO** tiene acceso a `this`, porque es ejecutada 
 
 Sin embargo, puedes acceder a la instancia pasando una _función callback_ a `next`. La _función callback_ se ejecutará cuando la navegación sea confirmada, y la instancia del componente será pasada como argumento:
 
-``` js
+```js
 beforeRouteEnter (to, from, next) {
   next(vm => {
     // accede a la instancia del componente a través de `vm`

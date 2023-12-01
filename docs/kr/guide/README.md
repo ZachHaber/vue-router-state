@@ -12,9 +12,9 @@ Vue와 Vue 라우터를 이용해 싱글 페이지 앱을 만드는 것은 매�
 
 ## HTML
 
-``` html
+```html
 <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
-<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+<script src="https://unpkg.com/vue-router-2-state@3/dist/vue-router.js"></script>
 
 <div id="app">
   <h1>Hello App!</h1>
@@ -33,10 +33,9 @@ Vue와 Vue 라우터를 이용해 싱글 페이지 앱을 만드는 것은 매�
 
 ## JavaScript
 
-``` js
+```js
 // 0. 모듈 시스템 (예: vue-cli)을 이용하고 있다면, Vue와 Vue 라우터를 import 하세요
 // 그리고 `Vue.use(VueRouter)`를 호출하세요
-
 
 // 1. 라우트 컴포넌트를 정의하세요.
 // 아래 내용들은 다른 파일로부터 가져올 수 있습니다.
@@ -50,20 +49,20 @@ const Bar = { template: '<div>bar</div>' }
 // 실제 컴포넌트 생성자이거나 컴포넌트 옵션 객체입니다.
 const routes = [
   { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
+  { path: '/bar', component: Bar },
 ]
 
 // 3. `routes` 옵션과 함께 router 인스턴스를 만드세요.
 // 추가 옵션을 여기서 전달해야합니다.
 // 지금은 간단하게 유지하겠습니다.
 const router = new VueRouter({
-  routes // `routes: routes`의 줄임
+  routes, // `routes: routes`의 줄임
 })
 
 // 4. 루트 인스턴스를 만들고 mount 하세요.
 // router와 router 옵션을 전체 앱에 주입합니다.
 const app = new Vue({
-  router
+  router,
 }).$mount('#app')
 
 // 이제 앱이 시작됩니다!
@@ -75,23 +74,20 @@ const app = new Vue({
 // Home.vue
 export default {
   computed: {
-    username () {
+    username() {
       // 곧 `params` 확인할 수 있습니다.
       return this.$route.params.username
-    }
+    },
   },
   methods: {
-    goBack () {
-      window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    }
-  }
+    goBack() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+    },
+  },
 }
 ```
 
 문서 전체에서 `router`를 자주 사용했습니다. `this.$router`는 정확히 `router`와 동일합니다. `this.$router`를 사용하는 이유는 라우터를 조작해야하는 모든 컴포넌트에서 라우트 객체를 가져올 필요가 없기 때문입니다.
-
 
 이 [예제](https://jsfiddle.net/yyx990803/xgrjzsup/)에서 바로 확인해볼 수 있습니다.
 

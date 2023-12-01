@@ -1,7 +1,3 @@
-# Nested Routes
-
-<div class="vueschool"><a href="https://vueschool.io/lessons/vue-router-nested-routes?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to work with nested routes with Vue School">Learn how to work with nested routes with a free lesson on Vue School</a></div>
-
 Real app UIs are usually composed of components that are nested multiple levels deep. It is also very common that the segments of a URL corresponds to a certain structure of nested components, for example:
 
 ```
@@ -15,7 +11,7 @@ Real app UIs are usually composed of components that are nested multiple levels 
 +------------------+                  +-----------------+
 ```
 
-With `vue-router`, it is very simple to express this relationship using nested route configurations.
+With `vue-router-2-state`, it is very simple to express this relationship using nested route configurations.
 
 Given the app we created in the last chapter:
 
@@ -27,11 +23,11 @@ Given the app we created in the last chapter:
 
 ```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 
 const router = new VueRouter({
-  routes: [{ path: '/user/:id', component: User }]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
@@ -44,7 +40,7 @@ const User = {
       <h2>User {{ $route.params.id }}</h2>
       <router-view></router-view>
     </div>
-  `
+  `,
 }
 ```
 
@@ -61,17 +57,17 @@ const router = new VueRouter({
           // UserProfile will be rendered inside User's <router-view>
           // when /user/:id/profile is matched
           path: 'profile',
-          component: UserProfile
+          component: UserProfile,
         },
         {
           // UserPosts will be rendered inside User's <router-view>
           // when /user/:id/posts is matched
           path: 'posts',
-          component: UserPosts
-        }
-      ]
-    }
-  ]
+          component: UserPosts,
+        },
+      ],
+    },
+  ],
 })
 ```
 
@@ -90,12 +86,12 @@ const router = new VueRouter({
       children: [
         // UserHome will be rendered inside User's <router-view>
         // when /user/:id is matched
-        { path: '', component: UserHome }
+        { path: '', component: UserHome },
 
         // ...other sub routes
-      ]
-    }
-  ]
+      ],
+    },
+  ],
 })
 ```
 

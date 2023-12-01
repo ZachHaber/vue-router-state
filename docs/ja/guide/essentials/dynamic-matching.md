@@ -1,19 +1,17 @@
 # 動的ルートマッチング
 
-<div class="vueschool"><a href="https://vueschool.io/courses/vue-router-for-everyone?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to build powerful Single Page Applications with the Vue Router on Vue School">Watch a free video course about Vue Router on Vue School</a></div>
-
-パターンを使って同じコンポーネントにルートをマップする必要がしばしばあるでしょう。例えば、 `User` コンポーネントは全てのユーザーに対して描画されるべきであるが、それぞれ異なるユーザー ID を持つ場合などです。`vue-router` ではパスの中の動的なセグメントを使用して実現できます。
+パターンを使って同じコンポーネントにルートをマップする必要がしばしばあるでしょう。例えば、 `User` コンポーネントは全てのユーザーに対して描画されるべきであるが、それぞれ異なるユーザー ID を持つ場合などです。`vue-router-2-state` ではパスの中の動的なセグメントを使用して実現できます。
 
 ```js
 const User = {
-  template: '<div>User</div>'
+  template: '<div>User</div>',
 }
 
 const router = new VueRouter({
   routes: [
     // コロンで始まる動的セグメント
-    { path: '/user/:id', component: User }
-  ]
+    { path: '/user/:id', component: User },
+  ],
 })
 ```
 
@@ -23,7 +21,7 @@ const router = new VueRouter({
 
 ```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 ```
 
@@ -50,8 +48,8 @@ const User = {
   watch: {
     $route(to, from) {
       // ルートの変更の検知...
-    }
-  }
+    },
+  },
 }
 ```
 
@@ -63,7 +61,7 @@ const User = {
   beforeRouteUpdate(to, from, next) {
     // ルート変更に反応する...
     // next() を呼び出すのを忘れないでください
-  }
+  },
 }
 ```
 
@@ -98,7 +96,7 @@ this.$route.params.pathMatch // '/non-existing'
 
 ## 高度なマッチングパターン
 
-`vue-router` はパスのマッチングエンジンとして [path-to-regexp](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0) を使っています。これは Optional による動的なセグメント、Zero or more / One or more に対する要求、また、カスタム正規表現パターンまでもサポートしています。 これらの高度なパターンについてはこちらの [ドキュメンテーション](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0#parameters) または、 `vue-router` の中でそれらを使っている [こちらの例](https://github.com/vuejs/vue-router/blob/dev/examples/route-matching/app.js) をご参照ください。
+`vue-router-2-state` はパスのマッチングエンジンとして [path-to-regexp](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0) を使っています。これは Optional による動的なセグメント、Zero or more / One or more に対する要求、また、カスタム正規表現パターンまでもサポートしています。 これらの高度なパターンについてはこちらの [ドキュメンテーション](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0#parameters) または、 `vue-router-2-state` の中でそれらを使っている [こちらの例](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-matching/app.js) をご参照ください。
 
 ## マッチングの優先度
 

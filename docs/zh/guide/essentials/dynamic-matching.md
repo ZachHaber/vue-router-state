@@ -1,19 +1,17 @@
 # 动态路由匹配
 
-<div class="vueschool"><a href="https://vueschool.io/lessons/vue-router-dynamic-routes?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to match dynamic routes with Vue School">观看 Vue School 的如何匹配动态路由的免费视频课程 (英文)</a></div>
-
-我们经常需要把某种模式匹配到的所有路由，全都映射到同个组件。例如，我们有一个 `User` 组件，对于所有 ID 各不相同的用户，都要使用这个组件来渲染。那么，我们可以在 `vue-router` 的路由路径中使用“动态路径参数”(dynamic segment) 来达到这个效果：
+我们经常需要把某种模式匹配到的所有路由，全都映射到同个组件。例如，我们有一个 `User` 组件，对于所有 ID 各不相同的用户，都要使用这个组件来渲染。那么，我们可以在 `vue-router-2-state` 的路由路径中使用“动态路径参数”(dynamic segment) 来达到这个效果：
 
 ```js
 const User = {
-  template: '<div>User</div>'
+  template: '<div>User</div>',
 }
 
 const router = new VueRouter({
   routes: [
     // 动态路径参数 以冒号开头
-    { path: '/user/:id', component: User }
-  ]
+    { path: '/user/:id', component: User },
+  ],
 })
 ```
 
@@ -24,7 +22,7 @@ const router = new VueRouter({
 
 ```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 ```
 
@@ -51,8 +49,8 @@ const User = {
   watch: {
     $route(to, from) {
       // 对路由变化作出响应...
-    }
-  }
+    },
+  },
 }
 ```
 
@@ -64,7 +62,7 @@ const User = {
   beforeRouteUpdate(to, from, next) {
     // react to route changes...
     // don't forget to call next()
-  }
+  },
 }
 ```
 
@@ -98,7 +96,7 @@ this.$route.params.pathMatch // '/non-existing'
 
 ## 高级匹配模式
 
-`vue-router` 使用 [path-to-regexp](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0) 作为路径匹配引擎，所以支持很多高级的匹配模式，例如：可选的动态路径参数、匹配零个或多个、一个或多个，甚至是自定义正则匹配。查看它的[文档](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0#parameters)学习高阶的路径匹配，还有[这个例子 ](https://github.com/vuejs/vue-router/blob/dev/examples/route-matching/app.js)展示 `vue-router` 怎么使用这类匹配。
+`vue-router-2-state` 使用 [path-to-regexp](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0) 作为路径匹配引擎，所以支持很多高级的匹配模式，例如：可选的动态路径参数、匹配零个或多个、一个或多个，甚至是自定义正则匹配。查看它的[文档](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0#parameters)学习高阶的路径匹配，还有[这个例子 ](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-matching/app.js)展示 `vue-router-2-state` 怎么使用这类匹配。
 
 ## 匹配优先级
 

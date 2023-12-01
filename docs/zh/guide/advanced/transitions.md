@@ -1,7 +1,5 @@
 # 过渡动效
 
-<div class="vueschool"><a href="https://vueschool.io/lessons/how-to-create-route-transitions-with-vue-router?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to create route transitions on Vue School">观看 Vue School 的如何创建路由过渡动效的免费视频课程 (英文)</a></div>
-
 `<router-view>` 是基本的动态组件，所以我们可以用 `<transition>` 组件给它添加一些过渡效果：
 
 ```html
@@ -22,7 +20,7 @@ const Foo = {
     <transition name="slide">
       <div class="foo">...</div>
     </transition>
-  `
+  `,
 }
 
 const Bar = {
@@ -30,7 +28,7 @@ const Bar = {
     <transition name="fade">
       <div class="bar">...</div>
     </transition>
-  `
+  `,
 }
 ```
 
@@ -57,4 +55,4 @@ watch: {
 }
 ```
 
-查看完整例子请[移步这里](https://github.com/vuejs/vue-router/blob/dev/examples/transitions/app.js)。
+查看完整例子请[移步这里](https://github.com/zachhaber/vue-router-state/blob/dev/examples/transitions/app.js)。

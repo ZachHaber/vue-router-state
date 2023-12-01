@@ -2,7 +2,7 @@
 
 Da `<router-view>` im Grunde eine dynamische Komponente ist, kann man Übergangs-Effekte mit der `<transition>`-Komponente hinzufügen:
 
-``` html
+```html
 <transition>
   <router-view></router-view>
 </transition>
@@ -12,15 +12,15 @@ Da `<router-view>` im Grunde eine dynamische Komponente ist, kann man Übergangs
 
 ### Übergang für einzelne Routes
 
-Das obige Beispiel nutzt den gleichen Übergangseffekt für alle Routes. Wenn unterschiedliche Übergänge je Route gewollt sind, kann man `<transition>` stattdessen *in* der Route-Komponente mit jeweils anderen Namen verwenden:
+Das obige Beispiel nutzt den gleichen Übergangseffekt für alle Routes. Wenn unterschiedliche Übergänge je Route gewollt sind, kann man `<transition>` stattdessen _in_ der Route-Komponente mit jeweils anderen Namen verwenden:
 
-``` js
+```js
 const Foo = {
   template: `
     <transition name="slide">
       <div class="foo">...</div>
     </transition>
-  `
+  `,
 }
 
 const Bar = {
@@ -28,7 +28,7 @@ const Bar = {
     <transition name="fade">
       <div class="bar">...</div>
     </transition>
-  `
+  `,
 }
 ```
 
@@ -36,14 +36,14 @@ const Bar = {
 
 Es ist auch möglich, den Übergang dynamisch anhand der Beziehung zwischen Ziel- und aktueller Route festzulegen:
 
-``` html
+```html
 <!-- nutze einen dynamischen Übergangsnamen -->
 <transition :name="transitionName">
   <router-view></router-view>
 </transition>
 ```
 
-``` js
+```js
 // überwache $route in der Parent-Komponente,
 // um den Übergang festzulegen
 watch: {
@@ -55,4 +55,4 @@ watch: {
 }
 ```
 
-Komplettes Beispiel [hier](https://github.com/vuejs/vue-router/blob/dev/examples/transitions/app.js) ansehen.
+Komplettes Beispiel [hier](https://github.com/zachhaber/vue-router-state/blob/dev/examples/transitions/app.js) ansehen.

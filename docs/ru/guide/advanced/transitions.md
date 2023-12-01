@@ -20,7 +20,7 @@ const Foo = {
     <transition name="slide">
       <div class="foo">...</div>
     </transition>
-  `
+  `,
 }
 
 const Bar = {
@@ -28,7 +28,7 @@ const Bar = {
     <transition name="fade">
       <div class="bar">...</div>
     </transition>
-  `
+  `,
 }
 ```
 
@@ -55,4 +55,4 @@ watch: {
 }
 ```
 
-Полный пример можно посмотреть [здесь](https://github.com/vuejs/vue-router/blob/dev/examples/transitions/app.js).
+Полный пример можно посмотреть [здесь](https://github.com/zachhaber/vue-router-state/blob/dev/examples/transitions/app.js).

@@ -13,63 +13,63 @@
 +------------------+                  +-----------------+
 ```
 
-Используя `Vue-router`, мы можем с лёгкостью выразить эти взаимоотношения при помощи вложенных путей.
+Используя `vue-router-2-state`, мы можем с лёгкостью выразить эти взаимоотношения при помощи вложенных путей.
 
 Рассмотрим созданное в предыдущем разделе приложение:
 
-``` html
+```html
 <div id="app">
   <router-view></router-view>
 </div>
 ```
 
-``` js
+```js
 const User = {
-  template: '<div>Пользователь {{ $route.params.id }}</div>'
+  template: '<div>Пользователь {{ $route.params.id }}</div>',
 }
 
 const router = new VueRouter({
-  routes: [
-    { path: '/user/:id', component: User }
-  ]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
 Здесь `<router-view>` — это точка, в которой будет отображён компонент, соответствующий пути верхнего уровня. Аналогичным образом, отображаемый там компонент может и сам содержать вложенный `<router-view>`. Изменим немного шаблон компонента `User`:
 
-``` js
+```js
 const User = {
   template: `
     <div class="user">
       <h2>Пользователь {{ $route.params.id }}</h2>
       <router-view></router-view>
     </div>
-  `
+  `,
 }
 ```
 
 Для отображения компонентов в этой вложенной точке, нам понадобится опция `children` в конфигурации конструктора `VueRouter`:
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/user/:id', component: User,
+    {
+      path: '/user/:id',
+      component: User,
       children: [
         {
           // при совпадении пути с шаблоном /user/:id/profile
           // в <router-view> компонента User будет отображён UserProfile
           path: 'profile',
-          component: UserProfile
+          component: UserProfile,
         },
         {
           // при совпадении с шаблоном /user/:id/posts
           // в <router-view> компонента User будет отображён UserPosts
           path: 'posts',
-          component: UserPosts
-        }
-      ]
-    }
-  ]
+          component: UserPosts,
+        },
+      ],
+    },
+  ],
 })
 ```
 
@@ -79,20 +79,21 @@ const router = new VueRouter({
 
 С текущим кодом, если перейти по пути `/user/foo`, внутри компонента `User` ничего отображено не будет, так как не произойдёт совпадения по второй части пути. Может быть, что-то в таких случаях отобразить всё же захочется — тогда стоит указать пустой путь:
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
     {
-      path: '/user/:id', component: User,
+      path: '/user/:id',
+      component: User,
       children: [
         // при совпадении пути с шаблоном /user/:id
         // в <router-view> компонента User будет отображён UserHome
         { path: '', component: UserHome },
 
         // ...остальные вложенные пути
-      ]
-    }
-  ]
+      ],
+    },
+  ],
 })
 ```
 

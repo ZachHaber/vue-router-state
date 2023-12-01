@@ -6,15 +6,13 @@
 すべての example では、vue の完全バージョンを使用してテンプレートを解析可能にしています。詳細は[こちら](https://jp.vuejs.org/v2/guide/installation.html#ランタイム-コンパイラとランタイム限定の違い)を参照してください。
 :::
 
-<div class="vueschool"><a href="https://vueschool.io/courses/vue-router-for-everyone?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to build powerful Single Page Applications with the Vue Router on Vue School">Watch a free video course about Vue Router on Vue School</a></div>
-
-Vue.js と vue-router を使ったシングルページアプリケーションの構築は驚くほど簡単です。Vue.js のコンポーネントを使ってアプリケーションを既に構成しています。vue-router を混ぜ込むには、コンポーネントとルートをマッピングさせて vue-router にどこで描画するかを知らせるだけです。以下が基本的な例です。
+Vue.js と vue-router-2-state を使ったシングルページアプリケーションの構築は驚くほど簡単です。Vue.js のコンポーネントを使ってアプリケーションを既に構成しています。vue-router-2-state を混ぜ込むには、コンポーネントとルートをマッピングさせて vue-router-2-state にどこで描画するかを知らせるだけです。以下が基本的な例です。
 
 ## HTML
 
 ```html
 <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
-<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+<script src="https://unpkg.com/vue-router-2-state@3/dist/vue-router.js"></script>
 
 <div id="app">
   <h1>Hello App!</h1>
@@ -48,21 +46,21 @@ const Bar = { template: '<div>bar</div>' }
 // ネストされたルートに関しては後で説明します
 const routes = [
   { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
+  { path: '/bar', component: Bar },
 ]
 
 // 3. ルーターインスタンスを作成して、ルートオプションを渡します
 // 追加のオプションをここで指定できますが、
 // この例ではシンプルにしましょう
 const router = new VueRouter({
-  routes // `routes: routes` の短縮表記
+  routes, // `routes: routes` の短縮表記
 })
 
 // 4. root となるインスタンスを作成してマウントします
 // アプリケーション全体がルーターを認知できるように、
 // ルーターをインジェクトすることを忘れないでください。
 const app = new Vue({
-  router
+  router,
 }).$mount('#app')
 
 // これで開始です!
@@ -77,15 +75,13 @@ export default {
     username() {
       // `params` が表示される
       return this.$route.params.username
-    }
+    },
   },
   methods: {
-    goBack () {
-      window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    }
-  }
+    goBack() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+    },
+  },
 }
 ```
 

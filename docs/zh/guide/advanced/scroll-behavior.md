@@ -1,8 +1,6 @@
 # 滚动行为
 
-<div class="vueschool"><a href="https://vueschool.io/lessons/how-to-control-the-scroll-behavior-of-vue-router?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to control the scroll behavior on Vue School">观看 Vue School 的如何控制滚动行为的免费视频课程 (英文)</a></div>
-
-使用前端路由，当切换到新路由时，想要页面滚到顶部，或者是保持原先的滚动位置，就像重新加载页面那样。 `vue-router` 能做到，而且更好，它让你可以自定义路由切换时页面如何滚动。
+使用前端路由，当切换到新路由时，想要页面滚到顶部，或者是保持原先的滚动位置，就像重新加载页面那样。 `vue-router-2-state` 能做到，而且更好，它让你可以自定义路由切换时页面如何滚动。
 
 **注意: 这个功能只在支持 `history.pushState` 的浏览器中可用。**
 
@@ -60,7 +58,7 @@ scrollBehavior (to, from, savedPosition) {
 }
 ```
 
-我们还可以利用[路由元信息](meta.md)更细颗粒度地控制滚动。查看完整例子请[移步这里](https://github.com/vuejs/vue-router/blob/dev/examples/scroll-behavior/app.js)。
+我们还可以利用[路由元信息](meta.md)更细颗粒度地控制滚动。查看完整例子请[移步这里](https://github.com/zachhaber/vue-router-state/blob/dev/examples/scroll-behavior/app.js)。
 
 ## 异步滚动
 

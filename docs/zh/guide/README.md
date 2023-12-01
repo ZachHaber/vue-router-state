@@ -6,15 +6,13 @@
 同时，所有的例子都将使用完整版的 Vue 以解析模板。更多细节请[移步这里](https://cn.vuejs.org/v2/guide/installation.html#运行时-编译器-vs-只包含运行时)。
 :::
 
-<div class="vueschool"><a href="https://vueschool.io/courses/vue-router-for-everyone?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to build powerful Single Page Applications with the Vue Router on Vue School">观看 Vue School 的关于 Vue Router 的免费视频课程 (英文)</a></div>
-
 用 Vue.js + Vue Router 创建单页应用，感觉很自然：使用 Vue.js ，我们已经可以通过组合组件来组成应用程序，当你要把 Vue Router 添加进来，我们需要做的是，将组件 (components) 映射到路由 (routes)，然后告诉 Vue Router 在哪里渲染它们。下面是个基本例子：
 
 ## HTML
 
 ```html
 <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
-<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+<script src="https://unpkg.com/vue-router-2-state@3/dist/vue-router.js"></script>
 
 <div id="app">
   <h1>Hello App!</h1>
@@ -48,20 +46,20 @@ const Bar = { template: '<div>bar</div>' }
 // 我们晚点再讨论嵌套路由。
 const routes = [
   { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
+  { path: '/bar', component: Bar },
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。
 const router = new VueRouter({
-  routes // (缩写) 相当于 routes: routes
+  routes, // (缩写) 相当于 routes: routes
 })
 
 // 4. 创建和挂载根实例。
 // 记得要通过 router 配置参数注入路由，
 // 从而让整个应用都有路由功能
 const app = new Vue({
-  router
+  router,
 }).$mount('#app')
 
 // 现在，应用已经启动了！
@@ -76,13 +74,13 @@ export default {
     username() {
       // 我们很快就会看到 `params` 是什么
       return this.$route.params.username
-    }
+    },
   },
   methods: {
     goBack() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
-    }
-  }
+    },
+  },
 }
 ```
 

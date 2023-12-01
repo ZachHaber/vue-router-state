@@ -1,8 +1,12 @@
-# vue-router
+# vue-router-2-state
+
 <!--email_off-->
-> Notas: vue-router@2.x funciona solamente con Vue 2.x. La documentación para la versión 0.7.x está [aquí (en inglés)](https://github.com/vuejs/vue-router/tree/1.0/docs/en).
+
+> Notas: vue-router-2-state@2.x funciona solamente con Vue 2.x. La documentación para la versión 0.7.x está [aquí (en inglés)](https://github.com/zachhaber/vue-router-state/tree/1.0/docs/en).
+
 <!--/email_off-->
-**[Notas de lanzamiento](https://github.com/vuejs/vue-router/releases)**
+
+**[Notas de lanzamiento](https://github.com/zachhaber/vue-router-state/releases)**
 
 - [Instalación](installation.md)
 - Esenciales

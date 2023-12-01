@@ -1,8 +1,8 @@
-# vue-router
+# vue-router-2-state
 
-> Примечание: для пользователей TypeScript, vue-router@3.0+ требуется vue@2.5+, и наоборот.
+> Примечание: для пользователей TypeScript, vue-router-2-state@3.0+ требуется vue@2.5+, и наоборот.
 
-**[История изменений](https://github.com/vuejs/vue-router/releases)**
+**[История изменений](https://github.com/zachhaber/vue-router-state/releases)**
 
 - [Введение](README.md)
 - [Установка](installation.md)

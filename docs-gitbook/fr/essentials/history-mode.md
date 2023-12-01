@@ -1,10 +1,10 @@
 # Mode historique de HTML5
 
-Le mode par défaut de `vue-router` est le _mode hash_. Il utilise la partie hash de l'URL pour simuler un URL complet et ainsi ne pas recharger la page quand l'URL change.
+Le mode par défaut de `vue-router-2-state` est le _mode hash_. Il utilise la partie hash de l'URL pour simuler un URL complet et ainsi ne pas recharger la page quand l'URL change.
 
 Pour nous passer du hash, nous pouvons utiliser le **mode historique** qui utilisera l'API `history.pushState` afin de permettre une navigation sans rechargement de page :
 
-``` js
+```js
 const router = new VueRouter({
   mode: 'history',
   routes: [...]
@@ -47,21 +47,23 @@ const http = require('http')
 const fs = require('fs')
 const httpPort = 80
 
-http.createServer((req, res) => {
-  fs.readFile('index.htm', 'utf-8', (err, content) => {
-    if (err) {
-      console.log(`Impossible d'ouvrir le fichier "index.htm"`)
-    }
+http
+  .createServer((req, res) => {
+    fs.readFile('index.htm', 'utf-8', (err, content) => {
+      if (err) {
+        console.log(`Impossible d'ouvrir le fichier "index.htm"`)
+      }
 
-    res.writeHead(200, {
-      'Content-Type': 'text/html; charset=utf-8'
+      res.writeHead(200, {
+        'Content-Type': 'text/html; charset=utf-8',
+      })
+
+      res.end(content)
     })
-
-    res.end(content)
   })
-}).listen(httpPort, () => {
-  console.log('Le serveur écoute à : http://localhost:%s', httpPort)
-})
+  .listen(httpPort, () => {
+    console.log('Le serveur écoute à : http://localhost:%s', httpPort)
+  })
 ```
 
 #### Node.js avec Express
@@ -124,12 +126,10 @@ Ajouter ceci à votre fichier `firebase.json` :
 
 Il y a une limitation a tout ceci. Votre serveur ne renverra plus les erreurs 404 des chemins qui ne sont pas trouvés puisqu'il va servir à présent le fichier `index.html`. Pour contourner ce problème, vous pouvez implémenter une route concordant avec toutes les adresses en 404 dans votre application Vue :
 
-``` js
+```js
 const router = new VueRouter({
   mode: 'history',
-  routes: [
-    { path: '*', component: NotFoundComponent }
-  ]
+  routes: [{ path: '*', component: NotFoundComponent }],
 })
 ```
 

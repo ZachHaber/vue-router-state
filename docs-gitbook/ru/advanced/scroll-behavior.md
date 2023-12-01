@@ -1,12 +1,12 @@
 # Скроллинг
 
-При переходе между страницами в рамках клиентского роутинга, можно сохранять позицию скроллинга для каждой записи в истории (что обычно делают браузеры при работе с традиционными приложениями), или же проматывать страницу вверх. `Vue-router` позволяет использовать оба варианта, и даже более того — позволяет полностью настроить поведение скроллинга при навигации.
+При переходе между страницами в рамках клиентского роутинга, можно сохранять позицию скроллинга для каждой записи в истории (что обычно делают браузеры при работе с традиционными приложениями), или же проматывать страницу вверх. `vue-router-2-state` позволяет использовать оба варианта, и даже более того — позволяет полностью настроить поведение скроллинга при навигации.
 
 **Замечание: эта возможность работает если браузер поддерживает `history.pushState`.**
 
 При создании экземпляра роутера, вы можете указать функцию `scrollBehavior`:
 
-``` js
+```js
 const router = new VueRouter({
   routes: [...],
   scrollBehavior (to, from, savedPosition) {
@@ -26,7 +26,7 @@ const router = new VueRouter({
 
 Например:
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   return { x: 0, y: 0 }
 }
@@ -36,7 +36,7 @@ scrollBehavior (to, from, savedPosition) {
 
 Возврат `savedPosition` позволяет эмулировать нативное поведение браузера при использовании кнопок назад/вперёд:
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   if (savedPosition) {
     return savedPosition
@@ -48,7 +48,7 @@ scrollBehavior (to, from, savedPosition) {
 
 Эмулировать поведение "прокрутки к якорю" ("scroll to anchor") можно так:
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   if (to.hash) {
     return {
@@ -59,7 +59,7 @@ scrollBehavior (to, from, savedPosition) {
 }
 ```
 
-Можно также использовать [метаданные путей](meta.md) для более сложного управления скроллингом. Полная реализация подхода содержится в [этом примере](https://github.com/vuejs/vue-router/blob/dev/examples/scroll-behavior/app.js).
+Можно также использовать [метаданные путей](meta.md) для более сложного управления скроллингом. Полная реализация подхода содержится в [этом примере](https://github.com/zachhaber/vue-router-state/blob/dev/examples/scroll-behavior/app.js).
 
 ### Асинхронный скроллинг
 
@@ -67,7 +67,7 @@ scrollBehavior (to, from, savedPosition) {
 
 Вы также можете вернуть Promise, который разрешится дескриптором с желаемой позицией:
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

@@ -1,12 +1,10 @@
 # Navigation Guards
 
-As the name suggests, the navigation guards provided by `vue-router` are primarily used to guard navigations either by redirecting it or canceling it. There are a number of ways to hook into the route navigation process: globally, per-route, or in-component.
+As the name suggests, the navigation guards provided by `vue-router-2-state` are primarily used to guard navigations either by redirecting it or canceling it. There are a number of ways to hook into the route navigation process: globally, per-route, or in-component.
 
 Remember that **params or query changes won't trigger enter/leave navigation guards**. You can either [watch the `$route` object](../essentials/dynamic-matching.md#reacting-to-params-changes) to react to those changes, or use the `beforeRouteUpdate` in-component guard.
 
 ## Global Before Guards
-
-<div class="vueschool"><a href="https://vueschool.io/lessons/how-to-configure-an-authentication-middleware-route-guard-with-vue-router?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to create an authentication middleware with a global route guard on Vue School">Learn how navigation guards works with a free lesson on Vue School</a></div>
 
 You can register global before guards using `router.beforeEach`:
 
@@ -81,9 +79,9 @@ const router = new VueRouter({
       component: Foo,
       beforeEnter: (to, from, next) => {
         // ...
-      }
-    }
-  ]
+      },
+    },
+  ],
 })
 ```
 
@@ -117,7 +115,7 @@ const Foo = {
     // called when the route that renders this component is about to
     // be navigated away from.
     // has access to `this` component instance.
-  }
+  },
 }
 ```
 
@@ -164,7 +162,7 @@ Vue.use(Router)
 Vue.mixin({
   beforeRouteUpdate(to, from, next) {
     // ...
-  }
+  },
 })
 ```
 

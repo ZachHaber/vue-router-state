@@ -2,7 +2,7 @@
 
 基本的に `<router-view>` は動的コンポーネントなので、 `<transition>` コンポーネントを使うのと同じ方法でトランジションを適用することができます。
 
-``` html
+```html
 <transition>
   <router-view></router-view>
 </transition>
@@ -14,13 +14,13 @@
 
 上記の使い方では全てのトランジションが全てのルートに対して適用されます。もし各ルートコンポーネントにそれぞれ違うトランジションを持たせたい場合は、代わりにルーターコンポーネント内で異なる名前で `<transition>` を使うことができます。
 
-``` js
+```js
 const Foo = {
   template: `
     <transition name="slide">
       <div class="foo">...</div>
     </transition>
-  `
+  `,
 }
 
 const Bar = {
@@ -28,7 +28,7 @@ const Bar = {
     <transition name="fade">
       <div class="bar">...</div>
     </transition>
-  `
+  `,
 }
 ```
 
@@ -36,14 +36,14 @@ const Bar = {
 
 対象のルートと現在のルートの関係を元に動的にトランジションを決定することも可能です。
 
-``` html
+```html
 <!-- 動的なトランジション名の使用 -->
 <transition :name="transitionName">
   <router-view></router-view>
 </transition>
 ```
 
-``` js
+```js
 // そして親コンポーネントの中で、
 // `$route` を watch して使用するトランジションを決定します
 watch: {
@@ -55,4 +55,4 @@ watch: {
 }
 ```
 
-完全な例は [こちら](https://github.com/vuejs/vue-router/blob/dev/examples/transitions/app.js) をご参照ください。
+完全な例は [こちら](https://github.com/zachhaber/vue-router-state/blob/dev/examples/transitions/app.js) をご参照ください。

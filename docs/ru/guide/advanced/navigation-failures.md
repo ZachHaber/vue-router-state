@@ -12,25 +12,25 @@
 
 ::: tip История вопроса
 В версии 3.2.0, _навигационные сбои_ доступны через два необязательных коллбэка `router.push`: `onComplete` и `onAbort`. Начиная с версии 3.1.0, `router.push` и `router.replace` возвращают _Promise_ если не указаны коллбэки `onComplete`/`onAbort`. Этот _Promise_ разрешается вместо вызова `onComplete` и отклоняется вместо вызова `onAbort`.
- :::
+:::
 
 ## Обнаружение сбоев навигации
 
 _Сбой навигации_ будет экземпляром `Error` с парой дополнительных свойств. Проверить произошла ли ошибка в маршрутизаторе можно с помощью функции `isNavigationFailure`:
 
 ```js
-import VueRouter from 'vue-router'
+import VueRouter from 'vue-router-2-state'
 const { isNavigationFailure, NavigationFailureType } = VueRouter
 
 // попытка перехода к странице администрирования
-router
-  .push('/admin')
-  .catch(failure => {
-    if (isNavigationFailure(failure, NavigationFailureType.redirected)) {
-      // отображение уведомления пользователю
-      showToast('Необходимо авторизоваться для доступа к панели администрирования')
-    }
-  })
+router.push('/admin').catch((failure) => {
+  if (isNavigationFailure(failure, NavigationFailureType.redirected)) {
+    // отображение уведомления пользователю
+    showToast(
+      'Необходимо авторизоваться для доступа к панели администрирования',
+    )
+  }
+})
 ```
 
 ::: tip СОВЕТ
@@ -52,14 +52,12 @@ router
 
 ```js
 // попытка получения доступа к странице администрирования
-router
-  .push('/admin')
-  .catch(failure => {
-    if (isNavigationFailure(failure, NavigationFailureType.redirected)) {
-      console.log(failure.to.path) // '/admin'
-      console.log(failure.from.path) // '/'
-    }
-  })
+router.push('/admin').catch((failure) => {
+  if (isNavigationFailure(failure, NavigationFailureType.redirected)) {
+    console.log(failure.to.path) // '/admin'
+    console.log(failure.from.path) // '/'
+  }
+})
 ```
 
 Во всех случаях значения `to` и `from` будут объектами нормализованных маршрутов.

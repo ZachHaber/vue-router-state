@@ -4,25 +4,23 @@
 
 コンポーネントをルーターから分離するために `props` オプションを使います:
 
-**  `$route` に結合**
+** `$route` に結合**
 
-``` js
+```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 const router = new VueRouter({
-  routes: [
-    { path: '/user/:id', component: User }
-  ]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
-**  `props` による分離**
+** `props` による分離**
 
-``` js
+```js
 const User = {
   props: ['id'],
-  template: '<div>User {{ id }}</div>'
+  template: '<div>User {{ id }}</div>',
 }
 const router = new VueRouter({
   routes: [
@@ -32,9 +30,9 @@ const router = new VueRouter({
     {
       path: '/user/:id',
       components: { default: User, sidebar: Sidebar },
-      props: { default: true, sidebar: false }
-    }
-  ]
+      props: { default: true, sidebar: false },
+    },
+  ],
 })
 ```
 
@@ -48,11 +46,15 @@ const router = new VueRouter({
 
 `props` がオブジェクトの場合、これはコンポーネントプロパティとしてそのまま設定されます。プロパティが静的なときに便利です。
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/promotion/from-newsletter', component: Promotion, props: { newsletterPopup: false } }
-  ]
+    {
+      path: '/promotion/from-newsletter',
+      component: Promotion,
+      props: { newsletterPopup: false },
+    },
+  ],
 })
 ```
 
@@ -60,11 +62,15 @@ const router = new VueRouter({
 
 プロパティを返す関数を作成することができます。これにより、パラメータを他のタイプにキャストし、静的な値をルートベースの値などと組み合わせることができます。
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/search', component: SearchUser, props: (route) => ({ query: route.query.q }) }
-  ]
+    {
+      path: '/search',
+      component: SearchUser,
+      props: (route) => ({ query: route.query.q }),
+    },
+  ],
 })
 ```
 
@@ -72,4 +78,4 @@ URL `/search?q=vue` は `{query: 'vue'}` をプロパティとして `SearchUser
 
 ルート変更時にのみ評価されるため、`props` 関数はステートレスにしてください。プロパティを定義するために状態を必要とする場合はラッパーコンポーネントを使用してください。その方法で vue は状態変更に対応することができます。
 
-高度な使い方については、[example](https://github.com/vuejs/vue-router/blob/dev/examples/route-props/app.js)を参照してください。
+高度な使い方については、[example](https://github.com/zachhaber/vue-router-state/blob/dev/examples/route-props/app.js)を参照してください。

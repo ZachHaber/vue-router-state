@@ -2,15 +2,15 @@
 
 > 가이드의 샘플 코드는[ES2015](https://github.com/lukehoban/es6features)를 사용합니다.
 
-Vue.js와 vue-router로 단일 페이지 애플리케이션을 만드는 것은 간단합니다. Vue.js를 통해 우리는 이미 컴포넌트로 애플리케이션을 구성하고 있습니다. vue-router를 추가 할 때, 우리가해야 할 일은 우리의 컴포넌트를 route에 매핑하고 vue-router가 어디서 렌더링할 지 지정하는 것입니다. 다음은 기본적인 예입니다.
+Vue.js와 vue-router-2-state로 단일 페이지 애플리케이션을 만드는 것은 간단합니다. Vue.js를 통해 우리는 이미 컴포넌트로 애플리케이션을 구성하고 있습니다. vue-router-2-state를 추가 할 때, 우리가해야 할 일은 우리의 컴포넌트를 route에 매핑하고 vue-router-2-state가 어디서 렌더링할 지 지정하는 것입니다. 다음은 기본적인 예입니다.
 
 > 모든 예제는 Vue의 전체 버전을 사용하여 템플릿 구문 분석을 가능하게합니다. 자세한 내용은 [여기](https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only) 있습니다.
 
 ### HTML
 
-``` html
+```html
 <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
-<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+<script src="https://unpkg.com/vue-router-2-state@3/dist/vue-router.js"></script>
 
 <div id="app">
   <h1>Hello App!</h1>
@@ -29,7 +29,7 @@ Vue.js와 vue-router로 단일 페이지 애플리케이션을 만드는 것은 
 
 ### JavaScript
 
-``` js
+```js
 // 0. 모듈 시스템을 사용하는 경우 (예: vue-cli를 이용해서), Vue 및 VueRouter를 가져온 다음 `Vue.use(VueRouter)`를 호출하십시오.
 
 // 1. 라우트 컴포넌트를 정의하십시오.
@@ -44,20 +44,20 @@ const Bar = { template: '<div>bar</div>' }
 // 나중에 중첩 된 라우트에 대해 이야기하겠습니다.
 const routes = [
   { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
+  { path: '/bar', component: Bar },
 ]
 
 // 3. 라우터 인스턴스를 생성하고 `routes` 옵션을 전달하십시오.
 // 여기에 추가 옵션을 전달할 수 있지만, 지금은 간단하게 하겠습니다.
 const router = new VueRouter({
-  routes // routes: routes 의 약어
+  routes, // routes: routes 의 약어
 })
 
 // 4. 루트 인스턴스를 만들고 마운트하십시오.
 // 라우터 옵션을 라우터에 삽입하여
 // 전체 응용 프로그램을 라우터가 인식하도록 하십시오.
 const app = new Vue({
-  router
+  router,
 }).$mount('#app')
 
 // 이제 앱을 시작 해보세요!

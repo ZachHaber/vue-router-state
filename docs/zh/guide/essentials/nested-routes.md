@@ -1,7 +1,5 @@
 # 嵌套路由
 
-<div class="vueschool"><a href="https://vueschool.io/lessons/vue-router-nested-routes?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to work with nested routes with Vue School">观看 Vue School 的如何使用嵌套路由的免费视频课程 (英文)</a></div>
-
 实际生活中的应用界面，通常由多层嵌套的组件组合而成。同样地，URL 中各段动态路径也按某种结构对应嵌套的各层组件，例如：
 
 ```
@@ -15,7 +13,7 @@
 +------------------+                  +-----------------+
 ```
 
-借助 `vue-router`，使用嵌套路由配置，就可以很简单地表达这种关系。
+借助 `vue-router-2-state`，使用嵌套路由配置，就可以很简单地表达这种关系。
 
 接着上节创建的 app：
 
@@ -27,11 +25,11 @@
 
 ```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 
 const router = new VueRouter({
-  routes: [{ path: '/user/:id', component: User }]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
@@ -44,7 +42,7 @@ const User = {
       <h2>User {{ $route.params.id }}</h2>
       <router-view></router-view>
     </div>
-  `
+  `,
 }
 ```
 
@@ -61,17 +59,17 @@ const router = new VueRouter({
           // 当 /user/:id/profile 匹配成功，
           // UserProfile 会被渲染在 User 的 <router-view> 中
           path: 'profile',
-          component: UserProfile
+          component: UserProfile,
         },
         {
           // 当 /user/:id/posts 匹配成功
           // UserPosts 会被渲染在 User 的 <router-view> 中
           path: 'posts',
-          component: UserPosts
-        }
-      ]
-    }
-  ]
+          component: UserPosts,
+        },
+      ],
+    },
+  ],
 })
 ```
 
@@ -90,12 +88,12 @@ const router = new VueRouter({
       children: [
         // 当 /user/:id 匹配成功，
         // UserHome 会被渲染在 User 的 <router-view> 中
-        { path: '', component: UserHome }
+        { path: '', component: UserHome },
 
         // ...其他子路由
-      ]
-    }
-  ]
+      ],
+    },
+  ],
 })
 ```
 

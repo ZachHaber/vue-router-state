@@ -3,7 +3,7 @@ home: true
 heroImage: /logo.png
 actionText: Get Started →
 actionLink: /fr/installation.html
-footer: MIT Licensed | Copyright © 2014-present Evan You, Eduardo San Martin Morote
+footer: MIT Licensed
 ---
 
 Vue Router est le router officiel pour [Vue.js](http://vuejs.org). Il s'intègre aisément avec Vue.js pour faire des applications mono page avec Vue.js. Fonctionnalités incluses:
@@ -17,6 +17,6 @@ Vue Router est le router officiel pour [Vue.js](http://vuejs.org). Il s'intègre
 - Mode HTML5 de la gestion de l'historique ou mode par hash, avec solution de repli automatique pour IE9
 - Gestion du scroll
 
-[Pour commencer](./guide/) ou jouer avec les [exemples](https://github.com/vuejs/vue-router/tree/dev/examples) (voir [`README.md`](https://github.com/vuejs/vue-router/) pour les faire fonctionner).
+[Pour commencer](./guide/) ou jouer avec les [exemples](https://github.com/zachhaber/vue-router-state/tree/dev/examples) (voir [`README.md`](https://github.com/zachhaber/vue-router-state/) pour les faire fonctionner).
 
 <HomeSponsors />

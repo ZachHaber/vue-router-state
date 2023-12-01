@@ -10,13 +10,13 @@ Para navegar a una URL diferente, utiliza `router.push`. Este método agrega una
 
 Este método es el que se llama internamente cuando se hace clic en un componente `<router-link>`, por lo que`<router-link :to="...">` es el equivalente a ejecutar `router.push(...)`.
 
-| Declarativo | Mediante código |
-|-------------|--------------|
+| Declarativo               | Mediante código    |
+| ------------------------- | ------------------ |
 | `<router-link :to="...">` | `router.push(...)` |
 
 El argumento puede ser una cadena de texto o un objeto descriptor. Por ejemplo:
 
-``` js
+```js
 // cadena de texto literal
 router.push('home')
 
@@ -24,10 +24,10 @@ router.push('home')
 router.push({ path: 'home' })
 
 // Ruta con nombre
-router.push({ name: 'user', params: { userId: 123 }})
+router.push({ name: 'user', params: { userId: 123 } })
 
 // Con _query_, con lo que se obtiene /register?plan=private
-router.push({ path: 'register', query: { plan: 'private' }})
+router.push({ path: 'register', query: { plan: 'private' } })
 ```
 
 A partir de la version 2.2.0+, puedes opcionalmente pasar _funciones callbacks_ `onComplete` y `onAbort` a `router.push` o `router.replace` como segundo y tercer argumento. Estas _funciones callbacks_ serán ejecutadas cuando la navegación sea completada exitosamente (luego que todos los _hooks_ asíncronos sean resueltos), o abortada (navegando a la misma ruta, o a una ruta diferente antes que la navegación actual haya finalizado), respectivamente.
@@ -36,10 +36,9 @@ A partir de la version 2.2.0+, puedes opcionalmente pasar _funciones callbacks_ 
 
 Actúa como `router.push`, la única diferencia es que navega sin agregar una nueva entrada al historial, como su nombre sugiere - reemplaza la entrada actual.
 
-| Declarativo | Mediante código |
-|-------------|--------------|
+| Declarativo                       | Mediante código       |
+| --------------------------------- | --------------------- |
 | `<router-link :to="..." replace>` | `router.replace(...)` |
-
 
 #### `router.go(n)`
 
@@ -47,7 +46,7 @@ Este método toma un entero como parámetro que indica cuantos pasos avanzar o r
 
 Ejemplos
 
-``` js
+```js
 // Ir hacia adelante un paso, similar a history.forward()
 router.go(1)
 
@@ -68,4 +67,4 @@ Seguramente notaste que `router.push`, `router.replace` y `router.go` son contra
 
 Por lo tanto, si estás familiarizado con las [API del historial del navegador](https://developer.mozilla.org/en-US/docs/Web/API/History_API), manipularlo será muy sencillo con vue-router.
 
-Vale la pena mencionar que los métodos de navegacion de vue-router (`push`, `replace`, `go`) funcionan consistentemente en todos los modos de trabajo del `router` (`history`, `hash` y `abstract`).
+Vale la pena mencionar que los métodos de navegacion de vue-router-2-state (`push`, `replace`, `go`) funcionan consistentemente en todos los modos de trabajo del `router` (`history`, `hash` y `abstract`).

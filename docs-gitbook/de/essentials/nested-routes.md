@@ -13,65 +13,65 @@ Echte App-UIs bestehen normalerweise aus Komponenten, die mehrere Ebenen tief ve
 +------------------+                  +-----------------+
 ```
 
-Mit `vue-router` können wir derartige Beziehungen sehr leicht mit einer verschachtelten (englisch: "nested") Route-Konfiguration abbilden.
+Mit `vue-router-2-state` können wir derartige Beziehungen sehr leicht mit einer verschachtelten (englisch: "nested") Route-Konfiguration abbilden.
 
 Wir bauen auf der App auf, die im letzten Kapitel erstellt wurde:
 
-``` html
+```html
 <div id="app">
   <router-view></router-view>
 </div>
 ```
 
-``` js
+```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 
 const router = new VueRouter({
-  routes: [
-    { path: '/user/:id', component: User }
-  ]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
 Die `router-view` Komponente ist das Outlet der obersten Ebene. Sie rendert die Komponenten, welche zu Routes der obersten Ebene gehören. Eine dort gerenderte Komponente kann selbst wiederum eine `router-view` Komponente enthalten. Wenn wir zum Beispiel eine `router-view` Komponente im Template der User-Komponente platzieren, sieht das so aus:
 
-``` js
+```js
 const User = {
   template: `
     <div class="user">
       <h2>User {{ $route.params.id }}</h2>
       <router-view></router-view>
     </div>
-  `
+  `,
 }
 ```
 
 Um Komponenten in diesem verschachtelten Outlet zu rendern, müssen wir die `children`-Option in der Konfiguration des `VueRouter`-Konstruktors verwenden.
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
-    { path: '/user/:id', component: User,
+    {
+      path: '/user/:id',
+      component: User,
       children: [
         {
           // UserProfile wird innerhalb der
           // <router-view> von User gerendert,
           // wenn '/user/:id/profile' gematched wird.
           path: 'profile',
-          component: UserProfile
+          component: UserProfile,
         },
         {
           // UserPosts wird innerhalb der
           // <router-view> von User gerendert,
           // wenn '/user/:id/posts' gematched wird.
           path: 'posts',
-          component: UserPosts
-        }
-      ]
-    }
-  ]
+          component: UserPosts,
+        },
+      ],
+    },
+  ],
 })
 ```
 
@@ -81,11 +81,12 @@ Wie du sieht, ist die `children`-Option nur eine weiteres Array mit Route-Konfig
 
 Wenn du nun aber mit mit der aktuellen Konfiguration `/user/foo` aufrufst, wird nichts im `router-view` Outlet von `User` gerendert, da keine Sub-Route gematched wurde. Wollen wir in dem Fall dennoch eine Komponente rendern, erreichen wir das ganz einfach mit einer Route im `children`-Array, die einen leeren String als Pfad hat:
 
-``` js
+```js
 const router = new VueRouter({
   routes: [
     {
-      path: '/user/:id', component: User,
+      path: '/user/:id',
+      component: User,
       children: [
         // UserHome wird in <router-view>
         // von User gerendert,
@@ -93,9 +94,9 @@ const router = new VueRouter({
         { path: '', component: UserHome },
 
         // ...weitere Sub-Routes
-      ]
-    }
-  ]
+      ],
+    },
+  ],
 })
 ```
 

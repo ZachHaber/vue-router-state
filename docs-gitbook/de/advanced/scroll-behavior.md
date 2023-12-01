@@ -1,12 +1,12 @@
 # Scroll-Verhalten
 
-Oft wollen wir, dass die Seite nach oben scrollt, wenn zu einer neuen Route navigiert wird, oder dass die Scroll-Position von Verlaufseinträgen wie beim Neuladen einer Seite beibehalten wird. `vue-router` ermöglichst das und noch mehr - wir können das Scroll-Verhalten komplett individualisieren.
+Oft wollen wir, dass die Seite nach oben scrollt, wenn zu einer neuen Route navigiert wird, oder dass die Scroll-Position von Verlaufseinträgen wie beim Neuladen einer Seite beibehalten wird. `vue-router-2-state` ermöglichst das und noch mehr - wir können das Scroll-Verhalten komplett individualisieren.
 
 > Merke: Dies funktioniert nur im HTML5-Verlaufsmodus ("history mode").
 
 Beim Erzeugen der Router-Instanz fügt man die `scrollBehavior`-Funktion hinzu:
 
-``` js
+```js
 const router = new VueRouter({
   routes: [...],
   scrollBehavior (to, from, savedPosition) {
@@ -25,16 +25,16 @@ Die Funktion sollte ein Objekt zurückgeben, dass die Scroll-Position beschreibt
 Wenn ein falscher (falsy) Wert oder ein leeres Objekt zurückgegeben wird, wird nicht gescrollt.
 
 Im folgenden Beispiel scrollt die Seite komplett nach oben:
-``` js
+
+```js
 scrollBehavior (to, from, savedPosition) {
   return { x: 0, y: 0 }
 }
 ```
 
-
 Wenn die Funktion das `savedPosition`-Object zurückgibt, verhält sich die Seite wie ein Browser, innerhalb dessen mit den Vor-/Zurück Buttons navigiert wird.
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   if (savedPosition) {
     return savedPosition
@@ -46,7 +46,7 @@ scrollBehavior (to, from, savedPosition) {
 
 Simulation des "Scrolle zum Anchor"-Verhaltens:
 
-``` js
+```js
 scrollBehavior (to, from, savedPosition) {
   if (to.hash) {
     return {
@@ -56,4 +56,4 @@ scrollBehavior (to, from, savedPosition) {
 }
 ```
 
-Du kannst außerdem die [Route Meta-Felder](meta.md) für eine noch genauere Kontrolle des Scroll-Verhaltens nutzen.  [Hier](https://github.com/vuejs/vue-router/blob/dev/examples/scroll-behavior/app.js) findest du ein Beispiel.
+Du kannst außerdem die [Route Meta-Felder](meta.md) für eine noch genauere Kontrolle des Scroll-Verhaltens nutzen. [Hier](https://github.com/zachhaber/vue-router-state/blob/dev/examples/scroll-behavior/app.js) findest du ein Beispiel.

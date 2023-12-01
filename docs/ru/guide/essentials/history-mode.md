@@ -1,6 +1,6 @@
 # Режим HTML5 History
 
-По умолчанию `vue-router` работает в режиме _хэша_ — он использует хэш URL для симуляции полного URL-адреса, что позволяет избежать перезагрузки страницы при изменении URL.
+По умолчанию `vue-router-2-state` работает в режиме _хэша_ — он использует хэш URL для симуляции полного URL-адреса, что позволяет избежать перезагрузки страницы при изменении URL.
 
 Мы можем обойтись без хэша, используя **режим history**, который работает с API `history.pushState` для достижения той же цели:
 
@@ -54,21 +54,23 @@ const http = require('http')
 const fs = require('fs')
 const httpPort = 80
 
-http.createServer((req, res) => {
-  fs.readFile('index.html', 'utf-8', (err, content) => {
-    if (err) {
-      console.log('Невозможно открыть файл "index.html".')
-    }
+http
+  .createServer((req, res) => {
+    fs.readFile('index.html', 'utf-8', (err, content) => {
+      if (err) {
+        console.log('Невозможно открыть файл "index.html".')
+      }
 
-    res.writeHead(200, {
-      'Content-Type': 'text/html; charset=utf-8'
+      res.writeHead(200, {
+        'Content-Type': 'text/html; charset=utf-8',
+      })
+
+      res.end(content)
     })
-
-    res.end(content)
   })
-}).listen(httpPort, () => {
-  console.log('Сервер запущен на: http://localhost:%s', httpPort)
-})
+  .listen(httpPort, () => {
+    console.log('Сервер запущен на: http://localhost:%s', httpPort)
+  })
 ```
 
 #### Node.js c использованием Express
@@ -134,9 +136,7 @@ rewrite {
 ```js
 const router = new VueRouter({
   mode: 'history',
-  routes: [
-    { path: '*', component: NotFoundComponent }
-  ]
+  routes: [{ path: '*', component: NotFoundComponent }],
 })
 ```
 

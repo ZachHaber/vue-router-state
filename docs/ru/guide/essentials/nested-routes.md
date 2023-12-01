@@ -13,7 +13,7 @@
 +------------------+                  +-----------------+
 ```
 
-Используя `vue-router`, мы можем с лёгкостью выразить эти взаимоотношения при помощи вложенных путей.
+Используя `vue-router-2-state`, мы можем с лёгкостью выразить эти взаимоотношения при помощи вложенных путей.
 
 Рассмотрим созданное в предыдущем разделе приложение:
 
@@ -25,13 +25,11 @@
 
 ```js
 const User = {
-  template: '<div>Пользователь {{ $route.params.id }}</div>'
+  template: '<div>Пользователь {{ $route.params.id }}</div>',
 }
 
 const router = new VueRouter({
-  routes: [
-    { path: '/user/:id', component: User }
-  ]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
@@ -44,7 +42,7 @@ const User = {
       <h2>Пользователь {{ $route.params.id }}</h2>
       <router-view></router-view>
     </div>
-  `
+  `,
 }
 ```
 
@@ -61,17 +59,17 @@ const router = new VueRouter({
           // при совпадении пути с шаблоном /user/:id/profile
           // в <router-view> компонента User будет показан UserProfile
           path: 'profile',
-          component: UserProfile
+          component: UserProfile,
         },
         {
           // при совпадении пути с шаблоном /user/:id/posts
           // в <router-view> компонента User будет показан UserPosts
           path: 'posts',
-          component: UserPosts
-        }
-      ]
-    }
-  ]
+          component: UserPosts,
+        },
+      ],
+    },
+  ],
 })
 ```
 
@@ -90,12 +88,12 @@ const router = new VueRouter({
       children: [
         // при совпадении пути с шаблоном /user/:id
         // в <router-view> компонента User будет показан UserHome
-        { path: '', component: UserHome }
+        { path: '', component: UserHome },
 
         // ...остальные вложенные маршруты
-      ]
-    }
-  ]
+      ],
+    },
+  ],
 })
 ```
 

@@ -1,10 +1,12 @@
-# vue-router
+# vue-router-2-state
 
 <!--email_off-->
-> Merke: vue-router@2.x ist nur mit Vue 2.x kompatibel. Dokumentation für 0.7.x ist [hier (englisch)](https://github.com/vuejs/vue-router/tree/1.0/docs/en)
+
+> Merke: vue-router-2-state@2.x ist nur mit Vue 2.x kompatibel. Dokumentation für 0.7.x ist [hier (englisch)](https://github.com/zachhaber/vue-router-state/tree/1.0/docs/en)
+
 <!--/email_off-->
 
-**[Versionshinweise (englisch)](https://github.com/vuejs/vue-router/releases)**
+**[Versionshinweise (englisch)](https://github.com/zachhaber/vue-router-state/releases)**
 
 - [Installation](installation.md)
 - Grundlegendes

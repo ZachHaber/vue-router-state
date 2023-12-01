@@ -1,8 +1,12 @@
-# vue-router
+# vue-router-2-state
+
 <!--email_off-->
-> 참고 : vue-router@2.x는 Vue 2.x에서만 작동합니다. 0.7.x용 문서는 [이 곳](https://github.com/vuejs/vue-router/tree/1.0/docs/en)입니다.
+
+> 참고 : vue-router-2-state@2.x는 Vue 2.x에서만 작동합니다. 0.7.x용 문서는 [이 곳](https://github.com/zachhaber/vue-router-state/tree/1.0/docs/en)입니다.
+
 <!--/email_off-->
-**[릴리즈 노트](https://github.com/vuejs/vue-router/releases)**
+
+**[릴리즈 노트](https://github.com/zachhaber/vue-router-state/releases)**
 
 - [설치](installation.md)
 - 필수 사항

@@ -11,12 +11,12 @@
 При клике на `<router-link>` этот метод вызывается автоматически. Клик по `<router-link :to="...">` эквивалентен императивному вызову `router.push(...)`.
 
 | Декларативная запись      | Императивная запись |
-|---------------------------|---------------------|
+| ------------------------- | ------------------- |
 | `<router-link :to="...">` | `router.push(...)`  |
 
 В качестве аргумента можно передать строку или объект, описывающий путь. Например:
 
-``` js
+```js
 // строка
 router.push('home')
 
@@ -24,10 +24,10 @@ router.push('home')
 router.push({ path: 'home' })
 
 // именованный путь
-router.push({ name: 'user', params: { userId: 123 }})
+router.push({ name: 'user', params: { userId: 123 } })
 
 // со строкой запроса, получится /register?plan=private
-router.push({ path: 'register', query: { plan: 'private' }})
+router.push({ path: 'register', query: { plan: 'private' } })
 ```
 
 **Примечание**: `params` игнорируются, если указан `path`, что не соответствует случаю с `query` показанному в примере выше.
@@ -35,10 +35,10 @@ router.push({ path: 'register', query: { plan: 'private' }})
 
 ```js
 const userId = 123
-router.push({ name: 'user', params: { userId }}) // -> /user/123
+router.push({ name: 'user', params: { userId } }) // -> /user/123
 router.push({ path: `/user/${userId}` }) // -> /user/123
 // Это НЕ БУДЕТ работать
-router.push({ path: '/user', params: { userId }}) // -> /user
+router.push({ path: '/user', params: { userId } }) // -> /user
 ```
 
 Те же правила применяются и к свойству `to` компонента `router-link`.
@@ -51,8 +51,8 @@ router.push({ path: '/user', params: { userId }}) // -> /user
 
 Действует подобно `router.push`, с той лишь разницей, что вместо добавления новой записи к стеку истории переходов, заменяет текущую запись в нём.
 
-| Декларативная запись              |  Императивная запись  |
-|-----------------------------------|-----------------------|
+| Декларативная запись              | Императивная запись   |
+| --------------------------------- | --------------------- |
 | `<router-link :to="..." replace>` | `router.replace(...)` |
 
 #### `router.go(n)`
@@ -61,7 +61,7 @@ router.push({ path: '/user', params: { userId }}) // -> /user
 
 Примеры
 
-``` js
+```js
 // перейти на одну запись вперёд, эквивалентно history.forward()
 router.go(1)
 
@@ -80,6 +80,6 @@ router.go(100)
 
 Вы могли заметить, что `router.push`, `router.replace` и `router.go` соответствуют [`window.history.pushState`, `window.history.replaceState` и `window.history.go`](https://developer.mozilla.org/en-US/docs/Web/API/History), имитируя таким образом API `window.history`.
 
-По этой причине, если вы уже знакомы с [API истории переходов браузера](https://developer.mozilla.org/en-US/docs/Web/API/History_API), то и со Vue-router неожиданностей не возникнет.
+По этой причине, если вы уже знакомы с [API истории переходов браузера](https://developer.mozilla.org/en-US/docs/Web/API/History_API), то и со vue-router-2-state неожиданностей не возникнет.
 
-Стоит отметить, что методы навигации Vue-router'а (`push`, `replace`, `go`) работают одинаково во всех режимах роутера (`history`, `hash` и `abstract`).
+Стоит отметить, что методы навигации vue-router-2-state'а (`push`, `replace`, `go`) работают одинаково во всех режимах роутера (`history`, `hash` и `abstract`).

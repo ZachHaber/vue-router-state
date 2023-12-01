@@ -1,7 +1,3 @@
-# Lazy Loading Routes
-
-<div class="vueschool"><a href="https://vueschool.io/lessons/how-to-lazy-load-routes-with-vue-router?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to increase performance by lazy loading routes on Vue School">Learn how to lazy load routes with a free lesson on Vue School</a></div>
-
 When building apps with a bundler, the JavaScript bundle can become quite large, and thus affect the page load time. It would be more efficient if we can split each route's components into a separate chunk, and only load them when the route is visited.
 
 Combining Vue's [async component feature](https://vuejs.org/guide/components.html#Async-Components) and webpack's [code splitting feature](https://webpack.js.org/guides/code-splitting-async/), it's trivially easy to lazy-load route components.
@@ -35,7 +31,7 @@ Nothing needs to change in the route config, just use `Foo` as usual:
 
 ```js
 const router = new VueRouter({
-  routes: [{ path: '/foo', component: Foo }]
+  routes: [{ path: '/foo', component: Foo }],
 })
 ```
 
